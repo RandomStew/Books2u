@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Main 화면입니다.</h1>
+	<h1>Main 화면</h1>
 	<jsp:include page="common/top.jsp" flush="true" /><br>
 	<hr>
-
+	<jsp:include page="book/search.jsp" flush="true" /> <br>
+	<jsp:include page="book/curationMain.jsp" flush="true" />
 </body>
 </html>
