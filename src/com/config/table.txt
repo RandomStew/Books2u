@@ -13,20 +13,22 @@ to jaengs;
 
 
 -- 책 테이블
+DROP TABLE book CASCADE CONSTRAINTS;
 create table book
 (
-  isbn varchar2(10) primary key,
-  title varchar2(20) not null,
-  author varchar2(20) not null,
-  publisher varchar2(20) not null,
+  isbn varchar2(20) primary key,
+  title varchar2(500) not null,
+  author varchar2(500) not null,
+  publisher varchar2(500) not null,
   publishDate date not null,
-  story varchar2(500) not null,
-  genre varchar2(10) not null,
+  story varchar2(2500) not null,
+  genre varchar2(500) not null,
   price number(10) not null
 );
 
 
 -- 회원 테이블
+DROP TABLE member CASCADE CONSTRAINTS;
 create table member
 (
   userId varchar2(10) primary key,
@@ -49,6 +51,7 @@ create table member
 
 
 -- 리뷰 테이블
+DROP TABLE review CASCADE CONSTRAINTS;
 create table review
 (
   reviewId number(10),
@@ -64,6 +67,7 @@ create table review
 
 
 -- 주문 테이블
+DROP TABLE ordered CASCADE CONSTRAINTS;
 create table ordered
 (
   orderId number(20) not null,
@@ -87,5 +91,6 @@ create table ordered
 
 
 -- Sequence 값
+DROP SEQUENCE tmp_seq;
 create sequence tmp_seq start with 1 increment by 1;
 

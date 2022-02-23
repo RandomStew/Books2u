@@ -3,7 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.config.BookMapper">
-
+	<select id="search" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where title like '%' || #{title} || '%'
+	</select>
 </mapper>
 
 
