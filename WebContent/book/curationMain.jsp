@@ -8,5 +8,6 @@
 </head>
 <body>
 
+큐레이션
 </body>
 </html>

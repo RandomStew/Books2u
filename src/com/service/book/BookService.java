@@ -1,5 +1,11 @@
 package com.service.book;
 
-public interface BookService {
+import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.dto.book.BookDTO;
+
+public interface BookService {
+	public List<BookDTO> search(String title) throws Exception;
 }
