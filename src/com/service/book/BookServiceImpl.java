@@ -23,4 +23,17 @@ public class BookServiceImpl implements BookService {
 		return list;
 	}
 
+	@Override
+	public BookDTO searchBookInfo(String isbn) throws Exception {
+		BookDTO dto = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BookDAO dao = new BookDAO();
+			dto = dao.searchBookInfo(session, isbn);
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
 }
