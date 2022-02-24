@@ -15,9 +15,9 @@ public class OrderDTO {
 	private String recipientAddr1; // 수령지1
 	private String recipientAddr2; // 수령지2
 	private String recipientAddr3; // 수령지3
-	private String receiptPhone1; // 수령인전화번호1
-	private String receiptPhone2; // 수령인 전화번호2
-	private String receiptPhone3; // 수령인 전화번호3
+	private String recipientPhone1; // 수령인전화번호1
+	private String recipientPhone2; // 수령인 전화번호2
+	private String recipientPhone3; // 수령인 전화번호3
 	private String payment; // 결제수단
 	private String orderDate; // 주문날짜
 
@@ -26,7 +26,7 @@ public class OrderDTO {
 
 	public OrderDTO(String userId, String isbn, String title, String author, String publisher, int price, int amount,
 			String recipient, String recipientPost, String recipientAddr1, String recipientAddr2, String recipientAddr3,
-			String receiptPhone1, String receiptPhone2, String receiptPhone3, String payment, String orderDate) {
+			String recipientPhone1, String recipientPhone2, String recipientPhone3, String payment, String orderDate) {
 		super();
 		this.userId = userId;
 		this.isbn = isbn;
@@ -40,9 +40,9 @@ public class OrderDTO {
 		this.recipientAddr1 = recipientAddr1;
 		this.recipientAddr2 = recipientAddr2;
 		this.recipientAddr3 = recipientAddr3;
-		this.receiptPhone1 = receiptPhone1;
-		this.receiptPhone2 = receiptPhone2;
-		this.receiptPhone3 = receiptPhone3;
+		this.recipientPhone1 = recipientPhone1;
+		this.recipientPhone2 = recipientPhone2;
+		this.recipientPhone3 = recipientPhone3;
 		this.payment = payment;
 		this.orderDate = orderDate;
 	}
@@ -143,28 +143,28 @@ public class OrderDTO {
 		this.recipientAddr3 = recipientAddr3;
 	}
 
-	public String getReceiptPhone1() {
-		return receiptPhone1;
+	public String getRecipientPhone1() {
+		return recipientPhone1;
 	}
 
-	public void setReceiptPhone1(String receiptPhone1) {
-		this.receiptPhone1 = receiptPhone1;
+	public void setRecipientPhone1(String recipientPhone1) {
+		this.recipientPhone1 = recipientPhone1;
 	}
 
-	public String getReceiptPhone2() {
-		return receiptPhone2;
+	public String getRecipientPhone2() {
+		return recipientPhone2;
 	}
 
-	public void setReceiptPhone2(String receiptPhone2) {
-		this.receiptPhone2 = receiptPhone2;
+	public void setRecipientPhone2(String recipientPhone2) {
+		this.recipientPhone2 = recipientPhone2;
 	}
 
-	public String getReceiptPhone3() {
-		return receiptPhone3;
+	public String getRecipientPhone3() {
+		return recipientPhone3;
 	}
 
-	public void setReceiptPhone3(String receiptPhone3) {
-		this.receiptPhone3 = receiptPhone3;
+	public void setRecipientPhone3(String recipientPhone3) {
+		this.recipientPhone3 = recipientPhone3;
 	}
 
 	public String getPayment() {
@@ -185,12 +185,12 @@ public class OrderDTO {
 
 	@Override
 	public String toString() {
-		return "OrderDTO [userId=" + userId + ", isbn=" + isbn + ", title=" + title + ", author=" + author
-				+ ", publisher=" + publisher + ", price=" + price + ", amount=" + amount + ", recipient=" + recipient
-				+ ", recipientPost=" + recipientPost + ", recipientAddr1=" + recipientAddr1 + ", recipientAddr2="
-				+ recipientAddr2 + ", recipientAddr3=" + recipientAddr3 + ", receiptPhone1=" + receiptPhone1
-				+ ", receiptPhone2=" + receiptPhone2 + ", receiptPhone3=" + receiptPhone3 + ", payment=" + payment
-				+ ", orderDate=" + orderDate + "]";
+		return "OrderDTO [orderId=" + orderId + ", userId=" + userId + ", isbn=" + isbn + ", title=" + title
+				+ ", author=" + author + ", publisher=" + publisher + ", price=" + price + ", amount=" + amount
+				+ ", recipient=" + recipient + ", recipientPost=" + recipientPost + ", recipientAddr1=" + recipientAddr1
+				+ ", recipientAddr2=" + recipientAddr2 + ", recipientAddr3=" + recipientAddr3 + ", recipientPhone1="
+				+ recipientPhone1 + ", recipientPhone2=" + recipientPhone2 + ", recipientPhone3=" + recipientPhone3
+				+ ", payment=" + payment + ", orderDate=" + orderDate + "]";
 	}
 
 }
