@@ -21,7 +21,6 @@ public class CartListServlet extends HttpServlet {
 		String nextPage = "";
 		
 		if(dto != null) {
-			
 			// 임시-- cart는 DB에 저장되지 않으니까
 			session.getAttribute("cartList");
 			nextPage = "cartList.jsp";

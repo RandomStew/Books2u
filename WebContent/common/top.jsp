@@ -11,7 +11,7 @@
 	
 	<c:when test="${not empty sessionScope.login}">
 		<a href="LogoutServlet">로그아웃</a>
-		<a href="MyPageServlet">mypage</a>
+		<a href="MyPageServlet">마이페이지</a>
 		<a href="CartListServlet">장바구니</a>
 	</c:when>
 </c:choose>
