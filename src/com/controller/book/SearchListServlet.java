@@ -28,6 +28,7 @@ public class SearchListServlet extends HttpServlet {
 			List<BookDTO> list = service.search(title);
 			System.out.println(list);
 			request.setAttribute("bookList", list);
+			request.setAttribute("title", title);
 			next = "searchList.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
