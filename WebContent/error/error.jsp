@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Books2u : 에러</title>
 </head>
 <body>
 <h1>Error 페이지</h1>

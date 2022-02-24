@@ -31,22 +31,23 @@ create table book
 DROP TABLE member CASCADE CONSTRAINTS;
 create table member
 (
-  userId varchar2(10) primary key,
-  passWd varchar2(10) not null,
-  userName varchar2(10) not null,
-  ssn1 varchar2(10) not null,
-  ssn2 varchar2(10) not null,
-  phone1 varchar2(3) not null,
-  phone2 varchar2(4) not null,
-  phone3 varchar2(4) not null,
-  post varchar2(6) not null,
-  addr1 varchar2(20) not null,
-  addr2 varchar2(30) not null,
-  addr3 varchar2(30),
+  userId varchar2(20) primary key,
+  passWd varchar2(20) not null,
+  userName varchar2(20) not null,
+  ssn1 varchar2(20) not null,
+  ssn2 varchar2(20) not null,
+  phone1 varchar2(20) not null,
+  phone2 varchar2(20) not null,
+  phone3 varchar2(20) not null,
+  post varchar2(20) not null,
+  addr1 varchar2(500) not null,
+  addr2 varchar2(500) not null,
+  addr3 varchar2(500),
   email1 varchar2(20) not null,
   email2 varchar2(20) not null,
   joinDate date not null,
-  lastDate date not null
+  lastDate date not null,
+  account number(10)
 );
 
 
@@ -54,12 +55,12 @@ create table member
 DROP TABLE review CASCADE CONSTRAINTS;
 create table review
 (
-  reviewId number(10),
-  userId varchar2(10) not null,
+  reviewId number(10) not null,
+  userId varchar2(20) not null,
   rating number(2, 1) not null,
-  content varchar2(10) not null,
+  content varchar2(2500) not null,
   reviewDate date not null,
-  isbn varchar2(10) not null,
+  isbn varchar2(20) not null,
 
   constraint review_isbn_fk foreign key(isbn) references book(isbn),
   constraint reviewid_pk primary key(reviewId)
@@ -70,19 +71,19 @@ create table review
 DROP TABLE ordered CASCADE CONSTRAINTS;
 create table ordered
 (
-  orderId number(20) not null,
-  isbn varchar2(10) not null,
-  userId varchar2(10) not null,
+  orderId number(10) not null,
+  isbn varchar2(20) not null,
+  userId varchar2(20) not null,
   amount number(10) not null,
-  recipient varchar2(10) not null,
-  recipientPost varchar2(10) not null,
-  recipientAddr1 varchar2(20) not null,
-  recipientAddr2 varchar2(30) not null,
-  recipientAddr3 varchar2(30),
-  receiptPhone1 varchar2(3) not null,
-  receiptPhone2 varchar2(4) not null,
-  receiptPhone3 varchar2(4) not null,
-  payment varchar2(10) not null,
+  recipient varchar2(20) not null,
+  recipientPost varchar2(20) not null,
+  recipientAddr1 varchar2(500) not null,
+  recipientAddr2 varchar2(500) not null,
+  recipientAddr3 varchar2(500),
+  recipientPhone1 varchar2(20) not null,
+  recipientPhone2 varchar2(20) not null,
+  recipientPhone3 varchar2(20) not null,
+  payment varchar2(20) not null,
   orderDate date not null,
 
   constraint ordered_isbn_fk foreign key(isbn) references book(isbn),
@@ -91,6 +92,7 @@ create table ordered
 
 
 -- Sequence 값
-DROP SEQUENCE tmp_seq;
-create sequence tmp_seq start with 1 increment by 1;
-
+DROP SEQUENCE review_seq;
+create sequence review_seq start with 1 increment by 1;
+DROP SEQUENCE ordered_seq;
+create sequence ordered_seq start with 1 increment by 1;

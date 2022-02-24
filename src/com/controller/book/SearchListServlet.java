@@ -21,21 +21,20 @@ public class SearchListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String title = request.getParameter("search");
-		System.out.println(title);
 		BookService service = new BookServiceImpl();
-		String next = "";
+		String nextPage = "";
 		try {
 			List<BookDTO> list = service.search(title);
 			System.out.println(list);
 			request.setAttribute("bookList", list);
 			request.setAttribute("title", title);
-			next = "searchList.jsp";
+			nextPage = "searchList.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
-			next = "error/error.jsp";
+			nextPage = "error/error.jsp";
 			
 		}
-		request.getRequestDispatcher(next).forward(request, response);
+		request.getRequestDispatcher(nextPage).forward(request, response);
 		
 	}
 

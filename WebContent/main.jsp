@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Books2u</title>
 </head>
 <body>
 	<h1>Main 화면</h1>
