@@ -23,16 +23,16 @@ public class CartDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String [] check = request.getParameterValues("check");
-		System.out.println(check);
+
 		
 		List<String> list = Arrays.asList(check);
 		
 		HttpSession session = request.getSession();
 		
-		MemberDTO mDTO = (MemberDTO) session.getAttribute("login");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		String nextPage = "";
 		
-		if(mDTO != null) {
+		if(memberDTO != null) {
 			List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
 			List<CartDTO> found = new ArrayList<CartDTO>();
 			

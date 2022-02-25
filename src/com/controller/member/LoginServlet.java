@@ -30,10 +30,10 @@ public class LoginServlet extends HttpServlet {
 		MemberService service = new MemberServiceImpl();
 		String nextPage = "";
 		try {
-			MemberDTO dto = service.login(hashMap);
-			if (dto != null) {
+			MemberDTO memberDTO = service.login(hashMap);
+			if (memberDTO != null) {
 				HttpSession session = request.getSession();
-				session.setAttribute("login", dto);
+				session.setAttribute("login", memberDTO);
 				nextPage = "MainServlet";
 			} else {
 				nextPage = "member/loginFail.jsp";

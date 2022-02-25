@@ -15,17 +15,19 @@
 			data.checked = allCheck.checked;
 		})
 		
+		// 개별 체크박스 모두 선택시 모두선택 체크박스 선택
 		$("input[name=check]").click(function(){
 			var total = $("input[name=check]").length;
 			var checked = $("input[name=check]:checked").length;
 			
 			if(total != checked) $("#allCheck").prop("checked", false);
-			else $("#allChecke").prop("checked", true);
+			else $("#allCheck").prop("checked", true);
 		});
 	}
 	
 	
 	// 장바구니 수정 ------------------------------------------------------------------------------------------
+	
 	// 선택 항목 삭제
 	function delCheckedCart(){
 		var f = document.querySelector("form");
@@ -38,9 +40,9 @@
 	// 장바구니 비우기
 	function delAllCart(){
 		
-		var confirm_val = confirm("정말 비우시겠습니까?");
+		var confirmValue = confirm("정말 비우시겠습니까?");
 		  
-		  if(confirm_val) {
+		  if(confirmValue) {
 			var check = document.querySelectorAll(".check");
 			check.forEach(function(data, idx){
 				data.checked = true;

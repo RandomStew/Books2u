@@ -55,7 +55,7 @@ public class MainServlet extends HttpServlet {
 		cartList.add(cDTO4);
 		
 		
-		//session.setAttribute("login", mDTO);
+		session.setAttribute("login", mDTO);
 		session.setAttribute("cartList", cartList);
 
 		request.getRequestDispatcher("main.jsp").forward(request, response);
