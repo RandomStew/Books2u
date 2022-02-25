@@ -47,7 +47,7 @@ create table member
   email2 varchar2(20) not null,
   joinDate date not null,
   lastDate date not null,
-  account number(10) not null
+  account number(10)
 );
 
 
