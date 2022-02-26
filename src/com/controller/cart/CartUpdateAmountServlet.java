@@ -1,6 +1,8 @@
 package com.controller.cart;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.cart.CartDTO;
+import com.dto.member.MemberDTO;
 
 import api.data.transform.RequestTransformer;
 import api.data.transform.Transformer;
@@ -22,14 +25,24 @@ public class CartUpdateAmountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Transformer trans = new RequestTransformer(request);
-		CartDTO cartDTO = new CartDTO();
-		trans.setMappingDTO(cartDTO);
-		
 		HttpSession session = request.getSession();
-		List<CartDTO> cartList = (List<CartDTO>)session.getAttribute("cartList");
-		addDTO(cartList, cartDTO);
+		String isbn = request.getParameter("isbn");
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		int AscOrDesc = Integer.parseInt(request.getParameter("AscOrDesc"));
+		int cartSumAmount = (int) session.getAttribute("cartSumAmount");
+		session.setAttribute("cartSumAmount", cartSumAmount+AscOrDesc);
 		
+		
+		ArrayList<CartDTO> cartList = (ArrayList<CartDTO>) session.getAttribute("cartList");
+		
+		for(CartDTO item : cartList) {
+			if(item.getIsbn().equals(isbn)) {
+				item.setAmount(amount);
+			}
+			item.getAmount();
+		}
+	
+		session.setAttribute("cartList", cartList);
 		
 	}
 
@@ -39,14 +52,6 @@ public class CartUpdateAmountServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void addDTO(List<CartDTO> list, CartDTO dto) {
-		for(int i = 0; i < list.size(); ++i) {
-			if(list.get(i).getIsbn().equals(dto.getIsbn())) {
-				list.get(i).setAmount(list.get(i).getAmount()+dto.getAmount());
-				return;
-			}
-		}
-		list.add(dto);
-	}
+	
 
 }

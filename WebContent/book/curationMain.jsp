@@ -24,11 +24,11 @@
 		<c:forEach var="book" items="${curationList}" varStatus="status">
 			<div class="card" id="card${book.isbn}" style="cursor:pointer" onclick="goBookInfo(${book.isbn})">
 				<div class="img" id="">
-					<img src="images/books/${book.isbn }.jpg" alt="">	
+					<img src="images/books/${book.isbn}.jpg" alt="">	
 				</div>
 				<div class="text">
-					<h2>${book.title }</h2>
-					<p>${book.story }</p>
+					<h2>${book.title}</h2>
+					<p>${book.story}</p>
 					<button><i class="fas fa-check"></i>자세히보기</button>
 				</div>
 			</div>

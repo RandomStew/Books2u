@@ -1,13 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
+
+	function amountAsc() {
+		var amountTag = document.querySelector("#amount");
+		amountTag.value -= -1;
+	}
+	
+	function amountDesc() {
+		var amountTag = document.querySelector("#amount");
+		if(amountTag.value > 1) {
+			amountTag.value -= 1;
+		}
+	}
+	
+	
      function reqCheck(target){
-    	 if(target == 'cart'){
+    	 
+    	 if(target=='cart'){
     		 // 장바구니 
-    		 var f = document.querySelector("form");
-    		 f.action="GoodsCartAddServlet",
-    		 f.method="get"
-    		 f.submit();
+    		 
+    		 // Ajax 를 활용해서 cartList.jsp로 cartDTO에 필요한 데이터 전송
+		
+			var amountTag = document.querySelector("#amount");
+			var isbn = document.querySelector("#hiddenIsbn").value;
+			var title = document.querySelector("#hiddenTitle").value;
+			var author = document.querySelector("#hiddenAuthor").value;
+			var publisher = document.querySelector("#hiddenPublisher").value;
+			var price = document.querySelector("#hiddenPrice").value;
+			var userId = document.querySelector("#hiddenUserId").value;
+			
+			if(!userId) {
+				alert("로그인을 해주세요");
+				return;
+			}
+			var data = `userId=\${userId}&isbn=\${isbn}&`
+			+`title=\${title}&author=\${author}&publisher=\${publisher}&`
+			+`price=\${price}&amount=\${amountTag.value}`;
+			// console.log(data);
+			
+			var httpRequest = new XMLHttpRequest();
+			// post 방식 Ajax 통신
+			httpRequest.open("POST", "CartAddServlet", true);
+			httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			httpRequest.send(data);
+			httpRequest.onreadystatechange = function() {
+				// AJAX 성공시 데이터 응답 조건
+				if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200){
+					console.log("데이터 응답");
+				}
+			}
+			
+			// 사용자에게 정보 리턴
+			alert(`\${title} \${amountTag.value}권을 장바구니에 담았습니다.`);
+			amountTag.value = 1;
+    		 
     		 
     	 }else{
     		 // 주문
@@ -17,10 +64,15 @@
      }
 </script>
 
-<form name="bookInfoForm" method="GET" action="#">
-	    <input type="hidden"  name="Isbn" value="${book.isbn}">
-	    <input type="hidden"  name="Name" value="${book.title}"> 
-	    <input type="hidden" name="price" value="${book.price}">
+
+<form name="bookInfoForm" method="get">
+	    <input type="hidden"  id="hiddenIsbn" name="isbn" value="${book.isbn}">
+	    <input type="hidden"  id="hiddenTitle" name="title" value="${book.title}">
+	    <input type="hidden"  id="hiddenAuthor" name="author" value="${book.author}">
+	    <input type="hidden"  id="hiddenPublisher" name="publisher" value="${book.publisher}">
+	    <input type="hidden" id="hiddenPrice" name="price" value="${book.price}">
+	    <input type="hidden" id="hiddenUserId" name="userId" value="${sessionScope.login.userId}">
+	    
 
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
@@ -72,18 +124,25 @@
 					<tr>
 						<td width="50">줄거리</td>
 						<td colspan="2" style='padding-left: 50px'>
-							${book.story }
+							${book.story}
 						</td>
 					</tr>
 
 					<tr>
 						<td class="td_title">주문수량</td>
-						<td style="padding-left: 30px"><input type="text"
-							name="goods_amount" value="1" id="goods_amount"
-							style="text-align: right; height: 18px"> 
-							<img src="images/icons/up.PNG" id="up" style="cursor:pointer;"> 
-							<img src="images/icons/down.PNG"
-							id="down" style="cursor:pointer;">		
+						<!-- 수량 -->
+						<td class="td_default" align="center" width="90">
+						<input
+							class="input_default" type="text" name="amount"
+							id="amount" style="text-align: right" maxlength="3"
+							size="2" value="1" data-amount=""></input>
+						</td>
+						<!-- 수량 버튼 -->
+						<td><input type="button" value="+"
+							onclick="amountAsc()" style="cursor:pointer"/>
+							<br>
+							<input type="button" value="- "
+							onclick="amountDesc()" style="cursor:pointer"/>
 						</td>
 					</tr>
 				</table>
@@ -93,11 +152,11 @@
 	</table>
 
 	<br> 
-	<div>
+
 	<button onclick="reqCheck('order')">구매</button>
 	&nbsp;&nbsp;
 	<button onclick="reqCheck('cart')">장바구니</button>
-	</div>
+
 </form>
 
 <br>
