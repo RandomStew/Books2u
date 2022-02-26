@@ -14,19 +14,18 @@
 <table>
     <thead>
         <tr>
-            <th>Layer 1</th>
-            <th>Layer 2</th>
-            <th>Layer 3</th>
+            <th>Depth_1</th>
+            <th>Depth_2</th>
+            <th>Depth_3</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan=4>L1 Name</td>
-            <td rowspan=2>L2 Name A</td>
-            <td>L3 Name A</td>
+            <td rowspan=16>WebContent</td>
         </tr>
         <tr>
-            <td>L3 Name B</td>
+            <td>common</td>
+            <td>top.jsp</td>
         </tr>
         <tr>
             <td rowspan=2>L2 Name B</td>
