@@ -11,12 +11,12 @@ import com.dto.member.MemberDTO;
 public class MemberServiceImpl implements MemberService {
 
 	@Override
-	public int join(MemberDTO dto) throws Exception {
+	public int join(MemberDTO memberDTO) throws Exception {
 		int num = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			MemberDAO dao = new MemberDAO();
-			num = dao.join(session, dto);
+			num = dao.join(session, memberDTO);
 			session.commit();
 		} finally {
 			session.close();
@@ -25,51 +25,51 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO idDuplicateCheck(String userId) throws Exception {
-		MemberDTO dto = null;
+	public MemberDTO checkIdDuplicate(String userId) throws Exception {
+		MemberDTO memberDTO = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			MemberDAO dao = new MemberDAO();
-			dto = dao.idDuplicateCheck(session, userId);
+			memberDTO = dao.checkIdDuplicate(session, userId);
 		} finally {
 			session.close();
 		}
-		return dto;
+		return memberDTO;
 	}
 
 	@Override
 	public MemberDTO login(HashMap<String, String> hashMap) throws Exception {
-		MemberDTO dto = null;
+		MemberDTO memberDTO = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			MemberDAO dao = new MemberDAO();
-			dto = dao.login(session, hashMap);
+			memberDTO = dao.login(session, hashMap);
 		} finally {
 			session.close();
 		}
-		return dto;
+		return memberDTO;
 	}
 
 	@Override
-	public MemberDTO myPage(String userId) throws Exception {
-		MemberDTO dto = null;
+	public MemberDTO selectMyPage(String userId) throws Exception {
+		MemberDTO memberDTO = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			MemberDAO dao = new MemberDAO();
-			dto = dao.myPage(session, userId);
+			memberDTO = dao.selectMyPage(session, userId);
 		} finally {
 			session.close();
 		}
-		return dto;
+		return memberDTO;
 	}
 
 	@Override
-	public int myPageUpdate(MemberDTO dto) throws Exception {
+	public int updateMyPage(MemberDTO memberDTO) throws Exception {
 		int num = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			MemberDAO dao = new MemberDAO();
-			num = dao.myPageUpdate(session, dto);
+			num = dao.updateMyPage(session, memberDTO);
 			session.commit();
 		} finally {
 			session.close();

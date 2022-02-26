@@ -8,37 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dto.member.MemberDTO;
-import com.service.member.MemberService;
-import com.service.member.MemberServiceImpl;
-
-@WebServlet("/CustomerCenterServlet")
-public class CustomerCenterServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
-		MemberDTO login = (MemberDTO) session.getAttribute("login");
-
 		String nextPage = "";
-		if (login != null) {
-			nextPage = "customerCenter.jsp";
-			String userId = login.getUserId();
-			MemberService service = new MemberServiceImpl();
-			try {
-				MemberDTO memberDTO = service.selectMyPage(userId);
-				session.setAttribute("login", memberDTO);
-			} catch (Exception e) {
-				nextPage = "error/error.jsp";
-				e.printStackTrace();
-			}
-		} else {
+		if (session.getAttribute("login") == null) {
 			nextPage = "member/sessionInvalidate.jsp";
-
+		} else {
+			session.invalidate();
+			nextPage = "MainServlet";
 		}
-
-		request.getRequestDispatcher(nextPage).forward(request, response);
+		response.sendRedirect(nextPage);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

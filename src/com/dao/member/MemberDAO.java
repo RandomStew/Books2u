@@ -8,24 +8,24 @@ import com.dto.member.MemberDTO;
 
 public class MemberDAO {
 
-	public int join(SqlSession session, MemberDTO dto) throws Exception {
-		return session.insert("com.config.MemberMapper.join", dto);
+	public int join(SqlSession session, MemberDTO memberDTO) throws Exception {
+		return session.insert("com.config.MemberMapper.join", memberDTO);
 	}
 
-	public MemberDTO idDuplicateCheck(SqlSession session, String userId) throws Exception {
-		return session.selectOne("com.config.MemberMapper.idDuplicateCheck", userId);
+	public MemberDTO checkIdDuplicate(SqlSession session, String userId) throws Exception {
+		return session.selectOne("com.config.MemberMapper.checkIdDuplicate", userId);
 	}
 
 	public MemberDTO login(SqlSession session, HashMap<String, String> hashMap) throws Exception {
 		return session.selectOne("com.config.MemberMapper.login", hashMap);
 	}
 
-	public MemberDTO myPage(SqlSession session, String userId) throws Exception {
-		return session.selectOne("com.config.MemberMapper.myPage", userId);
+	public MemberDTO selectMyPage(SqlSession session, String userId) throws Exception {
+		return session.selectOne("com.config.MemberMapper.selectMyPage", userId);
 	}
 
-	public int myPageUpdate(SqlSession session, MemberDTO dto) throws Exception {
-		return session.update("com.config.MemberMapper.myPageUpdate", dto);
+	public int updateMyPage(SqlSession session, MemberDTO memberDTO) throws Exception {
+		return session.update("com.config.MemberMapper.updateMyPage", memberDTO);
 	}
 
 }

@@ -6,14 +6,14 @@ import com.dto.member.MemberDTO;
 
 public interface MemberService {
 
-	public int join(MemberDTO dto) throws Exception;
+	public int join(MemberDTO memberDTO) throws Exception;
 
-	public MemberDTO idDuplicateCheck(String userId) throws Exception;
+	public MemberDTO checkIdDuplicate(String userId) throws Exception;
 
 	public MemberDTO login(HashMap<String, String> hashMap) throws Exception;
 
-	public MemberDTO myPage(String userId) throws Exception;
+	public MemberDTO selectMyPage(String userId) throws Exception;
 
-	public int myPageUpdate(MemberDTO dto) throws Exception;
+	public int updateMyPage(MemberDTO memberDTO) throws Exception;
 
 }
