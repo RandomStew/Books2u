@@ -31,3 +31,28 @@
 |          |             |                   | 최근접속 날짜   | lastDate               | String / Date         |  |  |  | recipientPhone3 | String / varchar2(4) |  |  |  |  |  |  |
 |          |             |                   |           |                        |                       |  |  |  | 결제수단 | payment | String / varchar2(10) |  |  |  |  |  |  |
 |          |             |                   |           |                        |                       |  |  |  | 주문날짜 | orderDate | String / Date |  |  |  |  |  |  |
+  
+  
+## DB TABLE
+|    | Book | Member      | Review  | Order    |
+| -- | ---- | ----------- | ------- | -------- |
+| PK | ISBN | isbn        | 아이디     | userId   | 리뷰번호 | number | 주문번호 | orderId |
+| FK |      |             |         |          | ISBN | isbn | ISBN | isbn |
+|    |      |             |         |          |  |  | 아이디 | userId |
+|    | 책제목  | title       | 비밀번호    | passWd   | 작성자 | userId | 수량 | amount |
+|    | 저자명  | author      | 이름      | userName | 별점 | rating | 수령인 | recipient |
+|    | 출판사  | publisher   | 주민번호    | ssn1     | 내용 | content | 수령지 우편번호 | recipientPost |
+|    | 출판날짜 | publishDate | ssn2    | 리뷰날짜     | reviewDate | 수령지 | recipientAddr1 |
+|    | 줄거리  | story       | 휴대폰     | phone1   |  |  | recipientAddr2 |
+|    | 장르   | genre       | phone2  |          |  | recipientAddr3 |
+|    | 가격   | price       | phone3  |          |  | 수령인전화번호 | recipientPhone1 |
+|    |      |             | 우편번호    | post     |  |  | recipientPhone2 |
+|    |      |             | 주소      | addr1    |  |  | recipientPhone3 |
+|    |      |             | addr2   |          |  | 결제수단 | payment |
+|    |      |             | addr3   |          |  | 주문날짜 | orderDate |
+|    |      |             | 이메일     | email1   |  |  |  |  |
+|    |      |             | email2  |          |  |  |  |
+|    |      |             | 가입날짜    | joinDate |  |  |  |  |
+|    |      |             | 최근접속 날짜 | lastDate |  |  |  |  |
+|    |      |             |         |          |  |  |  |  |
+|    |      |             |         |          |  |  |  |  |
