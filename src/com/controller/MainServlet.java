@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import com.dto.cart.CartDTO;
 import com.dto.member.MemberDTO;
-
 
 
 @WebServlet("/MainServlet")
@@ -22,7 +20,6 @@ public class MainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		
 		HttpSession session = request.getSession();
 		
@@ -58,13 +55,7 @@ public class MainServlet extends HttpServlet {
 		cartList.add(cDTO4);
 		
 		
-<<<<<<< HEAD
 		session.setAttribute("login", mDTO);
-=======
-
-		session.setAttribute("login", mDTO);
-
->>>>>>> 219bd0c1bfc1cd218ef49e3f54691282df4deaf4
 		session.setAttribute("cartList", cartList);
 
 		request.getRequestDispatcher("main.jsp").forward(request, response);
