@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.ReviewMapper">
+	
+	<!--  페이징 처리를 위한 selectAll -->
+	<select id="selectAll" resultType="ReviewDTO">
+		select  reviewid as "reviewId",
+				isbn as "isbn",
+				userid as "userId",
+				rating as "rating",
+				content as "content",
+				reviewdate as "reviewDate"
+		from review	
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(*)
+		from board
+		order by 1
+	</select>
+	
+</mapper>
+
+
+
+
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.BookMapper">
+	<!--  연관 키워드 검색 -->
+	<select id="searchTitle" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where title like '%' || #{title} || '%'
+	</select>
+	
+	<select id="searchAuthor" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where author like '%' || #{author} || '%'
+	</select>
+	
+	<select id="searchPublisher" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where publisher like '%' || #{publisher} || '%'
+	</select>
+	
+	<select id="searchStory" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where story like '%' || #{story} || '%'
+	</select>
+	
+	<!-- ISBN을 이용한 책 정보 검색  -->
+	<select id="searchBookInfo" parameterType="string" resultType="BookDTO">
+		select  isbn as "isbn",
+				title as "title",
+				author as "author",
+				publisher as "publisher",
+				publishdate as "publishDate",
+				story as "story",
+				price as "price",
+				genre as "genre"
+		from book
+		where isbn = #{isbn}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
