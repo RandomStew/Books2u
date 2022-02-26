@@ -11,7 +11,7 @@
 |           |     |       | 조회수        | 삭제 버튼(개별&일괄) |         |        |          |          |            |
 
 ## DTO
-| Book DTO | Member DTO  | Review DTO        | Order DTO | Cart DTO               | Page DTO              |
+| Book DTO|| | Member DTO || | Review DTO    ||    | Order DTO ||| Cart DTO            ||   | Page DTO        ||     |
 | -------- | ----------- | ----------------- | --------- | ---------------------- | --------------------- |
 | ISBN     | isbn        | String / varchar2 | 아이디       | userId                 | String / varchar2(10) | 리뷰번호 | reviewId | int / number | 주문번호 | orderId | int / number(20) | 아이디 | userId | String / varchar2 | 가져올 데이터 | list | ArrayList<T> |
 | 제목       | title       | String / varchar2 | 비밀번호      | passWd                 | String / varchar2(10) | ISBN | isbn | String / varchar2 | 아이디 | userId | String / varchar2(10) | ISBN | isbn | String / varchar2 | 현재 페이지 | curPage | int |
