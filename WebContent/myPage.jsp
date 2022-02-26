@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>마이페이지 화면</h1>
+	<jsp:include page="common/top.jsp" flush="true" /><br>
+	<hr>
+	<jsp:include page="member/myPage.jsp" flush="true" />
 </body>
 </html>

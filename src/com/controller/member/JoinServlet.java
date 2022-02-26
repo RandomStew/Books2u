@@ -35,17 +35,16 @@ public class JoinServlet extends HttpServlet {
 //		String addr3 = request.getParameter("addr3");
 //		String email1 = request.getParameter("email1");
 //		String email2 = request.getParameter("email2");
-//
-//		MemberDTO dto = new MemberDTO(userId, passWd, userName, ssn1, ssn2, phone1, phone2, phone3, post, addr1, addr2, addr3, email1, email2, null, null);
-		MemberDTO dto = new MemberDTO();
+//		MemberDTO memberDTO = new MemberDTO(userId, passWd, userName, ssn1, ssn2, phone1, phone2, phone3, post, addr1, addr2, addr3, email1, email2, null, null);
+
+		MemberDTO memberDTO = new MemberDTO();
 		Transformer trans = new RequestTransformer(request);
-		trans.setMappingDTO(dto);
-		
+		trans.setMappingDTO(memberDTO);
 		
 		MemberService service = new MemberServiceImpl();
 		String nextPage = "";
 		try {
-			int num = service.join(dto);
+			int num = service.join(memberDTO);
 			nextPage = "MainServlet";
 		} catch (Exception e) {
 			e.printStackTrace();

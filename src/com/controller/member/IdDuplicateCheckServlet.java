@@ -22,13 +22,13 @@ public class IdDuplicateCheckServlet extends HttpServlet {
 		String userId = request.getParameter("userId").trim();
 
 		MemberService service = new MemberServiceImpl();
-		String mesg = "";
+		String message = "";
 		try {
-			MemberDTO dto = service.idDuplicateCheck(userId);
-			if (dto == null) {
-				mesg = "아이디 사용 가능";
+			MemberDTO memberDTO = service.checkIdDuplicate(userId);
+			if (memberDTO == null) {
+				message = "아이디 사용 가능";
 			} else {
-				mesg = "아이디 중복";
+				message = "아이디 중복";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class IdDuplicateCheckServlet extends HttpServlet {
 
 		response.setContentType("text/plain;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print(mesg);
+		out.print(message);
 
 	}
 

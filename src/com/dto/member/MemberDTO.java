@@ -5,26 +5,28 @@ public class MemberDTO {
 	private String userId; // 아이디
 	private String passWd; // 비밀번호
 	private String userName; // 이름
-	private String ssn1; // 주민번호1
-	private String ssn2; // 주민번호2
+	private String ssn1; // 주민등록번호 앞자리
+	private String ssn2; // 주민등록번호 뒷자리
 	private String phone1; // 휴대폰 010
 	private String phone2; // 휴대폰 1234
 	private String phone3; // 휴대폰 5678
 	private String post; // 우편번호
-	private String addr1; // 주소1
-	private String addr2; // 주소2
-	private String addr3; // 주소3
-	private String email1; // 이메일1
-	private String email2; // 이메일2
+	private String addr1; // 도로명 주소
+	private String addr2; // 지번 주소
+	private String addr3; // 상세 주소
+	private String email1; // 이메일 계정
+	private String email2; // 이메일 도메인
 	private String joinDate; // 가입 날짜
 	private String lastDate; // 최근접속 날짜
+	private int account; // 계좌(잔고)
 
 	public MemberDTO() {
+		super();
 	}
 
 	public MemberDTO(String userId, String passWd, String userName, String ssn1, String ssn2, String phone1,
 			String phone2, String phone3, String post, String addr1, String addr2, String addr3, String email1,
-			String email2, String joinDate, String lastDate) {
+			String email2, String joinDate, String lastDate, int account) {
 		super();
 		this.userId = userId;
 		this.passWd = passWd;
@@ -42,6 +44,7 @@ public class MemberDTO {
 		this.email2 = email2;
 		this.joinDate = joinDate;
 		this.lastDate = lastDate;
+		this.account = account;
 	}
 
 	public String getUserId() {
@@ -172,12 +175,21 @@ public class MemberDTO {
 		this.lastDate = lastDate;
 	}
 
+	public int getAccount() {
+		return account;
+	}
+
+	public void setAccount(int account) {
+		this.account = account;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDTO [userId=" + userId + ", passWd=" + passWd + ", userName=" + userName + ", ssn1=" + ssn1
 				+ ", ssn2=" + ssn2 + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", post="
 				+ post + ", addr1=" + addr1 + ", addr2=" + addr2 + ", addr3=" + addr3 + ", email1=" + email1
-				+ ", email2=" + email2 + ", joinDate=" + joinDate + ", lastDate=" + lastDate + "]";
+				+ ", email2=" + email2 + ", joinDate=" + joinDate + ", lastDate=" + lastDate + ", account=" + account
+				+ "]";
 	}
 
 }

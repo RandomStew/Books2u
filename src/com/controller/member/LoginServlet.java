@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		String userId = request.getParameter("userId");
 		String passWd = request.getParameter("passWd");
 
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", memberDTO);
 				session.setAttribute("cartSumAmount", 0);
-				nextPage = "MainServlet";
+				nextPage = request.getParameter("prevPage");
 			} else {
 				nextPage = "member/loginFail.jsp";
 			}
