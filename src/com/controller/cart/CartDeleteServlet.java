@@ -23,11 +23,19 @@ public class CartDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String [] check = request.getParameterValues("check");
-
+		String individual = request.getParameter("isbn");
+		System.out.println(individual);
 		
-		List<String> list = Arrays.asList(check);
+		List<String> list = null;
+		
+		if(check == null) {
+			list = Arrays.asList(individual);
+		} else {
+			list = Arrays.asList(check);
+		}
 		
 		HttpSession session = request.getSession();
+		int cartSumAmount = (int) session.getAttribute("cartSumAmount");
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		String nextPage = "";
@@ -37,19 +45,22 @@ public class CartDeleteServlet extends HttpServlet {
 			List<CartDTO> found = new ArrayList<CartDTO>();
 			
 			for(String isbn : list) {
-				for(CartDTO cDTO : cartList) {
-					if(cDTO.getIsbn().equals(isbn)) {
-						found.add(cDTO);
+				for(CartDTO cartDTO : cartList) {
+					if(cartDTO.getIsbn().equals(isbn)) {
+						found.add(cartDTO);
+						cartSumAmount -= cartDTO.getAmount();
 					}
 				}
 			}
 			
 			cartList.removeAll(found);
+			session.setAttribute("cartSumAmount", cartSumAmount);
 			nextPage = "CartListServlet";
 			
 		} else {
 			nextPage = "member/sessionInvalidate.jsp";
 		}
+		
 		
 		response.sendRedirect(nextPage);
 		

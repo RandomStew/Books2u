@@ -42,7 +42,7 @@
 		
 		var httpRequest = new XMLHttpRequest();
 		// post 방식 Ajax 통신
-		httpRequest.open("POST", "CartUpdateAmountServlet", true);
+		httpRequest.open("POST", "CartAddServlet", true);
 		httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		httpRequest.send(data);
 		httpRequest.onreadystatechange = function() {
@@ -54,6 +54,9 @@
 		// 사용자에게 정보 리턴
 		alert(`\${title} \${amountTag.value}권을 장바구니에 담았습니다.`);
 		amountTag.value = 1;
+		location.reload();
+		
+		
 	}
 
  </script>

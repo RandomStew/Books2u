@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 			if (memberDTO != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", memberDTO);
+				session.setAttribute("cartSumAmount", 0);
 				nextPage = "MainServlet";
 			} else {
 				nextPage = "member/loginFail.jsp";
