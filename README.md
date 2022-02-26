@@ -10,4 +10,24 @@
 | JSP       |     | 저자명   | 별점         | 구매하기 버튼      |         |        |          |          | 임현규        |
 |           |     |       | 조회수        | 삭제 버튼(개별&일괄) |         |        |          |          |            |
 
-## IA (Information Architecture)
+## DTO
+| Book DTO | Member DTO  | Review DTO        | Order DTO | Cart DTO               | Page DTO              |
+| -------- | ----------- | ----------------- | --------- | ---------------------- | --------------------- |
+| ISBN     | isbn        | String / varchar2 | 아이디       | userId                 | String / varchar2(10) | 리뷰번호 | reviewId | int / number | 주문번호 | orderId | int / number(20) | 아이디 | userId | String / varchar2 | 가져올 데이터 | list | ArrayList<T> |
+| 제목       | title       | String / varchar2 | 비밀번호      | passWd                 | String / varchar2(10) | ISBN | isbn | String / varchar2 | 아이디 | userId | String / varchar2(10) | ISBN | isbn | String / varchar2 | 현재 페이지 | curPage | int |
+| 저자명      | author      | String / varchar2 | 이름        | userName               | String / varchar2(10) | 작성자 | userId | String / varchar2 | ISBN | isbn | String / varchar2(10) | 책제목 | title | String / varchar2 | 보여줄 데이터 수 | perPage | int |
+| 출판사      | publisher   | String / varchar2 | 주민번호      | ssn1                   | String / varchar2(10) | 별점 | rating | int / number | 책제목 | title | String / varchar2 | 저자명 | author | String / varchar2 | 전체 페이지 | totalPage | int |
+| 출판날짜     | publishDate | String / Date     | ssn2      | String / varchar2(10)  | 내용                    | content | String / varchar2 | 저자명 | author | String / varchar2 | 출판사 | publisher | String / varchar2 |  |  |  |
+| 줄거리      | story       | String / varchar2 | 휴대폰       | phone1                 | String / varchar2(3)  | 리뷰날짜 | reviewDate | String / Date | 출판사 | publisher | String / varchar2 | 가격 | price | int / number |  |  |  |
+| 가격       | price       | int / num         | phone2    | String / varchar2(4)   |                       |  |  | 가격 | price | int / number | 수량 | amount | int / number |  |  |  |
+| 장르       | genre       | String            | phone3    | String / varchar(4)    |                       |  |  | 수량 | amount | int / number(10) |  |  |  |  |  |  |
+|          |             |                   | 우편번호      | post                   | String / varchar2(10) |  |  |  | 수령인 | recipient | String / varchar2(10) |  |  |  |  |  |  |
+|          |             |                   | 주소        | addr1                  | String / varchar2(20) |  |  |  | 수령지 우편번호 | recipientPost | String / varchar2(10) |  |  |  |  |  |  |
+|          |             |                   | addr2     | String / varchar2(500) |                       |  |  | 수령지 | recipientAddr1 | String / varchar2(20) |  |  |  |  |  |  |
+|          |             |                   | addr3     | String / varchar2(500) |                       |  |  | recipientAddr2 | String / varchar2(30) |  |  |  |  |  |  |
+|          |             |                   | 이메일       | email1                 | String / varchar2(20) |  |  |  | recipientAddr3 | String / varchar2(30) |  |  |  |  |  |  |
+|          |             |                   | email2    | String / varchar2(20)  |                       |  |  | 수령인전화번호 | recipientPhone1 | String / varchar2(3) |  |  |  |  |  |  |
+|          |             |                   | 가입날짜      | joinDate               | String / Date         |  |  |  | recipientPhone2 | String / varchar2(4) |  |  |  |  |  |  |
+|          |             |                   | 최근접속 날짜   | lastDate               | String / Date         |  |  |  | recipientPhone3 | String / varchar2(4) |  |  |  |  |  |  |
+|          |             |                   |           |                        |                       |  |  |  | 결제수단 | payment | String / varchar2(10) |  |  |  |  |  |  |
+|          |             |                   |           |                        |                       |  |  |  | 주문날짜 | orderDate | String / Date |  |  |  |  |  |  |
