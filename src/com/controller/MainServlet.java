@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dto.book.BookDTO;
 import com.dto.cart.CartDTO;
 import com.dto.member.MemberDTO;
+import com.service.book.BookService;
+import com.service.book.BookServiceImpl;
+
 
 
 @WebServlet("/MainServlet")
@@ -20,6 +24,7 @@ public class MainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		
 		HttpSession session = request.getSession();
 		
@@ -42,22 +47,22 @@ public class MainServlet extends HttpServlet {
 		mDTO.setJoinDate("19980903");
 		mDTO.setLastDate("20220202");
 		
-		// 임시 CartDTO
-		CartDTO cDTO1 = new CartDTO("abc", "9791197010965", "게이트 (팬데믹 미스터리)", "심채윤", "껴안음", 16000, 1);
-		CartDTO cDTO2 = new CartDTO("abc", "9791187822653", "욤 키푸르 전쟁 (중동의 판도를 바꾼 제4차 중동전쟁)", "아브라함 라비노비치", "플래닛미디어", 35000, 2);
-		CartDTO cDTO3 = new CartDTO("abc", "9788999725814", "친밀감의 딜레마 (L 박사의 심리치료 이야기)", "데보라 안나 루에프니츠", "학지사", 16000, 1);
-		CartDTO cDTO4 = new CartDTO("abc", "9791161756165", "디지털 트윈 개발 및 클라우드 배포 (Simulink, Simscape, AWS를 활용해 클라우드 기반 다이나믹 모델 개발하기)", "나심 칼레드|비빈 파텔|아판 시디키", "에이콘출판", 45000, 1);
-		
-		List<CartDTO> cartList = new ArrayList<CartDTO>() ;
-		cartList.add(cDTO1);
-		cartList.add(cDTO2);
-		cartList.add(cDTO3);
-		cartList.add(cDTO4);
-		
-		
-//		session.setAttribute("login", mDTO);
-		session.setAttribute("cartList", cartList);
 
+		List<CartDTO> cartList = new ArrayList<CartDTO>() ;
+		
+		session.setAttribute("cartList", cartList);
+		
+		////////////////////////////////////////////
+		// 임시 큐레이션 데이터
+		BookService service = new BookServiceImpl();
+		try {
+			List<BookDTO> list = service.searchStory("이");
+			request.setAttribute("curationList", list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/////////////////////////////////////////////////////
 		request.getRequestDispatcher("main.jsp").forward(request, response);
 	}
 

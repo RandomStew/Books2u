@@ -1,49 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+ 
  <script>
 	function goBookInfo(isbn) {
 		location.href=`BookInfoServlet?isbn=\${isbn}`;
 	}
 	
+	function amountAsc(isbn) {
+		var amountTag = document.querySelector("#cart_amount"+isbn);
+		amountTag.value -= -1;
+	}
+	
+	function amountDesc(isbn) {
+		var amountTag = document.querySelector("#cart_amount"+isbn);
+		if(amountTag.value > 1) {
+			amountTag.value -= 1;
+		}
+	}
+	
+
+	function goCartList(isbn) {
+		// Ajax 를 활용해서 cartList.jsp로 cartDTO에 필요한 데이터 전송
+		
+		var amountTag = document.querySelector("#cart_amount"+isbn);
+		
+		var title = document.querySelector("#hiddenTitle"+isbn).value;
+		var author = document.querySelector("#hiddenAuthor"+isbn).value;
+		var publisher = document.querySelector("#hiddenPublisher"+isbn).value;
+		var price = document.querySelector("#hiddenPrice"+isbn).value;
+		var userId = document.querySelector("#hiddenId"+isbn).value;
+		if(!userId) {
+			alert("로그인을 해주세요");
+			return;
+		}
+		var data = `userId=\${userId}&isbn=\${isbn}&`
+		+`title=\${title}&author=\${author}&publisher=\${publisher}&`
+		+`price=\${price}&amount=\${amountTag.value}`;
+		// console.log(data);
+		
+		var httpRequest = new XMLHttpRequest();
+		// post 방식 Ajax 통신
+		httpRequest.open("POST", "CartUpdateAmountServlet", true);
+		httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		httpRequest.send(data);
+		httpRequest.onreadystatechange = function() {
+			// AJAX 성공시 데이터 응답 조건
+			if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200){
+				console.log("데이터 응답");
+			}
+		}
+		// 사용자에게 정보 리턴
+		alert(`\${title} \${amountTag.value}권을 장바구니에 담았습니다.`);
+		amountTag.value = 1;
+	}
 
  </script>
- 
+
+
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
 
+	<tr><td height="30"/></tr>
+	
 	<tr>
-		<td height="40">
-	</tr>
-
-	<tr>
-		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp; <font
-			size="5"><b>${title} 키워드 검색 결과</b></font> &nbsp;
+		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp;
+			<font size="5"> ${title } 키워드 검색 결과입니다. </font>&nbsp;
 		</td>
 	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-
-	<tr>
-		<td colspan="10">
-			<hr size="1" color="CCCCCC">
-		</td>
-	</tr>
-
-	<tr>
-		<td height="7">
-	</tr>
-
+	
+	<tr><td height="15"></td>
+	<tr><td colspan="10"><hr size="1" color="CCCCCC"></td></tr>
+	<tr><td height="7"></tr>
+	
+	<!-- 테이블 HEADER -->
 	<tr>
 		<td class="td_default" align="center"><strong>ISBN</strong></td>
 		<td class="td_default" align="center"><strong>책</strong></td>
-		<td class="td_default" align="center" colspan="2"><strong>상품정보</strong></td>
+		<td class="td_default" align="center" colspan="2"><strong>책정보</strong></td>
 		<td class="td_default" align="center"><strong>판매가</strong></td>
 		<td class="td_default" align="center" colspan="2"><strong>수량</strong></td>
-		<td class="td_default" align="center"><strong>주문/장바구니</strong></td>
-		<td></td>
+		<td class="td_default" align="center"><strong>장바구니</strong> </td>
+
 	</tr>
+	
 
 	<tr>
 		<td height="7">
@@ -56,64 +96,72 @@
 			<hr size="1" color="CCCCCC">
 		</td>
 	</tr>
+	
+	<!-- 장바구니 요소 목록 -->
+	<form name="cartForm">
+	<c:set var="sumTotal" value="${0}"/>
 
-
-
-<c:forEach var="book" items="${bookList}" varStatus="status">
+	<c:forEach var="book" items="${bookList}" varStatus="status">
+		<input type="hidden" name="isbn" value="${book.isbn}" id="hidden${book.isbn}">
+		<input type="hidden" name="title" value="${book.title}" id="hiddenTitle${book.isbn}">
+		<input type="hidden" name="author" value="${book.author}" id="hiddenAuthor${book.isbn}">
+		<input type="hidden" name="publisher" value="${book.publisher}" id="hiddenPublisher${book.isbn}">
+		<input type="hidden" name="price" value="${book.price}" id="hiddenPrice${book.isbn}">
+		<input type="hidden" name="userId" value="${sessionScope.login.userId}" id="hiddenId${book.isbn}">
+		
 		<tr>
+		
+			<!-- ISBN -->
 			<td class="td_default" width="120">
-			<!-- checkbox는 체크된 값만 서블릿으로 넘어간다. 따라서 value에 삭제할 num값을 설정한다. -->
-			<font size="2">${book.isbn}</font>
+				<font size="2">${book.isbn}</font>
 			</td>
-			
-			<td class="td_default" width="80"><img
-				src="images/books/${book.isbn}.jpg" border="0" align="center"
-				width="80" onclick="goBookInfo('${book.isbn}')" style="cursor:pointer;"/>
+			<!-- 이미지 -->
+			<td class="td_default" width="80" style="cursor:pointer" onclick="goBookInfo(${book.isbn})">
+				<img src="images/books/${book.isbn}.jpg" border="0" align="center" width="80" />
 			</td>
-			
-			<td class="td_default" width="300" style='padding-left: 30px'>
-				<div style="cursor:pointer;" onclick="goBookInfo('${book.isbn}')">
-					${book.title } <br> 
+			<!-- 책 정보 -->
+			<td class="td_default" width="300" style='padding-left: 30px' colspan="2" >
+				<div style="cursor:pointer" onclick="goBookInfo(${book.isbn})">
+					<span id="title${book.isbn}">${book.title }</span> <br> 
 					<font size="2" color="#665b5f">
 					저자명 : ${book.author} <br>
 					출판사(${book.publisher}) <br>
-					 장르: ${book.genre} <br>
-					 출판날짜: ${book.publishDate}]
 					</font>
 				</div>
 			</td>
-			
+			<!-- 가격 -->
 			<td class="td_default" align="center" width="110">
-			<span id="cart_price${book.isbn}">${book.price} </span>
+				<span id="cart_price${book.isbn}">${book.price} </span>
 			</td>
 			
+			<!-- 수량 -->
 			<td class="td_default" align="center" width="90">
 			<input
 				class="input_default" type="text" name="cart_amount"
-				id="cart_amount${book.isbn }" style="text-align: right" maxlength="3"
+				id="cart_amount${book.isbn}" style="text-align: right" maxlength="3"
 				size="2" value="1" data-amount=""></input>
 			</td>
+			<!-- 수량 버튼 -->
 			<td><input type="button" value="+"
-				onclick="amountAsc(${book.isbn})" />
+				onclick="amountAsc(${book.isbn})" style="cursor:pointer"/>
 				<br>
-				<input type="button" value="-"
-				onclick="amountDesc(${book.isbn})" />
+				<input type="button" value="- "
+				onclick="amountDesc(${book.isbn})" style="cursor:pointer"/>
 			</td>
 			
-			<td class="td_default" align="center" width="80"
-				style='padding-left: 5px'><span id="sum81">
-				<input type="button" value="주문"
-				onclick="order(${book.isbn})">
-				<br>
-				<input type="button" value="장바구니에 넣기"
-				onclick="cartList()">
-			</td>
+			<!--  장바구니 담기 -->
 			<td>
-			
+				&nbsp;&nbsp; <input type="button" value="장바구니에 담기" onclick="goCartList(${book.isbn})">
 			</td>
-			<td height="10"></td>
 		</tr>
-</c:forEach>
-
+		
+		<tr>
+			<td height="15">
+		</tr>
+		
+	</c:forEach>
+	</form>
+	
+	
 
 </table>
