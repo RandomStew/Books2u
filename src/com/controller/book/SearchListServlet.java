@@ -20,14 +20,24 @@ public class SearchListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String title = request.getParameter("search");
+		String search = request.getParameter("search");
+		String type =  request.getParameter("type");
 		BookService service = new BookServiceImpl();
 		String nextPage = "";
 		try {
-			List<BookDTO> list = service.search(title);
-			System.out.println(list);
+			List<BookDTO> list = null;
+			if (type.equals("title")) {
+				list = service.searchTitle(search);
+			} else if (type.equals("author")) {
+				list = service.searchAuthor(search);
+			} else if (type.equals("publisher")) {
+				list = service.searchPublisher(search);
+			} else if (type.equals("story")) {
+				list = service.searchStory(search);
+			}
+
 			request.setAttribute("bookList", list);
-			request.setAttribute("title", title);
+			request.setAttribute("title", search);
 			nextPage = "searchList.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
