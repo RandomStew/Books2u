@@ -11,28 +11,3 @@
 |           |     |       | 조회수        | 삭제 버튼(개별&일괄) |         |        |          |          |            |
 
 ## IA (Information Architecture)
-<table>
-    <thead>
-        <tr>
-            <th>Depth_1</th>
-            <th>Depth_2</th>
-            <th>Depth_3</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=16>WebContent</td>
-        </tr>
-        <tr>
-            <td>common</td>
-            <td>top.jsp</td>
-        </tr>
-        <tr>
-            <td rowspan=2>L2 Name B</td>
-            <td>L3 Name C</td>
-        </tr>
-        <tr>
-            <td>L3 Name D</td>
-        </tr>
-    </tbody>
-</table>
