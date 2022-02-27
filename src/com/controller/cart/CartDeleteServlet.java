@@ -24,14 +24,14 @@ public class CartDeleteServlet extends HttpServlet {
 		
 		String [] check = request.getParameterValues("check");
 		String individual = request.getParameter("isbn");
-		System.out.println(individual);
+		//System.out.println(individual);
 		
-		List<String> list = null;
+		List<String> listToDelete = null;
 		
 		if(check == null) {
-			list = Arrays.asList(individual);
+			listToDelete = Arrays.asList(individual);
 		} else {
-			list = Arrays.asList(check);
+			listToDelete = Arrays.asList(check);
 		}
 		
 		HttpSession session = request.getSession();
@@ -44,7 +44,7 @@ public class CartDeleteServlet extends HttpServlet {
 			List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
 			List<CartDTO> found = new ArrayList<CartDTO>();
 			
-			for(String isbn : list) {
+			for(String isbn : listToDelete) {
 				for(CartDTO cartDTO : cartList) {
 					if(cartDTO.getIsbn().equals(isbn)) {
 						found.add(cartDTO);

@@ -104,6 +104,14 @@
 			}
 	}
 	
+	// 선택항목 주문 -------------------------------------------------------------------------------------
+	function orderList(){
+		var f = document.querySelector("form");
+		f.action = "orderListServlet";
+		f.method = "get";
+		f.submit();
+	}
+	
 	
 	
 </script>
@@ -270,7 +278,7 @@
 			<td align="center" colspan="3"></td>
 		
 			<td align="center" colspan="3">
-			<button onclick="orderAllConfirm()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onclick="javascript:orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>
