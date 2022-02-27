@@ -26,6 +26,10 @@ public class SessionTransformer implements Transformer{
 			try {
 				if(field.getType() == int.class) {
 					field.set(dto, Integer.parseInt(value));
+				} else if (field.getType() == double.class) {
+					field.set(dto, Double.parseDouble(value));
+				} else if (field.getType() == long.class) {
+					field.set(dto, Long.parseLong(value));
 				} else {
 					field.set(dto, value);
 				}

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.config.MySqlSessionFactory;
 import com.dao.book.BookDAO;
 import com.dto.book.BookDTO;
+import com.dto.book.BookPageDTO;
 
 public class BookServiceImpl implements BookService {
 
@@ -73,6 +74,58 @@ public class BookServiceImpl implements BookService {
 			session.close();
 		}
 		return dto;
+	}
+
+	@Override
+	public BookPageDTO selectTitlePages(String title, int curPage, int perPage) throws Exception {
+		BookPageDTO pageDTO = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BookDAO dao = new BookDAO();
+			pageDTO = dao.selectTitlePages(session, title, curPage, perPage);
+		} finally {
+			session.close();
+		}
+		return pageDTO;
+	}
+
+	@Override
+	public BookPageDTO selectAuthorPages(String author, int curPage, int perPage) throws Exception {
+		BookPageDTO pageDTO = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BookDAO dao = new BookDAO();
+			pageDTO = dao.selectTitlePages(session, author, curPage, perPage);
+		} finally {
+			session.close();
+		}
+		return pageDTO;
+	}
+
+	@Override
+	public BookPageDTO selectPublisherPages(String publisher, int curPage, int perPage) throws Exception {
+		BookPageDTO pageDTO = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BookDAO dao = new BookDAO();
+			pageDTO = dao.selectPublisherPages(session, publisher, curPage, perPage);
+		} finally {
+			session.close();
+		}
+		return pageDTO;
+	}
+
+	@Override
+	public BookPageDTO selectStoryPages(String story, int curPage, int perPage) throws Exception {
+		BookPageDTO pageDTO = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			BookDAO dao = new BookDAO();
+			pageDTO = dao.selectStoryPages(session, story, curPage, perPage);
+		} finally {
+			session.close();
+		}
+		return pageDTO;
 	}
 
 }
