@@ -10,7 +10,9 @@ import com.dto.review.ReviewPageDTO;
 
 public class ReviewDAO {
 	
-	
+	public int addReview(SqlSession session, ReviewDTO dto) throws Exception {
+		return session.insert("com.config.ReviewMapper.addReview", dto);
+	}
 	// 페이징 처리
 	public ReviewPageDTO selectAllPages(SqlSession session, int curPage)throws Exception {
 		ReviewPageDTO pageDTO = new ReviewPageDTO();
@@ -30,6 +32,7 @@ public class ReviewDAO {
 	}
 	// total 레코드 갯수 출력
 	private int totalRecord(SqlSession session) throws Exception{
-		return session.selectOne("com.config.ReviewMapper.totalrecord");
+		return session.selectOne("com.config.ReviewMapper.totalRecord");
 	}
+	
 }

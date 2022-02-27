@@ -11,16 +11,21 @@
 				userid as "userId",
 				rating as "rating",
 				content as "content",
-				reviewdate as "reviewDate"
+				to_char(reviewdate, 'YY-MM-DD') as "reviewDate"
 		from review	
 	</select>
 	
 	<select id="totalRecord" resultType="int">
 		select count(*)
-		from board
+		from review
 		order by 1
 	</select>
 	
+	<insert id="addReview" parameterType="ReviewDTO">
+		insert into review (reviewid, userid, rating, content, reviewdate, isbn)
+		values (review_seq.nextval, #{userId}, #{rating}, #{content}, to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS'), #{isbn})
+	
+	</insert>
 </mapper>
 
 

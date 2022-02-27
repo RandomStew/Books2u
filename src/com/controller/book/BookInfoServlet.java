@@ -20,12 +20,14 @@ public class BookInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String isbn = request.getParameter("isbn");
+		String curPage = request.getParameter("curPage");
 		BookService service = new BookServiceImpl();
 		String nextPage = "";
 		try {
 			BookDTO bookDTO = service.searchBookInfo(isbn);
 			request.setAttribute("book", bookDTO);
-			nextPage = "bookInfo.jsp";
+			request.setAttribute("curPage", curPage);
+			nextPage = "BookReviewServlet";
 		} catch (Exception e) {
 			e.printStackTrace();
 			nextPage = "error/error.jsp";

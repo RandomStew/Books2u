@@ -58,6 +58,7 @@
 		
 		
 	}
+	
 
  </script>
 
@@ -104,7 +105,7 @@
 	<form name="cartForm">
 	<c:set var="sumTotal" value="${0}"/>
 
-	<c:forEach var="book" items="${bookList}" varStatus="status">
+	<c:forEach var="book" items="${pageDTO.list}" varStatus="status">
 		<input type="hidden" name="isbn" value="${book.isbn}" id="hidden${book.isbn}">
 		<input type="hidden" name="title" value="${book.title}" id="hiddenTitle${book.isbn}">
 		<input type="hidden" name="author" value="${book.author}" id="hiddenAuthor${book.isbn}">
@@ -163,8 +164,30 @@
 		</tr>
 		
 	</c:forEach>
+	
+	<tr>
+		<td colspan="6">
+		<!--pageTag -->
+		<c:set var="curPage" value="${pageDTO.curPage }"></c:set>
+		<c:set var="totalRecord" value="${pageDTO.totalPage }"></c:set>
+		<c:set var="perPage" value="${pageDTO.perPage }"></c:set>
+		<c:set var="totalPage" value="${totalRecord / perPage }"></c:set>
+		<c:if test="${totalPage % perPage != 0 }">
+			<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"></c:set>
+		</c:if>
+		
+		<c:forEach var="i" begin="1" end="${totalPage}">
+		<input type="hidden" name="curPage" value="${i}">
+		<c:if test="${i==curPage}">
+			${i}
+		</c:if>
+		<c:if test="${i!=curPage}">
+		<a href="SearchListServlet?curPage=${i}&search=${title}&type=${type}">${i}</a>
+		</c:if>
+		</c:forEach>  
+		</td>
+	<tr>
 	</form>
-	
-	
-
 </table>
+
+

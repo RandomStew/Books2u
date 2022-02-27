@@ -12,7 +12,9 @@
 	<hr>
 	<jsp:include page="book/search.jsp" flush="true" /> <br>
 	<jsp:include page="book/bookInfo.jsp" flush="true" /> <br>
-	<jsp:include page="review/bookReview.jsp" flush="true" /> <br>
+	<jsp:include page="review/bookReview.jsp" flush="true" /> 
+	<br>
+	<br>
 	<jsp:include page="review/bookReviewForm.jsp" flush="true" />
 </body>
 </html>
