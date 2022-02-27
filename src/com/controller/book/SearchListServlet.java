@@ -1,7 +1,6 @@
 package com.controller.book;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.book.BookDTO;
+import com.dto.book.BookPageDTO;
 import com.service.book.BookService;
 import com.service.book.BookServiceImpl;
 
@@ -22,22 +21,36 @@ public class SearchListServlet extends HttpServlet {
 		
 		String search = request.getParameter("search");
 		String type =  request.getParameter("type");
+		String curPage = request.getParameter("curPage");
+		if(curPage == null) {
+			curPage = "1";
+		}
+		int perPage = 4;
 		BookService service = new BookServiceImpl();
 		String nextPage = "";
 		try {
-			List<BookDTO> list = null;
+			BookPageDTO pageDTO = new BookPageDTO();
 			if (type.equals("title")) {
-				list = service.searchTitle(search);
+				pageDTO = service.selectTitlePages(search,
+						   Integer.parseInt(curPage),
+						   perPage);
 			} else if (type.equals("author")) {
-				list = service.searchAuthor(search);
+				pageDTO = service.selectAuthorPages(search,
+						   Integer.parseInt(curPage),
+						   perPage);
 			} else if (type.equals("publisher")) {
-				list = service.searchPublisher(search);
+				pageDTO = service.selectPublisherPages(search,
+						   Integer.parseInt(curPage),
+						   perPage);
 			} else if (type.equals("story")) {
-				list = service.searchStory(search);
+				pageDTO = service.selectStoryPages(search,
+						   Integer.parseInt(curPage),
+						   perPage);
 			}
 
-			request.setAttribute("bookList", list);
+			request.setAttribute("pageDTO", pageDTO);
 			request.setAttribute("title", search);
+			request.setAttribute("type", type);
 			nextPage = "searchList.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();

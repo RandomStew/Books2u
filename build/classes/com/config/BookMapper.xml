@@ -70,6 +70,30 @@
 		where isbn = #{isbn}
 	</select>
 	
+	<!-- count search별 토탈 레코드  -->
+	<select id="totalRecordTitle" parameterType="string" resultType="int">
+		select count(*)
+		from book
+		where title like '%' || #{title} || '%'
+	</select>
+	
+	<select id="totalRecordAuthor" parameterType="string" resultType="int">
+		select count(*)
+		from book
+		where author like '%' || #{author} || '%'
+	</select>
+	
+	<select id="totalRecordPublisher" parameterType="string" resultType="int">
+		select count(*)
+		from book
+		where author like '%' || #{author} || '%'
+	</select>
+	
+	<select id="totalRecordStory" parameterType="string" resultType="int">
+		select count(*)
+		from book
+		where story like '%' || #{story} || '%'
+	</select>
 	
 </mapper>
 
