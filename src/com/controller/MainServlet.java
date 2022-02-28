@@ -31,7 +31,7 @@ public class MainServlet extends HttpServlet {
 		// 임시 큐레이션 데이터
 		BookService service = new BookServiceImpl();
 		try {
-			List<BookDTO> list = service.searchStory("이");
+			List<BookDTO> list = service.searchStory("이재명");
 			request.setAttribute("curationList", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -47,4 +47,8 @@ public class MainServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private void curationList(HttpSession session) {
+		BookService service = new BookServiceImpl();
+		
+	}
 }
