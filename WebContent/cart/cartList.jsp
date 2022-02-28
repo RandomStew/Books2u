@@ -63,6 +63,7 @@
 	function updateAmount(isbn, AscOrDesc){
 		var userId = document.querySelector("#hiddenUserId");
 		var amountTag = document.querySelector("#amount"+isbn);
+
 		
 		if(!userId) {
 			alert("로그인을 해주세요");
@@ -88,10 +89,10 @@
 	
 	function amountAsc(isbn) {
 		var amountTag = document.querySelector("#amount"+isbn);
+
 		var AscOrDesc = 1;
 		amountTag.value -= -1;
 		updateAmount(isbn, AscOrDesc);
-
 	}
 	
 	function amountDesc(isbn) {
@@ -104,7 +105,10 @@
 			}
 	}
 	
-	
+	// 책을 클릭하면 책 상세정보로 이동
+	function goBookInfo(isbn) {
+		location.href="BookInfoServlet?isbn=" + isbn;
+	}
 	
 </script>
 
@@ -125,7 +129,7 @@
 	<!-- 테이블 HEADER -->
 	<tr>
 		<td class="td_default" align="center">
-			<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()">
+			<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked>
 		</td>
 		<td class="td_default" align="center"><strong>ISBN</strong></td>
 		<td class="td_default" align="center"><strong>책</strong></td>
@@ -174,7 +178,7 @@
 			<tr>
 				<td class="td_default" width="80" align="center">
 				<input type="checkbox" name="check" id ="check${book.isbn}" class="check" 
-				data-isbn="${book.isbn}" value="${book.isbn}">
+				data-isbn="${book.isbn}" value="${book.isbn}" checked>
 				</td>
 			
 				<!-- ISBN -->
@@ -183,7 +187,7 @@
 				</td>
 				<!-- 이미지 -->
 				<td class="td_default" width="80">
-					<img src="images/books/${book.isbn}.jpg" border="0" align="center" width="80" />
+					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" style="cursor:pointer" border="0" align="center" width="80" />
 				</td>
 				<!-- 책 정보 -->
 				<td class="td_default" width="300" style='padding-left: 30px' colspan="2">

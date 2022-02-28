@@ -28,7 +28,7 @@
 				</div>
 				<div class="text">
 					<h2>${book.title}</h2>
-					<p>${book.story}</p>
+					<p>${book.author}</p>
 					<button><i class="fas fa-check"></i>자세히보기</button>
 				</div>
 			</div>
