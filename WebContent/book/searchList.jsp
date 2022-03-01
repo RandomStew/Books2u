@@ -33,6 +33,7 @@
 		var userId = document.querySelector("#hiddenId"+isbn).value;
 		if(!userId) {
 			alert("로그인을 해주세요");
+			amountTag.value = 1;
 			return;
 		}
 		var data = `userId=\${userId}&isbn=\${isbn}&`

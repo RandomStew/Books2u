@@ -39,6 +39,7 @@ public class CartAddServlet extends HttpServlet {
 
 		Transformer trans = new RequestTransformer(request);
 		trans.setMappingDTO(cartDTO);
+
 		logger.debug("CartDTO: " +  cartDTO);
 		Object oldCartList = session.getAttribute("cartList");
 		
@@ -51,29 +52,26 @@ public class CartAddServlet extends HttpServlet {
 				//장바구니에 상품이 있는 경우 기존 상품을 Arraylist로 형번환
 				newCartList = (ArrayList<CartDTO>) oldCartList;
 			}
-			
+				
 			//기존 장바구니에 동일한 상품 존재 여부 확인--------------------------------------------------------
-			
+				
 			checkInCart(newCartList, cartDTO);
 			
+			int cartSumAmount = sumTotalAmount(newCartList);
+			
+			//session정보 업데이트---------------------------------------------------------------------
+			session.setAttribute("cartList", newCartList);
+			session.setAttribute("cartSumAmount", cartSumAmount);
+			request.setAttribute("cartDTO", cartDTO);
+			response.getWriter().print(1);
+				
 		} catch(Exception e) {
 			e.printStackTrace();
-			nextPage = "error/error.jsp";
 			response.getWriter().print(-1);
+			nextPage = "error/error.jsp";
 			response.sendRedirect(nextPage);
 		}
-			
-		
-		
-		int cartSumAmount = sumTotalAmount(newCartList);
-		//session정보 업데이트---------------------------------------------------------------------
-		session.setAttribute("cartList", newCartList);
-		session.setAttribute("cartSumAmount", cartSumAmount);
-		request.setAttribute("cartDTO", cartDTO);
-		response.getWriter().print(1);
-		//response.sendRedirect(nextPage);
-		//request.getRequestDispatcher(nextPage).forward(request, response);
-		
+						
 	}
 	
 
