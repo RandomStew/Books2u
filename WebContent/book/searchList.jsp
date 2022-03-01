@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
  <script>
 	function goBookInfo(isbn) {
@@ -165,6 +165,8 @@
 		
 	</c:forEach>
 	
+	<!-- 페이징 링크 처리 부분 -->
+	
 	<tr>
 		<td colspan="6">
 		<!--pageTag -->
@@ -176,18 +178,38 @@
 			<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"></c:set>
 		</c:if>
 		
-		<c:forEach var="i" begin="1" end="${totalPage}">
-		<input type="hidden" name="curPage" value="${i}">
-		<c:if test="${i==curPage}">
-			${i}
+		<c:set var="division" value="${(curPage-1) / 10 }"></c:set>
+		<fmt:parseNumber var="division" value="${division}" integerOnly="true"/>
+
+		<c:set var="startPoint" value="${division * 10 + 1 }"></c:set>
+		<c:set var="endPoint" value ="${division*10+10 }"></c:set>
+		
+		<c:if test="${totalPage < endPoint }">
+			<c:set var="endPoint" value="${totalPage }"></c:set>
 		</c:if>
-		<c:if test="${i!=curPage}">
-		<a href="SearchListServlet?curPage=${i}&search=${title}&type=${type}">${i}</a>
+		
+		<!-- 현재페이지가 2 이상일 때 이전 버튼이 존재 -->
+		<c:if test="${curPage > 1 }">
+			<a href="SearchListServlet?curPage=${curPage-1}&search=${title}&type=${type}">이전</a>
 		</c:if>
-		</c:forEach>  
+		<c:forEach var="i" begin="${startPoint}" end="${endPoint}">
+			<input type="hidden" name="curPage" value="${i}">
+			<c:if test="${i==curPage}">
+				${i}
+			</c:if>
+			<c:if test="${i!=curPage}">
+				<a href="SearchListServlet?curPage=${i}&search=${title}&type=${type}">${i}</a>
+			</c:if>
+		</c:forEach>
+		
+		<!--  curPage < totalPage 일 떄 존재 -->
+		<c:if test="${curPage < totalPage }">
+			<a href="SearchListServlet?curPage=${curPage+1}&search=${title}&type=${type}">다음</a>  
+		</c:if>
 		</td>
 	<tr>
 	</form>
+
 </table>
 
 
