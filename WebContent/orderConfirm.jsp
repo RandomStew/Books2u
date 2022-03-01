@@ -10,6 +10,6 @@
 	<h1>주문 상품</h1>
 	<jsp:include page="common/top.jsp" flush="true" /><br>
 	<hr>
-	<jsp:include page="order/orderList.jsp" flush="true" />
+	<jsp:include page="order/orderConfirm.jsp" flush="true" />
 </body>
 </html>

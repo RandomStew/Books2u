@@ -5,17 +5,6 @@
 <script type="text/javascript" src="jquery-3.1.0.js"></script>
 
 <script type="text/javascript">
-	function sessionCheck(){
-		var userId = document.querySelector("#hiddenUserId").value;
-		if(!userId){
-			if(confirm("세션이 만료되었습니다. 다시 로그인하겠습니까?")){
-				location.href="LoginUIServlet";
-			} else {
-				return;
-			}
-		}
-	}
-	
 	
 	function allCheck(){
 		var allCheck = document.querySelector("#allCheck");
@@ -44,7 +33,6 @@
 	// 선택 항목 삭제
 	function delCheckedCart(){
 		var f = document.querySelector("form");
-		sessionCheck();
 		
 		f.action = "CartDeleteServlet";
 		f.method = "get";
@@ -54,7 +42,6 @@
 	// 장바구니 비우기
 	function delAllCart(){
 		var f = document.querySelector("form");
-		sessionCheck();
 		
 		var check = document.querySelectorAll(".check");
 		console.log(check);
@@ -72,14 +59,11 @@
 			f.method = "get";
 			f.submit(); 
 			}
-		}	
-		  
+		}	  
 	}
 	
 	//개별삭제
 	function deleteItem(isbn){
-		sessionCheck();
-		
 		location.href=`CartDeleteServlet?isbn=\${isbn}`;
 	}
 	
@@ -87,9 +71,6 @@
 	// 수량 수정-------------------------------------------------------------------------------------------------------------
 	function updateAmount(isbn, AscOrDesc){
 		var amountTag = document.querySelector("#amount"+isbn);
-
-		sessionCheck();
-		
 		var data = `isbn=\${isbn}&amount=\${amountTag.value}&AscOrDesc=\${AscOrDesc}`;
 		
 		var httpRequest = new XMLHttpRequest();
@@ -128,13 +109,12 @@
 	// 선택항목 주문 -------------------------------------------------------------------------------------
 	function orderList(){
 		var f = document.querySelector("form");
-		sessionCheck();
 		var check = document.querySelectorAll(".check");
 		
 		if(check.length == 0){
 			alert("주문할 상품이 없습니다.");
 		} else{
-			f.action = "OrderListServlet";
+			f.action = "OrderConfirmServlet";
 			f.method = "get";
 			f.submit();
 		}

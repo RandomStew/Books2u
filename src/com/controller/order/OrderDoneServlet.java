@@ -27,47 +27,66 @@ public class OrderDoneServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		HttpSession session = request.getSession();
-		String [] itemToOrder = request.getParameterValues("isbn");
-		List<OrderDTO> orderList = new ArrayList<OrderDTO>();
-		Transformer trans = new RequestTransformer(request);
-		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		String nextPage = "";
 		
-		try {
-			int orderSumAmount = 0;
-			//주문자 정보
-			for(String isbn : itemToOrder) {
-				OrderDTO orderDTO = new OrderDTO();
-				trans.setMappingDTO(orderDTO);
-				orderDTO.setIsbn(isbn);
-				orderDTO.setTitle(request.getParameter("hiddenTitle"+isbn));
-				orderDTO.setAuthor(request.getParameter("hiddenAuthor"+isbn));
-				orderDTO.setPublisher(request.getParameter("hiddenPublisher"+isbn));
-				orderDTO.setPrice(Integer.parseInt(request.getParameter("hiddenPrice"+isbn)));
-				orderDTO.setAmount(Integer.parseInt(request.getParameter("hiddenAmount"+isbn)));
-				orderList.add(orderDTO);
+		if(memberDTO != null) {
+			String [] itemToOrder = request.getParameterValues("isbn");
+			List<OrderDTO> orderList = new ArrayList<OrderDTO>();
+			Transformer trans = new RequestTransformer(request);
+			
+			try {
+				int orderSumAmount = 0;
+				//주문자 정보
+				for(String isbn : itemToOrder) {
+					OrderDTO orderDTO = new OrderDTO();
+					trans.setMappingDTO(orderDTO);
+					orderDTO.setIsbn(isbn);
+					orderDTO.setTitle(request.getParameter("hiddenTitle"+isbn));
+					orderDTO.setAuthor(request.getParameter("hiddenAuthor"+isbn));
+					orderDTO.setPublisher(request.getParameter("hiddenPublisher"+isbn));
+					orderDTO.setPrice(Integer.parseInt(request.getParameter("hiddenPrice"+isbn)));
+					orderDTO.setAmount(Integer.parseInt(request.getParameter("hiddenAmount"+isbn)));
+					orderList.add(orderDTO);
+					
+					orderSumAmount += orderDTO.getAmount();
+				}
 				
-				orderSumAmount += orderDTO.getAmount();
+				
+				OrderService service = new OrderServiceImpl();
+				
+				int n = service.orderDone(orderList);
+				
+				if(n > 0) {
+					List<CartDTO> found = new ArrayList<CartDTO>();
+					List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
+					for(String isbn : itemToOrder) {
+						for(CartDTO cartDTO : cartList) {
+							if(cartDTO.getIsbn().equals(isbn)) {
+								found.add(cartDTO);
+							}
+						}
+					}
+					cartList.removeAll(found);
+				}
+				
+				int oldCartSumAmount = (int) session.getAttribute("cartSumAmount");
+				int newCartSumAmount = oldCartSumAmount - orderSumAmount;
+				session.setAttribute("cartSumAmount",newCartSumAmount);
+				
+				request.setAttribute("orderList", orderList);
+				
+				nextPage = "orderDone.jsp";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				nextPage = "error/error.jsp";
 			}
-			
-			
-			OrderService service = new OrderServiceImpl();
-			
-			int n = service.orderDone(orderList);
-			
-			int oldCartSumAmount = (int) session.getAttribute("cartSumAmount");
-			int newCartSumAmount = oldCartSumAmount - orderSumAmount;
-			session.setAttribute("cartSumAmount",newCartSumAmount);
-			request.setAttribute("orderList", orderList);
-			
-			nextPage = "orderDone.jsp";
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			nextPage = "error/error.jsp";
+		
+		} else {
+			nextPage="member/sessionInvalidate.jsp";
 		}
 		request.getRequestDispatcher(nextPage).forward(request, response);
 		

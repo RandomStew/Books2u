@@ -33,7 +33,6 @@ public class BookReviewAddServlet extends HttpServlet {
 			num = service.addReview(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			num = 0;
 		}
 		response.sendRedirect("BookInfoServlet?isbn="+reviewDTO.getIsbn());
 		

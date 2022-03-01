@@ -26,23 +26,30 @@ public class CartUpdateAmountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String isbn = request.getParameter("isbn");
-		int amount = Integer.parseInt(request.getParameter("amount"));
-		int AscOrDesc = Integer.parseInt(request.getParameter("AscOrDesc"));
-		int cartSumAmount = (int) session.getAttribute("cartSumAmount");
-		session.setAttribute("cartSumAmount", cartSumAmount+AscOrDesc);
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		
-		
-		ArrayList<CartDTO> cartList = (ArrayList<CartDTO>) session.getAttribute("cartList");
-		
-		for(CartDTO item : cartList) {
-			if(item.getIsbn().equals(isbn)) {
-				item.setAmount(amount);
+		if(memberDTO != null) {
+			String isbn = request.getParameter("isbn");
+			int amount = Integer.parseInt(request.getParameter("amount"));
+			int AscOrDesc = Integer.parseInt(request.getParameter("AscOrDesc"));
+			
+			int cartSumAmount = (int) session.getAttribute("cartSumAmount");
+			session.setAttribute("cartSumAmount", cartSumAmount+AscOrDesc);
+			
+			
+			ArrayList<CartDTO> cartList = (ArrayList<CartDTO>) session.getAttribute("cartList");
+			
+			// 후에 고민해볼 것 ----------------------------------------------------------------------
+			for(CartDTO item : cartList) {
+				if(item.getIsbn().equals(isbn)) {
+					item.setAmount(amount);
+				}
 			}
-			item.getAmount();
+			session.setAttribute("cartList", cartList);
+			
+		} else {
+			response.sendRedirect("member/sessionInvalidate.jsp");
 		}
-	
-		session.setAttribute("cartList", cartList);
 		
 	}
 
