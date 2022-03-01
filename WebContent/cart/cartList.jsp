@@ -107,7 +107,7 @@
 	// 선택항목 주문 -------------------------------------------------------------------------------------
 	function orderList(){
 		var f = document.querySelector("form");
-		f.action = "orderListServlet";
+		f.action = "OrderListServlet";
 		f.method = "get";
 		f.submit();
 	}
@@ -133,7 +133,7 @@
 	<!-- 테이블 HEADER -->
 	<tr>
 		<td class="td_default" align="center">
-			<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()">
+			<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked="checked">
 		</td>
 		<td class="td_default" align="center"><strong>ISBN</strong></td>
 		<td class="td_default" align="center"><strong>책</strong></td>
@@ -182,7 +182,7 @@
 			<tr>
 				<td class="td_default" width="80" align="center">
 				<input type="checkbox" name="check" id ="check${book.isbn}" class="check" 
-				data-isbn="${book.isbn}" value="${book.isbn}">
+				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked">
 				</td>
 			
 				<!-- ISBN -->
@@ -194,7 +194,7 @@
 					<img src="images/books/${book.isbn}.jpg" border="0" align="center" width="80" />
 				</td>
 				<!-- 책 정보 -->
-				<td class="td_default" width="300" style='padding-left: 30px' colspan="2">
+				<td class="td_default" width="300" style='padding-left: 30px' colspan="2" align="center">
 					${book.title } <br> 
 					<font size="2" color="#665b5f">
 					저자명 : ${book.author} <br>

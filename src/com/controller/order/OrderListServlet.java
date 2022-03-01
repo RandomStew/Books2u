@@ -19,20 +19,22 @@ public class OrderListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String [] orderList = request.getParameterValues("check");
-		List<String> listToOrder = Arrays.asList(orderList);
+		/*
+		 * String [] orderList = request.getParameterValues("check"); List<String>
+		 * listToOrder = Arrays.asList(orderList);
+		 * 
+		 * HttpSession session = request.getSession();
+		 * 
+		 * //-------------------------여기서부터 작성해야함
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * for(String olist : listToOrder) { System.out.println(olist); }
+		 */
 		
-		HttpSession session = request.getSession();
-		
-		//-------------------------여기서부터 작성해야함
-		
-		
-		
-		
-		
-		for(String olist : listToOrder) {
-			System.out.println(olist);
-		}
+		response.sendRedirect("orderList.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
