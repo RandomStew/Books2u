@@ -10,12 +10,12 @@ import com.dto.review.ReviewPageDTO;
 public class ReviewServiceImpl implements ReviewService {
 
 	@Override
-	public ReviewPageDTO selectAllPages(int curPage) throws Exception {
+	public ReviewPageDTO selectAllPages(int curPage, String isbn) throws Exception {
 		ReviewPageDTO pageDTO = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try {
 			ReviewDAO dao = new ReviewDAO();
-			pageDTO = dao.selectAllPages(session, curPage);
+			pageDTO = dao.selectAllPages(session, curPage, isbn);
 		} finally {
 			session.close();
 		}
