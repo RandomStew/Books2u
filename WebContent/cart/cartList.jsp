@@ -142,7 +142,7 @@
 	<tr>
 		<td class="td_default" align="center">
 
-		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked>
+		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked="checked">
 
 		</td>
 		<td class="td_default" align="center"><strong>ISBN</strong></td>
@@ -191,12 +191,9 @@
 		
 			<tr>
 				<td class="td_default" width="80" align="center">
-				<input type="checkbox" name="check" id ="check${book.isbn}" class="check" 
-<<<<<<< HEAD
+				<input type="checkbox" name="check" id ="check${book.isbn}" class="check"
 				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked">
-=======
-				data-isbn="${book.isbn}" value="${book.isbn}" checked>
->>>>>>> 614779aff4b66203489d335aae606e5cb666ed04
+
 				</td>
 			
 				<!-- ISBN -->
