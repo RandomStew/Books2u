@@ -12,6 +12,7 @@
 	<jsp:include page="common/top.jsp" flush="true" /><br>
 	<hr>
 	<jsp:include page="book/search.jsp" flush="true" /> <br>
+	<hr>
 	<jsp:include page="book/curationMain.jsp" flush="true" />
 	
 </body>
