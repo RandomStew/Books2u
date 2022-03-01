@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Books2u</title>
-<style><%@include file="/css/book/curationMain.css"%></style>
+<style><%@include file="css/book/curationMain.css"%></style>
 </head>
 <body>
 	<h1>Main 화면</h1>

@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="js/member/postcode.js" ></script>
 </head>
 <body>
 	<h1>회원가입 화면입니다.</h1>
