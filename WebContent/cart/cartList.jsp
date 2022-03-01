@@ -5,6 +5,17 @@
 <script type="text/javascript" src="jquery-3.1.0.js"></script>
 
 <script type="text/javascript">
+	function sessionCheck(){
+		var userId = document.querySelector("#hiddenUserId").value;
+		if(!userId){
+			if(confirm("세션이 만료되었습니다. 다시 로그인하겠습니까?")){
+				location.href="LoginUIServlet";
+			} else {
+				return;
+			}
+		}
+	}
+	
 	
 	function allCheck(){
 		var allCheck = document.querySelector("#allCheck");
@@ -14,14 +25,17 @@
 			data.checked = allCheck.checked;
 		})
 		
+		
+	}
+	
+	function autoCheck(){
+		var allCheck = document.querySelector("#allCheck");
 		// 개별 체크박스 모두 선택시 모두선택 체크박스 선택
-		$("input[name=check]").click(function(){
-			var total = $("input[name=check]").length;
-			var checked = $("input[name=check]:checked").length;
+		var total = $("input[name=check]").length;
+		var checked = $("input[name=check]:checked").length;
 			
-			if(total != checked) $("#allCheck").prop("checked", false);
-			else $("#allCheck").prop("checked", true);
-		});
+		if(total != checked) $("#allCheck").prop("checked", false);
+		else $("#allCheck").prop("checked", true);
 	}
 	
 	
@@ -30,6 +44,8 @@
 	// 선택 항목 삭제
 	function delCheckedCart(){
 		var f = document.querySelector("form");
+		sessionCheck();
+		
 		f.action = "CartDeleteServlet";
 		f.method = "get";
 		f.submit();
@@ -37,11 +53,16 @@
 	
 	// 장바구니 비우기
 	function delAllCart(){
+		var f = document.querySelector("form");
+		sessionCheck();
 		
-		var confirmValue = confirm("정말 비우시겠습니까?");
-		  
-		  if(confirmValue) {
-			var check = document.querySelectorAll(".check");
+		var check = document.querySelectorAll(".check");
+		console.log(check);
+		if(check.length == 0){
+			alert("삭제할 상품이 없습니다.");
+			
+		} else{
+			if(confirm("정말 비우시겠습니까?")) {
 			check.forEach(function(data, idx){
 				data.checked = true;
 			})
@@ -50,27 +71,26 @@
 			f.action = "CartDeleteServlet";
 			f.method = "get";
 			f.submit(); 
-		}
+			}
+		}	
+		  
 	}
 	
 	//개별삭제
 	function deleteItem(isbn){
+		sessionCheck();
+		
 		location.href=`CartDeleteServlet?isbn=\${isbn}`;
 	}
 	
 	
 	// 수량 수정-------------------------------------------------------------------------------------------------------------
 	function updateAmount(isbn, AscOrDesc){
-		var userId = document.querySelector("#hiddenUserId");
 		var amountTag = document.querySelector("#amount"+isbn);
 
+		sessionCheck();
 		
-		if(!userId) {
-			alert("로그인을 해주세요");
-			return;
-		}
 		var data = `isbn=\${isbn}&amount=\${amountTag.value}&AscOrDesc=\${AscOrDesc}`;
-		// console.log(data);
 		
 		var httpRequest = new XMLHttpRequest();
 		// post 방식 Ajax 통신
@@ -100,11 +120,28 @@
 		var AscOrDesc = -1;
 		if(amountTag.value > 1) {
 			amountTag.value -= 1;
-		
 			updateAmount(isbn, AscOrDesc);
 			}
 	}
 	
+	
+	// 선택항목 주문 -------------------------------------------------------------------------------------
+	function orderList(){
+		var f = document.querySelector("form");
+		sessionCheck();
+		var check = document.querySelectorAll(".check");
+		
+		if(check.length == 0){
+			alert("주문할 상품이 없습니다.");
+		} else{
+			f.action = "OrderListServlet";
+			f.method = "get";
+			f.submit();
+		}
+		
+	}
+	
+
 	// 책을 클릭하면 책 상세정보로 이동
 	function goBookInfo(isbn) {
 		location.href="BookInfoServlet?isbn=" + isbn;
@@ -115,10 +152,10 @@
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
 
 	<tr><td height="30"/></tr>
-	
 	<tr>
 		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp;
 			<font size="5"> 장바구니 </font>&nbsp;
+			<input type="hidden" name="hiddenUserId" value="${sessionScope.login.userId}" id="hiddenUserId">
 		</td>
 	</tr>
 	
@@ -129,7 +166,7 @@
 	<!-- 테이블 HEADER -->
 	<tr>
 		<td class="td_default" align="center">
-			<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked>
+		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked="checked">
 		</td>
 		<td class="td_default" align="center"><strong>ISBN</strong></td>
 		<td class="td_default" align="center"><strong>책</strong></td>
@@ -168,7 +205,6 @@
 	<form name="cartForm">
 		<c:set var="sumTotal" value="${0}"/>
 		<c:forEach var="book" items="${sessionScope.cartList}" varStatus="status">
-			<input type="hidden" name="userId" value="${sessionScope.login.userId}" id="hiddenUserId">
 			<input type="hidden" name="hiddenIsbn${book.isbn}" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
 			<input type="hidden" name="hiddenTitle${book.isbn}" value="${book.title}" id="hiddenTitle${book.isbn}">
 			<input type="hidden" name="hiddenAuthor${book.isbn}" value="${book.author}" id="hiddenAuthor${book.isbn}">
@@ -177,8 +213,9 @@
 		
 			<tr>
 				<td class="td_default" width="80" align="center">
-				<input type="checkbox" name="check" id ="check${book.isbn}" class="check" 
-				data-isbn="${book.isbn}" value="${book.isbn}" checked>
+				<input type="checkbox" name="check" id ="check${book.isbn}" class="check"
+				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked" onclick="autoCheck()">
+
 				</td>
 			
 				<!-- ISBN -->
@@ -190,7 +227,7 @@
 					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" style="cursor:pointer" border="0" align="center" width="80" />
 				</td>
 				<!-- 책 정보 -->
-				<td class="td_default" width="300" style='padding-left: 30px' colspan="2">
+				<td class="td_default" width="300" style='padding-left: 30px' colspan="2" align="center">
 					${book.title } <br> 
 					<font size="2" color="#665b5f">
 					저자명 : ${book.author} <br>
@@ -217,7 +254,7 @@
 					onclick="amountDesc(${book.isbn})" style="cursor:pointer"/>
 				</td>
 			
-				<!-- 총합 -->
+				<!-- 합계 -->
 				<c:set var="sumTotal" value="${sumTotal + (book.price*book.amount)}"/>
 				<td class="cart_sum" align="center" width="110" style='padding-left: 5px'>
 					<span id="cart_sum${book.isbn}"> ${book.price*book.amount} </span>
@@ -274,7 +311,7 @@
 			<td align="center" colspan="3"></td>
 		
 			<td align="center" colspan="3">
-			<button onclick="orderAllConfirm()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onclick="orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>

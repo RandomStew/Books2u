@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dto.book.BookDTO;
 import com.dto.review.ReviewPageDTO;
 import com.service.review.ReviewService;
 import com.service.review.ReviewServiceImpl;
@@ -21,12 +22,13 @@ public class BookReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService service = new ReviewServiceImpl();
 		String curPage = (String)request.getAttribute("curPage");
+		String isbn = ((BookDTO)request.getAttribute("book")).getIsbn();
 		if(curPage == null) {
 			curPage = "1";
 		}
 		String nextPage = "";
 		try {
-			ReviewPageDTO pageDTO = service.selectAllPages(Integer.parseInt(curPage));
+			ReviewPageDTO pageDTO = service.selectAllPages(Integer.parseInt(curPage), isbn);
 			request.setAttribute("reviewPageDTO", pageDTO);
 			nextPage = "bookInfo.jsp";
 		} catch (Exception e) {

@@ -28,7 +28,7 @@
   <mappers>
     <mapper resource="com/config/BookMapper.xml"/>
     <mapper resource="com/config/MemberMapper.xml"/>
-    <mapper resource="com/config/CartMapper.xml"/>
+    <mapper resource="com/config/OrderMapper.xml"/>
     <mapper resource="com/config/ReviewMapper.xml"/>
   </mappers>
 </configuration>

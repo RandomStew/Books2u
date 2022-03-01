@@ -58,18 +58,38 @@
 		<c:if test="${totalPage % perPage != 0 }">
 			<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"></c:set>
 		</c:if>
-		<a href="">이전</a>
-		<c:forEach var="i" begin="1" end="${totalPage}">
-		<input type="hidden" name="curPage" value="${i}">
-		<c:if test="${i==curPage}">
-			${i}
+		
+		<c:set var="division" value="${(curPage-1) / 10 }"></c:set>
+		<fmt:parseNumber var="division" value="${division}" integerOnly="true"/>
+
+		<c:set var="startPoint" value="${division * 10 + 1 }"></c:set>
+		<c:set var="endPoint" value ="${division*10+10 }"></c:set>
+		
+		<c:if test="${totalPage < endPoint }">
+			<c:set var="endPoint" value="${totalPage }"></c:set>
 		</c:if>
-		<c:if test="${i!=curPage}">
-		<a href="BookInfoServlet?curPage=${i}&isbn=${book.isbn}">${i}</a>
+		
+		<!-- 현재페이지가 2 이상일 때 이전 버튼이 존재 -->
+		<c:if test="${curPage > 1 }">
+			<a href="BookInfoServlet?curPage=${curPage-1}&isbn=${book.isbn}">이전</a>
 		</c:if>
-		</c:forEach>  
-		<a href="">다음</a>
+		<c:forEach var="i" begin="${startPoint}" end="${endPoint}">
+			<input type="hidden" name="curPage" value="${i}">
+			<c:if test="${i==curPage}">
+				${i}
+			</c:if>
+			<c:if test="${i!=curPage}">
+				<a href="BookInfoServlet?curPage=${i}&isbn=${book.isbn}">${i}</a>
+			</c:if>
+		</c:forEach>
+		
+		<!--  curPage < totalPage 일 떄 존재 -->
+		<c:if test="${curPage < totalPage }">
+			<a href="BookInfoServlet?curPage=${curPage+1}&isbn=${book.isbn}">다음</a>  
+		</c:if>
 		</td>
 	<tr>
 </table>
+
+
 

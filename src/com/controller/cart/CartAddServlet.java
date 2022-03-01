@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.dto.cart.CartDTO;
 import com.dto.member.MemberDTO;
 
@@ -21,7 +24,10 @@ import api.data.transform.Transformer;
 
 @WebServlet("/CartAddServlet")
 public class CartAddServlet extends HttpServlet {
-
+	
+	private Logger logger = LoggerFactory.getLogger(CartAddServlet.class);
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -30,43 +36,42 @@ public class CartAddServlet extends HttpServlet {
 		
 		CartDTO cartDTO = new CartDTO();
 		ArrayList<CartDTO> newCartList = null;
-		
 
-			Transformer trans = new RequestTransformer(request);
-			trans.setMappingDTO(cartDTO);
+		Transformer trans = new RequestTransformer(request);
+		trans.setMappingDTO(cartDTO);
+
+		logger.debug("CartDTO: " +  cartDTO);
+		Object oldCartList = session.getAttribute("cartList");
+		
+		try {
 			
-			Object oldCartList = session.getAttribute("cartList");
-			
-			try {
-				
-				if(oldCartList == null) { 
-					//장바구니가 비어있는 경우 새로운 List생성
-					newCartList = new ArrayList<CartDTO>();
-				} else {
-					//장바구니에 상품이 있는 경우 기존 상품을 Arraylist로 형번환
-					newCartList = (ArrayList<CartDTO>) oldCartList;
-				}
-				
-				//기존 장바구니에 동일한 상품 존재 여부 확인--------------------------------------------------------
-				
-				checkInCart(newCartList, cartDTO);
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-				nextPage = "error/error.jsp";
+			if(oldCartList == null) { 
+				//장바구니가 비어있는 경우 새로운 List생성
+				newCartList = new ArrayList<CartDTO>();
+			} else {
+				//장바구니에 상품이 있는 경우 기존 상품을 Arraylist로 형번환
+				newCartList = (ArrayList<CartDTO>) oldCartList;
 			}
+				
+			//기존 장바구니에 동일한 상품 존재 여부 확인--------------------------------------------------------
+				
+			checkInCart(newCartList, cartDTO);
 			
-		
-		
-		int cartSumAmount = sumTotalAmount(newCartList);
-		//session정보 업데이트---------------------------------------------------------------------
-		session.setAttribute("cartList", newCartList);
-		session.setAttribute("cartSumAmount", cartSumAmount);
-		request.setAttribute("cartDTO", cartDTO);
-		
-		//response.sendRedirect(nextPage);
-		request.getRequestDispatcher(nextPage).forward(request, response);
-		
+			int cartSumAmount = sumTotalAmount(newCartList);
+			
+			//session정보 업데이트---------------------------------------------------------------------
+			session.setAttribute("cartList", newCartList);
+			session.setAttribute("cartSumAmount", cartSumAmount);
+			request.setAttribute("cartDTO", cartDTO);
+			response.getWriter().print(1);
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+			response.getWriter().print(-1);
+			nextPage = "error/error.jsp";
+			response.sendRedirect(nextPage);
+		}
+						
 	}
 	
 
