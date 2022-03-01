@@ -36,14 +36,11 @@ public class CartDeleteServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int cartSumAmount = (int) session.getAttribute("cartSumAmount");
-		
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
+		List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
 		String nextPage = "";
 		
-		if(memberDTO != null) {
-			List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
-			List<CartDTO> found = new ArrayList<CartDTO>();
-			
+		try {
+			List<CartDTO> found = new ArrayList<CartDTO>();		
 			for(String isbn : listToDelete) {
 				for(CartDTO cartDTO : cartList) {
 					if(cartDTO.getIsbn().equals(isbn)) {
@@ -52,15 +49,15 @@ public class CartDeleteServlet extends HttpServlet {
 					}
 				}
 			}
-			
+				
 			cartList.removeAll(found);
 			session.setAttribute("cartSumAmount", cartSumAmount);
 			nextPage = "CartListServlet";
 			
-		} else {
-			nextPage = "member/sessionInvalidate.jsp";
+		} catch (Exception e) {
+			e.printStackTrace();
+			nextPage = "error/error.jsp";
 		}
-		
 		
 		response.sendRedirect(nextPage);
 		

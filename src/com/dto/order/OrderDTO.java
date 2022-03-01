@@ -10,6 +10,7 @@ public class OrderDTO {
 	private String publisher; // 출판사
 	private int price; // 가격
 	private int amount; // 수량
+	
 	private String recipient; // 수령인
 	private String recipientPost; // 수령지 우편번호
 	private String recipientAddr1; // 수령지1

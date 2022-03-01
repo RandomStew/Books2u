@@ -32,37 +32,37 @@ public class CartAddServlet extends HttpServlet {
 		ArrayList<CartDTO> newCartList = null;
 		
 
-			Transformer trans = new RequestTransformer(request);
-			trans.setMappingDTO(cartDTO);
+		Transformer trans = new RequestTransformer(request);
+		trans.setMappingDTO(cartDTO);
 			
-			Object oldCartList = session.getAttribute("cartList");
+		Object oldCartList = session.getAttribute("cartList");
 			
-			try {
+		try {
 				
-				if(oldCartList == null) { 
-					//장바구니가 비어있는 경우 새로운 List생성
-					newCartList = new ArrayList<CartDTO>();
-				} else {
-					//장바구니에 상품이 있는 경우 기존 상품을 Arraylist로 형번환
-					newCartList = (ArrayList<CartDTO>) oldCartList;
-				}
-				
-				//기존 장바구니에 동일한 상품 존재 여부 확인--------------------------------------------------------
-				
-				checkInCart(newCartList, cartDTO);
-				
-			} catch(Exception e) {
-				e.printStackTrace();
-				nextPage = "error/error.jsp";
+			if(oldCartList == null) { 
+				//장바구니가 비어있는 경우 새로운 List생성
+				newCartList = new ArrayList<CartDTO>();
+			} else {
+				//장바구니에 상품이 있는 경우 기존 상품을 Arraylist로 형번환
+				newCartList = (ArrayList<CartDTO>) oldCartList;
 			}
+				
+			//기존 장바구니에 동일한 상품 존재 여부 확인--------------------------------------------------------
+				
+			checkInCart(newCartList, cartDTO);
 			
-		
-		
-		int cartSumAmount = sumTotalAmount(newCartList);
-		//session정보 업데이트---------------------------------------------------------------------
-		session.setAttribute("cartList", newCartList);
-		session.setAttribute("cartSumAmount", cartSumAmount);
-		request.setAttribute("cartDTO", cartDTO);
+			int cartSumAmount = sumTotalAmount(newCartList);
+			
+			//session정보 업데이트---------------------------------------------------------------------
+			session.setAttribute("cartList", newCartList);
+			session.setAttribute("cartSumAmount", cartSumAmount);
+			request.setAttribute("cartDTO", cartDTO);
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+			nextPage = "error/error.jsp";
+		}
+			
 		
 		//response.sendRedirect(nextPage);
 		request.getRequestDispatcher(nextPage).forward(request, response);
