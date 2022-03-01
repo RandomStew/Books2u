@@ -41,15 +41,14 @@ function sample4_execDaumPostcode() {
 								+ extraRoadAddr;
 						document.getElementById('guide').innerHTML = '(예상 도로명 주소 : '
 								+ expRoadAddr + ')';
-
 					} else if (data.autoJibunAddress) {
 						var expJibunAddr = data.autoJibunAddress;
 						document.getElementById('guide').innerHTML = '(예상 지번 주소 : '
 								+ expJibunAddr + ')';
-
 					} else {
 						document.getElementById('guide').innerHTML = '';
 					}
+					updateDisabled();
 				}
 			}).open();
 }
