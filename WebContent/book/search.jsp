@@ -15,7 +15,7 @@ input[type=text] {
   border-radius: 4px;
   font-size: 15px;
   background-color: white;
-  background-image: url('searchicon.png');
+  //background-image: url('searchicon.png');
   background-position: 10px 10px; 
   background-repeat: no-repeat;
   -webkit-transition: width 0.4s ease-in-out;
@@ -34,6 +34,13 @@ input[type=text] {
 		f.submit();
 	}
 	
+	function enterKey() {
+		// enterKey == 13
+		if (window.event.keyCode == 13) {
+			searchBook();
+		}
+	}
+	
 </script>
 </head>
 
@@ -46,7 +53,7 @@ input[type=text] {
 	<option value="publisher" <c:if test="${type=='publisher'}">selected </c:if>> 출판사</option>
 	<option value="story" <c:if test="${type=='story'}">selected </c:if>> 책 내용</option>
 </select>
-<input type="text" name="search" value="${title }"> &nbsp
+<input type="text" name="search" onkeyup="enterKey()" value="${title }"> &nbsp
 <input type="button" onclick="searchBook()" value="검색">
 </form>
 

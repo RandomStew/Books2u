@@ -93,7 +93,7 @@ display:block;
 						</div>
 						<div>
 							<table border="0" align="center" cellpadding="1" cellspacing="0" style="display:block;">
-								
+								<c:set var="totalSum" value="${0}"></c:set>
 								<c:if test="${not empty sessionScope.cartList}">
 								<c:forEach var="book" items="${sessionScope.cartList}">
 									<tr>
@@ -105,7 +105,7 @@ display:block;
 											${book.amount } 개
 										</td>
 										
-										<td width="75" ;style="text-align: right;">
+										<td width="75" style="text-align: right;">
 											${book.price }원
 										</td>
 									</tr>
@@ -114,12 +114,13 @@ display:block;
 											<hr size="1" color="CCCCCC">
 										</td>
 									</tr>
+									<c:set var="totalSum" value="${totalSum + book.amount * book.price }"></c:set>
 								</c:forEach>
 								</c:if>
 								
 								<tr>
 									<td colspan="3">
-									총 상품가격: <span style="color:deeppink; ">${book.price} 원</span> / 배송비 0원
+									총 상품가격: <span style="color:deeppink; ">${totalSum} 원</span> / 배송비 0원
 									</td>
 								</tr>
 								
