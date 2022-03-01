@@ -17,8 +17,8 @@ import api.data.transform.RequestTransformer;
 import api.data.transform.Transformer;
 
 
-@WebServlet("/BookReviewAdd")
-public class BookReviewAdd extends HttpServlet {
+@WebServlet("/BookReviewAddServlet")
+public class BookReviewAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -35,8 +35,8 @@ public class BookReviewAdd extends HttpServlet {
 			e.printStackTrace();
 			num = 0;
 		}
-		PrintWriter out = response.getWriter();
-		out.print(num);
+		response.sendRedirect("BookInfoServlet?isbn="+reviewDTO.getIsbn());
+		
 		
 	}
 
