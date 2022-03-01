@@ -174,11 +174,8 @@
 		<c:set var="curPage" value="${pageDTO.curPage }"></c:set>
 		<c:set var="totalRecord" value="${pageDTO.totalPage }"></c:set>
 		<c:set var="perPage" value="${pageDTO.perPage }"></c:set>
-		<c:set var="totalPage" value="${totalRecord / perPage }"></c:set>
-		<c:if test="${totalPage % perPage != 0 }">
-			<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"></c:set>
-		</c:if>
-		
+		<c:set var="totalPage" value="${Math.ceil(totalRecord / perPage) }"></c:set>
+
 		<c:set var="division" value="${(curPage-1) / 10 }"></c:set>
 		<fmt:parseNumber var="division" value="${division}" integerOnly="true"/>
 

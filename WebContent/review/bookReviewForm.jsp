@@ -7,7 +7,7 @@
 	function addByAjax() {
 		
 	}
-</script>    
+</script>
 <c:if test="${not empty sessionScope.login}">
 <form name="insertReviewForm" action="BookReviewAddServlet" method="post">
 <input type="hidden" name="isbn" value="${book.isbn}">

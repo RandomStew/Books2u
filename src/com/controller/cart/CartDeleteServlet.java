@@ -22,41 +22,52 @@ public class CartDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 삭제할 상품 가져오기
 		String [] check = request.getParameterValues("check");
 		String individual = request.getParameter("isbn");
-		//System.out.println(individual);
-		
-		List<String> listToDelete = null;
-		
-		if(check == null) {
-			listToDelete = Arrays.asList(individual);
-		} else {
-			listToDelete = Arrays.asList(check);
-		}
 		
 		HttpSession session = request.getSession();
-		int cartSumAmount = (int) session.getAttribute("cartSumAmount");
-		List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		String nextPage = "";
 		
-		try {
-			List<CartDTO> found = new ArrayList<CartDTO>();		
-			for(String isbn : listToDelete) {
-				for(CartDTO cartDTO : cartList) {
-					if(cartDTO.getIsbn().equals(isbn)) {
-						found.add(cartDTO);
-						cartSumAmount -= cartDTO.getAmount();
+		if(memberDTO != null) {
+			
+			//삭제 할 isbn list
+			List<String> isbnToDelete = null;
+			
+			if(check == null) {
+				isbnToDelete = Arrays.asList(individual);
+			} else {
+				isbnToDelete = Arrays.asList(check);
+			}
+			
+			int cartSumAmount = (int) session.getAttribute("cartSumAmount");
+			List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
+			
+			
+			try {
+				// 삭제할 CartDTO
+				List<CartDTO> listToDelete = new ArrayList<CartDTO>();		
+				for(String isbn : isbnToDelete) {
+					for(CartDTO cartDTO : cartList) {
+						if(cartDTO.getIsbn().equals(isbn)) {
+							listToDelete.add(cartDTO);
+							cartSumAmount -= cartDTO.getAmount();
+						}
 					}
 				}
-			}
+					
+				cartList.removeAll(listToDelete);
+				session.setAttribute("cartSumAmount", cartSumAmount);
+				nextPage = "CartListServlet";
 				
-			cartList.removeAll(found);
-			session.setAttribute("cartSumAmount", cartSumAmount);
-			nextPage = "CartListServlet";
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			nextPage = "error/error.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+				nextPage = "error/error.jsp";
+				
+			}
+		} else {
+			response.sendRedirect("member/sessionInvalidate.jsp");
 		}
 		
 		response.sendRedirect(nextPage);

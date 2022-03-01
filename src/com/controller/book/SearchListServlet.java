@@ -25,6 +25,7 @@ public class SearchListServlet extends HttpServlet {
 		if(curPage == null) {
 			curPage = "1";
 		}
+		
 		int perPage = 4;
 		BookService service = new BookServiceImpl();
 		String nextPage = "";

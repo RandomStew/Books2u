@@ -17,14 +17,14 @@ import com.dto.cart.CartDTO;
 import com.dto.member.MemberDTO;
 
 
-@WebServlet("/OrderListServlet")
-public class OrderListServlet extends HttpServlet {
+@WebServlet("/OrderConfirmServlet")
+public class OrderConfirmServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();	
-		List<CartDTO> carList = (List<CartDTO>) session.getAttribute("cartList");
+		List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
 		String nextPage = "";
 		
 			
@@ -35,14 +35,14 @@ public class OrderListServlet extends HttpServlet {
 			List<CartDTO> found = new ArrayList<CartDTO>();
 			
 			for(String isbn : listToOrder) {
-				for(CartDTO cartDTO : carList) {
+				for(CartDTO cartDTO : cartList) {
 					if(cartDTO.getIsbn().equals(isbn)) {
 						found.add(cartDTO);
 					}
 				}
 			}
 			request.setAttribute("orderList", found);
-			nextPage = "orderList.jsp";
+			nextPage = "orderConfirm.jsp";
 			
 		} catch (Exception e) {
 			e.printStackTrace();

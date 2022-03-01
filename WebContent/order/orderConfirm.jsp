@@ -4,19 +4,8 @@
 
 
 <script>
-	function sessionCheck(){
-		var userId = document.querySelector("#hiddenUserId").value;
-		if(!userId){
-			if(confirm("세션이 만료되었습니다. 다시 로그인하겠습니까?")){
-				location.href="LoginUIServlet";
-			} else {
-				return;
-			}
-		}
-	}
 	
 	function getSameInfo(n){
-		console.log(n, n.checked);
 		
 		if(n.checked){
 			
@@ -57,10 +46,9 @@
 	}
 	
 	function orderDone(f){
-		sessionCheck();
 		f.action="OrderDoneServlet";
 		f.method="get";
-		f.submit;
+		f.submit();
 	}
 
 
@@ -107,6 +95,7 @@
 	
 							
 					<c:set var="sumTotal" value="${0}"/>
+					
 					<c:forEach var="book" items="${orderList}">
 					<input type="hidden" name="isbn" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
 					<input type="hidden" name="hiddenTitle${book.isbn}" value="${book.title}" id="hiddenTitle${book.isbn}">
@@ -150,7 +139,6 @@
 							
 							
 							<!-- 합계 -->
-							<c:set var="sumTotal" value="${sumTotal + (book.price*book.amount)}"/>
 							<td class="cart_sum" align="center" width="110" style='padding-left: 5px'>
 								<span id="cart_sum${book.isbn}"> ${book.price*book.amount} </span>
 							</td>

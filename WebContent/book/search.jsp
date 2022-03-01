@@ -38,6 +38,7 @@ input[type=text] {
 		// enterKey == 13
 		if (window.event.keyCode == 13) {
 			searchBook();
+			
 		}
 	}
 	
@@ -53,7 +54,7 @@ input[type=text] {
 	<option value="publisher" <c:if test="${type=='publisher'}">selected </c:if>> 출판사</option>
 	<option value="story" <c:if test="${type=='story'}">selected </c:if>> 책 내용</option>
 </select>
-<input type="text" name="search" onkeyup="enterKey()" value="${title }"> &nbsp
+<input type="text" name="search" onkeydown="enterKey()" value="${title}"> &nbsp
 <input type="button" onclick="searchBook()" value="검색">
 </form>
 

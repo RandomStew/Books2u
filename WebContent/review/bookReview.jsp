@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- Font Awesome Icon Library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
@@ -54,15 +55,12 @@
 		<c:set var="curPage" value="${reviewPageDTO.curPage }"></c:set>
 		<c:set var="totalRecord" value="${reviewPageDTO.totalPage }"></c:set>
 		<c:set var="perPage" value="${reviewPageDTO.perPage }"></c:set>
-		<c:set var="totalPage" value="${totalRecord / perPage }"></c:set>
-		<c:if test="${totalPage % perPage != 0 }">
-			<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"></c:set>
-		</c:if>
+		<c:set var="totalPage" value="${Math.ceil(totalRecord / perPage) }"></c:set>
 		
 		<c:set var="division" value="${(curPage-1) / 10 }"></c:set>
 		<fmt:parseNumber var="division" value="${division}" integerOnly="true"/>
 
-		<c:set var="startPoint" value="${division * 10 + 1 }"></c:set>
+		<c:set var="startPoint" value="${division*10 + 1 }"></c:set>
 		<c:set var="endPoint" value ="${division*10+10 }"></c:set>
 		
 		<c:if test="${totalPage < endPoint }">

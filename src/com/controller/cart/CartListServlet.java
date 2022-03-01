@@ -17,15 +17,13 @@ public class CartListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
 		String nextPage = "";
 		
-		if(dto != null) {
-			// 임시-- cart는 DB에 저장되지 않으니까
+		if(memberDTO != null) {
 			session.getAttribute("cartList");
 			nextPage = "cartList.jsp";
-			
-			
+	
 		} else {
 			nextPage = "member/sessionInvalidate.jsp";
 		}
