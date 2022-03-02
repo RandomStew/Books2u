@@ -38,10 +38,11 @@ public class MailServlet extends HttpServlet {
 		String fromName = "Books2u 고객센터"; // 보내는 이름
 		String to = email1 + "@" + email2;
 		subject = "reply:" + subject;
-		content = userId + "님 안녕하세요. 문의하신 내용에 대한 답변입니다.\n\n"
+		content = userId + "님의 문의가 성공적으로 접수되었습니다.\n"
+				+ "답변까지의 평균 소요시간은 3~5일 입니다.\n"
+				+ "이용해주셔서 감사합니다.\n"
 				+ "문의 내용\n"
-				+ content + "\n\n"
-				+ "답변 : 죄송합니다.";
+				+ content;
 
 		String nextPage = "error/error.jsp";
 		try {
