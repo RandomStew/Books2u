@@ -46,6 +46,7 @@
 	}
 	
 	function orderDone(f){
+		event.preventDefault();
 		f.action="OrderDoneServlet";
 		f.method="get";
 		f.submit();

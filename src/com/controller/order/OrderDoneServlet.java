@@ -74,9 +74,12 @@ public class OrderDoneServlet extends HttpServlet {
 				
 				int oldCartSumAmount = (int) session.getAttribute("cartSumAmount");
 				int newCartSumAmount = oldCartSumAmount - orderSumAmount;
+				if(newCartSumAmount<0){
+					newCartSumAmount = 0;
+				}
 				session.setAttribute("cartSumAmount",newCartSumAmount);
-				
 				request.setAttribute("orderList", orderList);
+				request.setAttribute("orderSumAmount", orderSumAmount);
 				
 				nextPage = "orderDone.jsp";
 				

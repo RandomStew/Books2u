@@ -22,6 +22,7 @@ public class CustomerCenterServlet extends HttpServlet {
 		MemberDTO login = (MemberDTO) session.getAttribute("login");
 
 		String nextPage = "";
+		
 		if (login != null) {
 			nextPage = "customerCenter.jsp";
 			String userId = login.getUserId();
