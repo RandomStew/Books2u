@@ -18,6 +18,7 @@ public class LogoutServlet extends HttpServlet {
 		if (session.getAttribute("login") == null) {
 			nextPage = "member/sessionInvalidate.jsp";
 		} else {
+			session.setAttribute("cartSumAmount", 0);
 			session.invalidate();
 			nextPage = "MainServlet";
 		}
