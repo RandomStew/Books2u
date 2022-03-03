@@ -67,10 +67,35 @@ display:block;
 		location.href="BookInfoServlet?isbn="+isbn;
 	}
 </script>
-<div class="menu-bar">
+    
+<div class="navigator">
+    <div class="wrap_inner">
+        <div class="f_l" align="center">
+        <span><a class="item-menu" href="MainServlet" title="메인화면" >메인화면</a></span> 
+        <span style="color:white"> | </span>
+        	<c:choose>
+				<c:when test="${empty sessionScope.login}">
+					<span><a class="item-menu" href="LoginUIServlet" ><b>로그인</b></a></span>
+				</c:when>
+				<c:when test="${not empty sessionScope.login}">
+					<span><a class="item-menu" href="LogoutServlet" ><b>로그아웃</b></a></span>
+				</c:when>
+			</c:choose>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="JoinUIServlet" title="회원가입" ><b>회원가입</b></a></span>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="MyPageServlet" title="마이페이지" ><b>마이페이지</b></a></span>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="CartListServlet" title="장바구니" ><b>장바구니(${sessionScope.cartSumAmount})</b></a></span>
+            <span style="color:white"> | </span>
+            <span><a class="item-menu" href="CustomerCenterServlet" title="고객센터" >고객센터</a></span> 
+        </div>
+    </div>
+</div>
+
+ <!--  <div class="menu-bar">
 	<div class="menu">
 		<ul>
-			<li ><a class="item-menu" href="MainServlet" title="메인화면">메인화면</a></li>
 			<li>
 				<c:choose>
 					<c:when test="${empty sessionScope.login}">
@@ -133,3 +158,4 @@ display:block;
 		</ul>
 	</div>
 </div>
+-->
