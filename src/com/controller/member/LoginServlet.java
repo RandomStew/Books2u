@@ -28,14 +28,17 @@ public class LoginServlet extends HttpServlet {
 		hashMap.put("passWd", passWd);
 
 		MemberService service = new MemberServiceImpl();
-		String nextPage = "";
+		String nextPage = "MainServlet";
 		try {
 			MemberDTO memberDTO = service.login(hashMap);
 			if (memberDTO != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("login", memberDTO);
 				session.setAttribute("cartSumAmount", 0);
-				nextPage = request.getParameter("prevPage");
+				String prevPage = request.getParameter("prevPage");
+				if (!prevPage.contains("LoginUIServlet") && !prevPage.contains("loginFail.jsp")) {
+					nextPage = prevPage;
+				}
 			} else {
 				nextPage = "member/loginFail.jsp";
 			}
