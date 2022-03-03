@@ -97,34 +97,46 @@
 			<table width="100%" border="1" style="border-collapse: collapse"
 				bordercolor="#CCCCCC">
 				<tr>
-					<td width="250" class="td_default" height="35" align="center"><strong>상품명</strong></td>
-					<td width="100" class="td_default" height="35" align="center"><strong>판매가</strong></td>
+					<td width="250" class="td_default" height="35" align="center"><strong>ISBN</strong></td>
+					<td width="100" class="td_default" height="35" align="center" colspan="2"><strong>도서</strong></td>
 					<td class="td_default" width="50" height="35" align="center"><strong>수량</strong></td>
-					<td class="td_default" width="100" height="35" align="center"><strong>합계</strong></td>
 				</tr>
 
  		
-   <!--  변수 선언 -->
+    <!--  변수 선언 -->
     <c:set var="totalSum" value="${0}"/>
 	<c:forEach var="book" items="${orderList}">
 	<c:set var="totalSum" value="${totalSum +(book.price * book.amount)}" />
+    </c:forEach>
     <!-- 누적 -->
-				
 				<tr>
-					<td height="35" class="td_default">
-						<span class="a_default">${cart.gName}</span>
-					</td>
-					<td height="35" class="td_default" align="center">
-						<span  id = "price1">${cart.gPrice}</span>원
-					</td>
-					<td height="35" class="td_default" align="center">
-						<span id = "num1">${cart.gAmount}</span>권
-					</td>
-					<td height="35" class="td_default" align="center">
-						<span>${cart.gPrice*cart.gAmount}</span>원
-					</td>
-				</tr>
-	</c:forEach>
+							<!-- ISBN -->
+							<td class="td_default" width="120" align="center">
+								<font size="2">${order[0].isbn}</font>
+							</td>
+							
+							<!-- 이미지 -->
+							<td class="td_default" width="80" align="center">
+								<img src="images/books/${order[0].isbn}.jpg" style="cursor:pointer" border="0"  width="80" />
+							</td>
+							
+							<!-- 책 정보 -->
+							<td class="td_default" width="300" style='padding-left: 30px' align="center">
+								${order[0].title } <br> 
+								<font size="2" color="#665b5f">
+								저자명 : ${order[0].author} <br>
+								출판사(${order[0].publisher}) <br>
+								</font>
+							</td>
+								
+								
+							<!-- 수량 -->
+							<td class="td_default" align="center" width="90">
+							외 ${orderSumAmount-1} 권
+							</td>
+					
+						</tr>
+	
 
 			</table>
 		</td>
