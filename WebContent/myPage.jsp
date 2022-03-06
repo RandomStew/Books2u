@@ -12,6 +12,7 @@
 	<h1>마이페이지 화면</h1>
 	<jsp:include page="common/top.jsp" flush="true" /><br>
 	<hr>
-	<jsp:include page="member/myPage.jsp" flush="true" />
+	<jsp:include page="member/myPage.jsp" flush="true" /><br>
+	<jsp:include page="order/orderList.jsp" flush="true" /><br>
 </body>
 </html>

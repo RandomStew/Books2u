@@ -18,9 +18,18 @@
 		from dual
 	</insert>
 	
+	<select id="orderList" parameterType="string" resultType="orderDTO">
+		select
+			orderId, userId, amount, payment, orderdate,
+			recipient, recipientPost, recipientAddr1, recipientAddr2, recipientAddr3, recipientPhone1, recipientPhone2, recipientPhone3,
+			book.isbn as "isbn", book.title as "title", book.author as "author", book.publisher as "publisher", book.price as "price"
+		from
+			ordered, book
+		where
+			ordered.isbn = book.isbn
+			and userId = #{userId}
+		order by
+			orderdate desc
+	</select>
+	
 </mapper>
-
-
-
-
-
