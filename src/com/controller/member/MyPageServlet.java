@@ -1,6 +1,8 @@
 package com.controller.member;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.member.MemberDTO;
+import com.dto.order.OrderDTO;
 import com.service.member.MemberService;
 import com.service.member.MemberServiceImpl;
+import com.service.order.OrderService;
+import com.service.order.OrderServiceImpl;
 
 @WebServlet("/MyPageServlet")
 public class MyPageServlet extends HttpServlet {
@@ -25,10 +30,13 @@ public class MyPageServlet extends HttpServlet {
 		if (login != null) {
 			nextPage = "myPage.jsp";
 			String userId = login.getUserId();
-			MemberService service = new MemberServiceImpl();
+			MemberService memberService = new MemberServiceImpl();
+			OrderService orderService = new OrderServiceImpl();
 			try {
-				MemberDTO memberDTO = service.selectMyPage(userId);
+				MemberDTO memberDTO = memberService.selectMyPage(userId);
+				List<OrderDTO> orderList = orderService.orderList(userId);
 				session.setAttribute("login", memberDTO);
+				session.setAttribute("orderList", orderList);
 			} catch (Exception e) {
 				nextPage = "error/error.jsp";
 				e.printStackTrace();

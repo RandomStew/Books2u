@@ -11,6 +11,7 @@
   <typeAliases>
     <typeAlias type="com.dto.book.BookDTO" alias="BookDTO"/>
     <typeAlias type="com.dto.member.MemberDTO" alias="MemberDTO"/>
+    <typeAlias type="com.dto.order.OrderDTO" alias="OrderDTO"/>
     <typeAlias type="com.dto.review.ReviewDTO" alias="ReviewDTO"/>
   </typeAliases>
   	
@@ -32,4 +33,3 @@
     <mapper resource="com/config/ReviewMapper.xml"/>
   </mappers>
 </configuration>
-
