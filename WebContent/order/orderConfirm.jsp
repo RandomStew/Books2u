@@ -87,11 +87,11 @@
 			<td>
  				<table width="100%" cellspacing="0" cellpadding="0">
 					<tr>
-						<td class="td_default" align="center"><strong>ISBN</strong></td>
-						<td class="td_default" align="center"><strong>책</strong></td>
-						<td class="td_default" align="center"><strong>상품정보</strong></td>
-						<td class="td_default" align="center"><strong>수량</strong></td>
-						<td class="td_default" align="center"><strong>합계</strong></td>
+						<td  align="center"><strong>ISBN</strong></td>
+						<td  align="center"><strong>책</strong></td>
+						<td  align="center"><strong>상품정보</strong></td>
+						<td  align="center"><strong>수량</strong></td>
+						<td  align="center"><strong>합계</strong></td>
 					</tr>
 	
 							
@@ -114,17 +114,17 @@
 					
 						<tr>
 							<!-- ISBN -->
-							<td class="td_default" width="120" align="center">
+							<td  width="120" align="center">
 								<font size="2">${book.isbn}</font>
 							</td>
 							
 							<!-- 이미지 -->
-							<td class="td_default" width="80">
+							<td  width="80">
 								<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" class="img-1" border="0" align="center" width="80" />
 							</td>
 							
 							<!-- 책 정보 -->
-							<td class="td_default" width="300" style='padding-left: 30px' align="center">
+							<td width="300" style='padding-left: 30px' align="center">
 								${book.title } <br> 
 								<font size="2" color="#665b5f">
 								저자명 : ${book.author} <br>
@@ -134,7 +134,7 @@
 								
 								
 							<!-- 수량 -->
-							<td class="td_default" align="center" width="90">
+							<td  align="center" width="90">
 							${book.amount}
 							</td>
 							
@@ -156,8 +156,8 @@
 				
 						<tr>
 							<td height="30"></td>
-							<td class="td_default" align="right">총 결제 금액</td>
-							<td class="td_default" align='right'>${sumTotal}원</td>
+							<td align="right">총 결제 금액</td>
+							<td align="right">${sumTotal}원</td>
 						</tr>
 				</table>
 				<!-- 주문 상품 정보 END -->
@@ -203,8 +203,8 @@
 					</tr>
 					<!-- 고객 이름 -->
 					<tr>
-						<td width="125" height="35" class="td_default" align="center">이 름</td>
-						<td height="35" class="td_default" align="center">
+						<td width="125" height="35"  align="center">이 름</td>
+						<td height="35"  align="center">
 						${sessionScope.login.userName}
 						</td>
 					</tr>
@@ -217,8 +217,8 @@
 				
 					<!-- 고객 주소 -->
 					<tr>
-						<td height="35" class="td_default" align="center">주 소</td>
-						<td height="35" class="td_default" align="center">
+						<td height="35"  align="center">주 소</td>
+						<td height="35"  align="center">
 						[ ${sessionScope.login.post} ]
 						${sessionScope.login.addr1}, ${sessionScope.login.addr3}<br>
 							<font size="2" color="#665b5f">
@@ -236,8 +236,8 @@
 					
 					<!-- 고객 연락처 -->
 					<tr>
-						<td height="35" class="td_default" align="center">연락처</td>
-						<td height="35" class="td_default" align="center">
+						<td height="35"  align="center">연락처</td>
+						<td height="35"  align="center">
 						${sessionScope.login.phone1} - ${sessionScope.login.phone2} - ${sessionScope.login.phone3}	
 						</td>
 					</tr>
@@ -270,7 +270,7 @@
 					<td height="30">
 				</tr>
 			<tr>
-				<td class="td_default" colspan="3">
+				<td  colspan="3">
 					<input type="checkbox" name="sameInfo" onclick="javascript:getSameInfo(this);"> 고객정보와 동일
 				</td>
 			</tr>
@@ -283,9 +283,9 @@
 				
 				<!-- 수령인 이름 -->
 				<tr>
-					<td width="125" height="35" class="td_default" align="center">수령인</td>
-					<td height="35" class="td_default" >
-						<input class="input_default" type="text" id="recipient" name="recipient" size="20" maxlength="10" pattern=".{2,}">
+					<td width="125" height="35"  align="center">수령인</td>
+					<td height="35"  >
+						<input type="text" id="recipient" name="recipient" size="20" maxlength="10" pattern=".{2,}">
 					</td>
 				</tr>
 				
@@ -298,7 +298,7 @@
 				<!-- 배송지 정보 -->
 				<tr>
 					<!-- 다음주소 끝 -->
-					<td height="35" class="td_default" align="center">배송지 주소</td>
+					<td height="35"  align="center">배송지 주소</td>
 					<td height="35" class="td_default">
 						<input name="recipientPost" id="recipientPost" size="5" readonly>
 						<input onclick="openDaumPostcode()" type="button" value="우편번호찾기" pattern=".{5,}"  style="margin-bottom:5px" class="btn btn-outline-dark btn-sm">
@@ -320,8 +320,8 @@
 				
 				<!-- 수령인 연락처 -->
 				<tr>
-					<td height="35" class="td_default" align="center">휴대전화</td>
-					<td height="35" class="td_default">
+					<td height="35"  align="center">휴대전화</td>
+					<td height="35">
 						<input type="text" name="recipientPhone1" id="recipientPhone1" pattern=".{3,3}" maxlength="3" size="4"> - 
 						<input type="text" name="recipientPhone2" id="recipientPhone2" pattern=".{4,4}" maxlength="4" size="5"> - 
 						<input type="text" name="recipientPhone3" id="recipientPhone3" pattern=".{4,4}" maxlength="4" size="5">
@@ -359,7 +359,7 @@
 						</td>
 					</tr>
 					<tr align="center">
-						<td width="125" height="35" class="td_default">
+						<td width="125" height="35">
 							<input type="radio" name="payment" value="신용카드" checked>&nbsp;신용카드 &nbsp;
 							<input type="radio" name="payment" value="계좌이체">&nbsp;계좌이체 &nbsp;
 							<input type="radio" name="payment" value="무통장 입금" >&nbsp;무통장 입금 &nbsp;
@@ -380,7 +380,7 @@
 	
 	
 		<tr>
-			<td class="td_default" align="center">
+			<td align="center">
 				<input type='button' value='주문취소' onclick="javascript:history.back()" class="btn btn-outline-danger"> &nbsp;
 				<input type='submit' value='결제하기' onclick="orderDone(orderForm)" class="btn btn-dark btn-lg">
 			</td>

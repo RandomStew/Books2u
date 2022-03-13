@@ -136,7 +136,7 @@
 
 	<tr><td height="30"/></tr>
 	<tr>
-		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp;
+		<td colspan="5" >&nbsp;&nbsp;&nbsp;
 			<font class="h4"> <b>장바구니</b> </font>&nbsp;
 			<input type="hidden" name="hiddenUserId" value="${sessionScope.login.userId}" id="hiddenUserId">
 		</td>
@@ -148,16 +148,16 @@
 	
 	<!-- 테이블 HEADER -->
 	<tr>
-		<td class="td_default" align="center">
+		<td  align="center">
 		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked="checked">
 		</td>
-		<td class="td_default" align="center"><strong>ISBN</strong></td>
-		<td class="td_default" align="center"><strong>책</strong></td>
-		<td class="td_default" align="center" colspan="2"><strong>상품정보</strong></td>
-		<td class="td_default" align="center"><strong>판매가</strong></td>
-		<td class="td_default" align="center" colspan="2"><strong>수량</strong></td>
-		<td class="td_default" align="center"><strong>합계</strong></td>
-		<td class="td_default" align="center"></td>
+		<td  align="center"><strong>ISBN</strong></td>
+		<td  align="center"><strong>책</strong></td>
+		<td  align="center" colspan="2"><strong>상품정보</strong></td>
+		<td  align="center"><strong>판매가</strong></td>
+		<td  align="center" colspan="2"><strong>수량</strong></td>
+		<td  align="center"><strong>합계</strong></td>
+		<td  align="center"></td>
 	</tr>
 	
 
@@ -195,22 +195,22 @@
 			<input type="hidden" name="hiddenPrice${book.isbn}" value="${book.price}" id="hiddenPrice${book.isbn}">
 		
 			<tr>
-				<td class="td_default" width="80" align="center">
+				<td  width="80" align="center">
 				<input type="checkbox" name="check" id ="check${book.isbn}" class="check"
 				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked" onclick="autoCheck()">
 
 				</td>
 			
 				<!-- ISBN -->
-				<td class="td_default" width="120">
+				<td  width="120">
 					<font size="2">${book.isbn}</font>
 				</td>
 				<!-- 이미지 -->
-				<td class="td_default" width="80">
+				<td  width="80">
 					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" border="0" align="center" class="img-1" width="80" />
 				</td>
 				<!-- 책 정보 -->
-				<td class="td_default" width="200" style='padding-left: 30px' colspan="2" align="center">
+				<td  width="200" style='padding-left: 30px' colspan="2" align="center">
 					${book.title } <br> 
 					<font size="2" color="#665b5f">
 					저자명 : ${book.author} <br>
@@ -218,14 +218,14 @@
 					</font>
 				</td>
 				<!-- 가격 -->
-				<td class="td_default" align="center" width="110">
+				<td  align="center" width="110">
 					<span id="cart_price${book.isbn}">${book.price} </span>
 				</td>
 				
 				<!-- 수량 -->
-				<td class="td_default" align="center" width="90">
+				<td  align="center" width="90">
 				<input
-					class="input_default" type="text" name="amount"
+					type="text" name="amount"
 					id="amount${book.isbn}" style="text-align: right" maxlength="3"
 					size="2" value="${book.amount}" data-amount=""></input>
 				</td>
@@ -243,7 +243,7 @@
 					<span id="cart_sum${book.isbn}"> ${book.price*book.amount} </span>
 				</td>
 				
-				<td class="td_default" width="80" align="center">
+				<td  width="80" align="center">
 				<button type="button" class="btn-close" aria-label="Close" id ="delete${book.isbn}" data-isbn="${book.isbn}"
 				onclick="deleteItem(${book.isbn})" ></button>
 				</td>
@@ -294,7 +294,7 @@
 			<td align="center" colspan="4"></td>
 		
 			<td align="center" colspan="3">
-			<button type="button" class="btn btn-outline-dark btn-lg" onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-outline-secondary btn-md" onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-dark btn-lg" onclick="orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>

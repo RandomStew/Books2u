@@ -68,41 +68,55 @@ display:block;
 	}
 </script>
 
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-text active" aria-current="page" href="MainServlet">메인화면</a>
-  </li>
-  <li class="nav-text"> . </li>
-  
-  <c:choose>
-	<c:when test="${empty sessionScope.login}">
-		<li class="nav-item">
-   			<a class="nav-text" href="LoginUIServlet">로그인</a>
- 		</li>
-	</c:when>
-	<c:when test="${not empty sessionScope.login}">
-		<li class="nav-item">
-   			<a class="nav-text" href="LogoutServlet">로그인</a>
- 		</li>
-	</c:when>
-	</c:choose>
-  <li style="color:black"> . </li>
-  <li class="nav-item">
-    <a class="nav-text" href="JoinUIServlet">회원가입</a>
-  </li>
-  <li style="color:black"> . </li>
-  <li class="nav-item">
-    <a class="nav-text" href="CartListServlet">장바구니(${sessionScope.cartSumAmount})</a>
-  </li>
-    <li style="color:black"> . </li>
-  <li class="nav-item">
-    <a class="nav-text" href="MyPageServlet">마이페이지</a>
-  </li>
-  <li style="color:black"> . </li>
-  <li class="nav-item">
-    <a class="nav-text" href="CustomerCenterServlet">고객센터</a>
-  </li>
-<!-- </ul> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">로</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--  //////////////////////////////////////////////////////// -->
+<div class="navigator">
+    <div class="wrap_inner">
+        <div class="f_l" align="center">
+        <span><a class="item-menu" href="MainServlet" title="메인화면" >메인화면</a></span> 
+        <span style="color:white"> | </span>
+        	<c:choose>
+				<c:when test="${empty sessionScope.login}">
+					<span><a class="item-menu" href="LoginUIServlet" ><b>로그인</b></a></span>
+				</c:when>
+				<c:when test="${not empty sessionScope.login}">
+					<span><a class="item-menu" href="LogoutServlet" ><b>로그아웃</b></a></span>
+				</c:when>
+			</c:choose>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="JoinUIServlet" title="회원가입" ><b>회원가입</b></a></span>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="MyPageServlet" title="마이페이지" ><b>마이페이지</b></a></span>
+			<span style="color:white"> | </span>
+			<span><a class="item-menu" href="CartListServlet" title="장바구니" ><b>장바구니(${sessionScope.cartSumAmount})</b></a></span>
+            <span style="color:white"> | </span>
+            <span><a class="item-menu" href="CustomerCenterServlet" title="고객센터" >고객센터</a></span> 
+        </div>
+    </div>
+</div>
 
  <!--  <div class="menu-bar">
 	<div class="menu">
