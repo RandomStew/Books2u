@@ -25,8 +25,13 @@
 	<insert id="addReview" parameterType="ReviewDTO">
 		insert into review (reviewid, userid, rating, content, reviewdate, isbn)
 		values (review_seq.nextval, #{userId}, #{rating}, #{content}, to_date(sysdate, 'YYYY-MM-DD HH24:MI:SS'), #{isbn})
-	
 	</insert>
+	
+	<update id="updateReview" parameterType="ReviewDTO">
+		update review
+		set content = #{content}
+		where userId = ${userId}
+	</update>
 </mapper>
 
 

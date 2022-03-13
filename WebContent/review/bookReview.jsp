@@ -21,6 +21,18 @@
   color: orange;
 }
 </style>
+<script>
+	$(document).ready(function(){
+		
+		$("button[name='edit']").on("click", function() {
+			var reviewId = $(this).attr('data-reviewId');
+			console.log(reviewId);
+			var child = window.open("review/BookReviewUpdateForm.jsp?reviewId="+reviewId, "_blank", "height:300, width:300");
+			
+		}); 
+		
+	});
+</script>
     
 <table id="reviewTable">
 	<tr>
@@ -28,6 +40,7 @@
 		<th>별점</th>
 		<th>내용</th>
 		<th>리뷰날짜</th>
+		<th>edit </th>
 	</tr>
 <c:forEach var="review" items="${reviewPageDTO.list }">
 	<tr>
@@ -42,10 +55,15 @@
 		<span class="fa fa-star <c:if test="${review.rating >= 5 }">checked</c:if>"></span>
 		</td>
 		<td>
-		${review.content }
+			<span id="${review.reviewId}_content" data-reviewId="${review.userId }">${review.content } </span>
 		</td>
 		<td>
 		${review.reviewDate }
+		</td>
+		<td>
+			<c:if test="${review.userId == sessionScope.login.userId}">
+				<button name="edit" class="btn btn-outline-secondary" data-reviewId="${review.reviewId }">수정</button>
+			</c:if>
 		</td>
 	</tr>
 </c:forEach>

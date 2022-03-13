@@ -64,58 +64,63 @@
     	 
      }
 </script>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-.column{
-	float:left;
-}
-.column1 {
-  width: 10%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
 
-.column2 {
-  width: 80%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
 
 </style>
 
+<div class= "container">
+	<div class="row mb-5">
+		<h1 class="text-center">검색결과</h1>
+	</div>
+	<div class="row mb-2">
+		<div class="col-md-4 ">
+			<div class="col-auto d-none d-lg-block">
+				<img class='"bd-placeholder-img"' src="images/books/${book.isbn }.jpg" height="300">
+			</div>
+			
+		</div>
+		<div class="col-md-8">
+			<h3>책 제목: ${book.title}</h3>
+			<hr>
+		    <p> 작가: ${book.author}</p>
+		    <hr>
+		    <p> 가격: ${book.price }원</p>
+		    <hr>
+		    <p> 줄거리: ${book.story}</p>
+		    <hr>
+		    <form name="bookForm">
+		    <div class="mb-2">
+			    <input
+						class="input_default m-2" type="text" name="cart_amount"
+						id="amount" style="text-align: right" maxlength="3"
+						size="2" value="1"></input>
+						
+				<input type="button" value="- "
+							onclick="amountDesc()" style="cursor:pointer"/>	
+			    <input type="button" value="+"
+							onclick="amountAsc()" style="cursor:pointer"/>
+
+			</div>
+			<div>
+			    <input type="hidden" name="hiddenIsbn" id="hiddenIsbn" value="${book.isbn}">
+			    <input type="hidden" name="hiddenTitle" id="hiddenTitle" value="${book.title}">
+			    <input type="hidden" name="hiddenAuthor" id="hiddenAuthor" value="${book.author}">
+			    <input type="hidden" name="hiddenPrice" id="hiddenPrice" value="${book.price}">
+			    <input type="hidden" name="hiddenPublisher" id="hiddenPublisher" value="${book.publisher}">
+			    <input type="hidden" name="hiddenUserId" id="hiddenUserId" value="${sessionScope.login.userId}">
+			    <input type="button" onclick="reqCheck('cart')" value="장바구니에 담기">
+			    <button class="ml-2">구매하기</button>
+		    </div>	
+    		</form>
+   		</div>
+	</div>
+</div>
 
 <div class="row">
-  <div class="column1 column" style="background-color:#aaa;">
-    <img height="200" width="140" src="images/books/${book.isbn }.jpg">
-  </div>
-  <div class="column2 column" style="background-color:#bbb;">
-    <h2>책 제목: ${book.title}</h2>
-    <p> 작가: ${book.author}</p>
-    <p> 가격: ${book.price }원</p>
-    <p> 줄거리: ${book.story}</p>
-    <form name="bookForm">
-    <div>
-	    <input
-				class="input_default" type="text" name="cart_amount"
-				id="amount" style="text-align: right" maxlength="3"
-				size="2" value="1"></input>
-	    <input type="button" value="+"
-					onclick="amountAsc()" style="cursor:pointer"/>
-		<input type="button" value="- "
-					onclick="amountDesc()" style="cursor:pointer"/>	
-	</div>	
-    <input type="hidden" name="hiddenIsbn" id="hiddenIsbn" value="${book.isbn}">
-    <input type="hidden" name="hiddenTitle" id="hiddenTitle" value="${book.title}">
-    <input type="hidden" name="hiddenAuthor" id="hiddenAuthor" value="${book.author}">
-    <input type="hidden" name="hiddenPrice" id="hiddenPrice" value="${book.price}">
-    <input type="hidden" name="hiddenPublisher" id="hiddenPublisher" value="${book.publisher}">
-    <input type="hidden" name="hiddenUserId" id="hiddenUserId" value="${sessionScope.login.userId}">
-    <input type="button" onclick="reqCheck('cart')" value="장바구니에 담기">
-    <button>구매하기</button>
-    </form>
+
+    
+    
   </div>
   
 </div>

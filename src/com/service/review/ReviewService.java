@@ -12,5 +12,7 @@ public interface ReviewService {
 	
 	// 리뷰 추가
 	public int addReview(ReviewDTO dto) throws Exception;
-
+	
+	// 리뷰 수정
+	public int updateReview(ReviewDTO dto) throws Exception ;
 }
