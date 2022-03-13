@@ -7,9 +7,9 @@
 <title>Books2u</title>
 </head>
 <body>
-	<h1>장바구니 목록</h1>
-	<jsp:include page="common/top.jsp" flush="true" /><br>
-	<hr>
-	<jsp:include page="cart/cartList.jsp" flush="true" />
+		<h1>장바구니 목록</h1>
+		<jsp:include page="common/top.jsp" flush="true"/><br>
+		<hr>
+		<jsp:include page="cart/cartList.jsp" flush="true" />
 </body>
 </html>
