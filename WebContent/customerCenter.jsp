@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>고객센터 화면</h1>
-	<jsp:include page="common/top.jsp" flush="true" /><br>
+	<jsp:include page="common/top.jsp" flush="true" />
 	<hr>
-	<jsp:include page="member/mailForm.jsp" flush="true" /> <br>
+	<jsp:include page="member/mailForm.jsp" flush="true" />
 </body>
 </html>
