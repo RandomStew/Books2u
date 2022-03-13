@@ -34,8 +34,6 @@ crossorigin="anonymous"></script>
 </script> 
 </head>
 <body>
-	
-	
 	<form name="insertReviewForm" action="../BookReviewUpdateServlet" method="post">
 	<input type="hidden" id="reviewId" name="reviewId" value="">
 	<input type="hidden" name="isbn" value="">
@@ -45,7 +43,6 @@ crossorigin="anonymous"></script>
 	<textarea name="content" rows="2" cols="20"></textarea>
 	<input type="submit" value="리뷰 수정">
 	</form>
-
 </body>
 </html>
 

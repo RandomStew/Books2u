@@ -27,12 +27,14 @@ crossorigin="anonymous"></script>
 	
 </script>
 
-<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
-<input type="hidden" name="isbn" value="${book.isbn }">
-작성자: <input type="text" name="userId"  value="" readonly="true"> <br>
-별점: <input type="text" name="rating" value="5"> <br>
-내용:<br>
-<textarea name="content" rows="2" cols="20"></textarea>
-<input type="submit" value="리뷰 등록">
-</form>
+<div class="container">
+	<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
+	<input type="hidden" name="isbn" value="${book.isbn }">
+	작성자: <input type="text" name="userId"  value="" readonly="true"> <br>
+	별점: <input type="text" name="rating" value="5"> <br>
+	내용:<br>
+	<textarea name="content" rows="2" cols="20"></textarea>
+	<input type="submit" value="리뷰 등록">
+	</form>
+</div>
    

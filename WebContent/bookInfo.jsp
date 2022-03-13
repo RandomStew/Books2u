@@ -29,6 +29,6 @@ crossorigin="anonymous"></script>
 	<jsp:include page="review/bookReview.jsp" flush="true" /> 
 	<br>
 	<br>
-	<jsp:include page="review/bookReviewInsertForm.jsp" flush="true" />
+	<jsp:include page="review/BookReviewInsertForm.jsp" flush="true" />
 </body>
 </html>
