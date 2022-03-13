@@ -75,7 +75,7 @@
 		</tr>
 		
 		<tr><td height="15"></td>
-		<tr><td colspan="10"><hr size="1" color="CCCCCC"></td></tr>
+		<tr><td colspan="10"><hr class="top" color="CCCCCC"></td></tr>
 		<tr><td height="7"></tr>
 		
 		<!-- 테이블 HEADER -->
@@ -122,7 +122,7 @@
 				</td>
 				<!-- 이미지 -->
 				<td class="td_default" width="80" style="cursor:pointer" onclick="goBookInfo(${book.isbn})">
-					<img src="images/books/${book.isbn}.jpg" border="0" align="center" width="80" />
+					<img src="images/books/${book.isbn}.jpg" class="img-1" border="0" align="center" width="80"  />
 				</td>
 				<!-- 책 정보 -->
 				<td class="td_default" width="300" style='padding-left: 30px' colspan="2" >
@@ -161,10 +161,11 @@
 			</tr>
 			
 			<tr>
-				<td height="15">
+				<td height="30">
 			</tr>
 			
 		</c:forEach>
+		<tr><td colspan="10"><hr class="top" color="CCCCCC"></td></tr>
 		
 		<!-- 페이징 링크 처리 부분 -->
 		
