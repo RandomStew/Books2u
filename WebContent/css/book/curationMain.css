@@ -59,3 +59,65 @@
 	font-size: 10px;
 	transition: .5s ease;
 }
+
+.wrap_list_banner .item_banner {
+    height: 800px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+ }   
+body * {
+    font-family: Noto Sans Light;
+}    
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans DemiLight", "Malgun Gothic";
+    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: unset;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-rendering: auto;
+    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility;
+    text-rendering: geometricPrecision;
+    text-rendering: inherit;
+}
+div{
+    text-align: -webkit-center;
+}  
+div {
+    display: block;
+}
+body, th, td, input, select, textarea, button {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.title-opcity{
+	background-color:rgba(0,0,0,0.3);
+	padding-bottom:50px;
+}
+
+.title-text{
+	font-family: 'NanumSquare', sans-serif;
+	color:white;
+}
+
+.nav-text{
+	color: black;
+	text-decoration:none;
+	font-family: 'NanumSquare', sans-serif;
+	display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: bold;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
