@@ -129,18 +129,21 @@
 	
 </script>
 
-<table width="90%" cellspacing="0" cellpadding="0" border="0">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<table width="90%" cellspacing="0" cellpadding="0" border="0" align="center"> 
 
 	<tr><td height="30"/></tr>
 	<tr>
 		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp;
-			<font size="5"> 장바구니 </font>&nbsp;
+			<font size="5" class="h2"> 장바구니 </font>&nbsp;
 			<input type="hidden" name="hiddenUserId" value="${sessionScope.login.userId}" id="hiddenUserId">
 		</td>
 	</tr>
 	
 	<tr><td height="15"></td>
-	<tr><td colspan="10"><hr size="1" color="CCCCCC"></td></tr>
+	<tr><td colspan="10"><hr color="CCCCCC" class="top"></td></tr>
 	<tr><td height="7"></tr>
 	
 	<!-- 테이블 HEADER -->
@@ -166,7 +169,7 @@
 	
 	<tr>
 		<td colspan="10">
-			<hr size="1" color="CCCCCC">
+			<hr class="top" color="CCCCCC">
 		</td>
 	</tr>
 	
@@ -207,7 +210,7 @@
 					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" style="cursor:pointer" border="0" align="center" width="80" />
 				</td>
 				<!-- 책 정보 -->
-				<td class="td_default" width="300" style='padding-left: 30px' colspan="2" align="center">
+				<td class="td_default" width="200" style='padding-left: 30px' colspan="2" align="center">
 					${book.title } <br> 
 					<font size="2" color="#665b5f">
 					저자명 : ${book.author} <br>
@@ -236,13 +239,13 @@
 			
 				<!-- 합계 -->
 				<c:set var="sumTotal" value="${sumTotal + (book.price*book.amount)}"/>
-				<td class="cart_sum" align="center" width="110" style='padding-left: 5px'>
+				<td class="cart_sum" align="center" width="110"  style='padding-left: 5px'>
 					<span id="cart_sum${book.isbn}"> ${book.price*book.amount} </span>
 				</td>
 				
 				<td class="td_default" width="80" align="center">
-				<input type="button" id ="delete${book.isbn}" data-isbn="${book.isbn}" value="X"
-				onclick="deleteItem(${book.isbn})" style="cursor:pointer">
+				<button type="button" class="btn-close" aria-label="Close" id ="delete${book.isbn}" data-isbn="${book.isbn}"
+				onclick="deleteItem(${book.isbn})" ></button>
 				</td>
 			</tr>
 			
@@ -261,7 +264,7 @@
 	<!-- 장바구니 요약 -->
 		<tr>
 			<td colspan="10">
-				<hr size="1" color="CCCCCC">
+				<hr class="top" color="CCCCCC">
 			</td>
 		</tr>
 		
@@ -278,22 +281,23 @@
 		
 		<tr>
 			<td colspan="10">
-				<hr size="1" color="CCCCCC">
+				<hr class="top" color="CCCCCC">
 			</td>
 		</tr>
 		
 		<tr>
 			<td align="center" colspan="3">
-			<button onclick="delCheckedCart()" style="cursor:pointer"> 선택 항목 삭제 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
-			<button onclick="delAllCart()" class="delAllCart" style="cursor:pointer"> 장바구니 비우기 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<button type="button" class="btn btn-outline-secondary btn-sm" onclick="delCheckedCart()" style="cursor:pointer"> 선택 항목 삭제 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<button type="button" class="btn btn-outline-secondary btn-sm" onclick="delAllCart()" class="delAllCart" style="cursor:pointer"> 장바구니 비우기 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
 			</td>
 		
-			<td align="center" colspan="3"></td>
+			<td align="center" colspan="4"></td>
 		
 			<td align="center" colspan="3">
-			<button onclick="orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
-			<button onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-outline-dark btn-lg" onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-dark btn-lg" onclick="orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>
 
 </table>
+</div></div></div>

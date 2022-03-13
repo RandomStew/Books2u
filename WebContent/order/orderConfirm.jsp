@@ -65,7 +65,7 @@
 		
 		<!-- 주문 상품 정보 -->	
 		<tr>
-			<td align="center"><b>주문상품</b></td>
+			<td class="h2"><b>주문상품</b></td>
 			<td><input type="hidden" name="orderList" value="${orderList}"></td>
 		</tr>
 
@@ -75,7 +75,7 @@
 
 		<tr>
 			<td>
-				<hr size="2" color="CCCCCC">
+				<hr class="top" color="CCCCCC">
 			</td>
 		</tr>
 
@@ -85,7 +85,7 @@
 
 		<tr>
 			<td>
-				<table width="100%" cellspacing="0" cellpadding="0">
+ 				<table width="100%" cellspacing="0" cellpadding="0">
 					<tr>
 						<td class="td_default" align="center"><strong>ISBN</strong></td>
 						<td class="td_default" align="center"><strong>책</strong></td>
@@ -149,7 +149,7 @@
 					
 						<tr>
 							<td colspan="5">
-							<hr size="2" color="CCCCCC">
+							<hr size="1" color="CCCCCC">
 							</td>
 						</tr>
 				
@@ -164,18 +164,18 @@
 		
 		<tr>
 			<td>
-				<hr size="2" color="CCCCCC">
+				<hr class="top" color="CCCCCC">
 			</td>
 		</tr>
 		
 		
 		<tr>
-			<td height="30">
+			<td height="50">
 		</tr>
 		
 		<!-- 고객 정보 -->
 		<tr>
-			<td align="center">
+			<td align="center" class="h2">
 				<b>고객 정보</b>
 				<input type="hidden" name="userId" id="hiddenUserId" value="${sessionScope.login.userId}">
 				<input type="hidden" name="userName" id="hiddenUserName" value="${sessionScope.login.userName}">
@@ -199,7 +199,7 @@
 				<table width="60%" cellspacing="0" cellpadding="0" align="center">
 					<tr>
 						<td colspan="5">
-							<hr size="2" color="CCCCCC">
+							<hr class="top" color="CCCCCC">
 						</td>
 					</tr>
 					<!-- 고객 이름 -->
@@ -245,7 +245,7 @@
 					
 					<tr>
 						<td colspan="5">
-							<hr size="2" color="CCCCCC">
+							<hr class="top" color="CCCCCC">
 						</td>
 					</tr>
 					
@@ -257,11 +257,11 @@
 	
 	<!-- 배송지 정보 -->
 	<tr>
-		<td height="30">
+		<td height="50">
 	</tr>
 
 	<tr>
-		<td align="center"><b>배송지 정보</b></td>
+		<td align="center" class="h2"><b>배송지 정보</b></td>
 	</tr>
 
 	<tr>
@@ -280,7 +280,7 @@
 					
 				<tr>
 					<td colspan="5">
-						<hr size="2" color="CCCCCC">
+						<hr class="top" color="CCCCCC">
 					</td>
 				</tr>
 				
@@ -304,13 +304,13 @@
 					<td height="35" class="td_default" align="center">배송지 주소</td>
 					<td height="35" class="td_default">
 						<input name="recipientPost" id="recipientPost" size="5" readonly>
-						<input onclick="openDaumPostcode()" type="button" value="우편번호찾기" pattern=".{5,}">
+						<input onclick="openDaumPostcode()" type="button" value="우편번호찾기" pattern=".{5,}"  style="margin-bottom:5px" class="btn btn-outline-dark btn-sm">
 						<br>
-						<input name="recipientAddr1" id="recipientAddr1" size="40" readonly placeholder="도로명주소" pattern=".{1,}">
+						<input name="recipientAddr1" id="recipientAddr1" size="40" readonly placeholder="도로명주소" pattern=".{1,}"  style="margin-bottom:5px">
 						<br>
 						<span style="line-height: 10%;"></span>
-						<input name="recipientAddr2" id="recipientAddr2" size="40" placeholder="지번주소" pattern=".{1,}">
-						<input name="recipientAddr3" id="recipientAddr3" size="40" placeholder="상세주소">
+						<input name="recipientAddr2" id="recipientAddr2" size="40" placeholder="지번주소" pattern=".{1,}" style="margin-bottom:5px">
+						<input name="recipientAddr3" id="recipientAddr3" size="40" placeholder="상세주소(직접 입력)">
 					</td>
 					<!-- 다음주소 끝 -->		
 				</tr>
@@ -333,7 +333,7 @@
 				
 				<tr>
 					<td colspan="5">
-						<hr size="2" color="CCCCCC">
+						<hr class="top" color="CCCCCC">
 					</td>
 				</tr>
 			</table>							
@@ -343,12 +343,13 @@
 	
 		
 		<tr>
-			<td height="30">
+			<td height="50">
 		</tr>
 		
-		<tr align="center">
+		<tr align="center" class="h2">
 			<td><b>결제수단</b></td>
 		</tr>
+		
 	
 		<tr>
 			<td height="15">
@@ -357,13 +358,23 @@
 		<tr>
 			<td>
 				<table width="60%" cellspacing="0" cellpadding="0" align="center">
-					<tr align="center">
-						<td width="125" height="35" class="td_default">
-							<input type="radio" name="payment" value="신용카드" checked>신용카드
-							<input type="radio" name="payment" value="계좌이체">계좌이체
-							<input type="radio" name="payment" value="무통장 입금">무통장 입금
+					<tr>
+						<td colspan="5">
+							<hr class="top" color="CCCCCC">
 						</td>
 					</tr>
+					<tr align="center">
+						<td width="125" height="35" class="td_default">
+							<input type="radio" name="payment" value="신용카드" checked>&nbsp;신용카드 &nbsp;
+							<input type="radio" name="payment" value="계좌이체">&nbsp;계좌이체 &nbsp;
+							<input type="radio" name="payment" value="무통장 입금" >&nbsp;무통장 입금 &nbsp;
+						</td>
+					</tr>
+					<tr>
+					<td colspan="5">
+						<hr class="top" color="CCCCCC">
+					</td>
+				</tr>
 				</table>							
 			</td>
 		</tr>
@@ -375,8 +386,8 @@
 	
 		<tr>
 			<td class="td_default" align="center">
-				<input type='button' value='주문취소' style="cursor:pointer" onclick="javascript:history.back()">	
-				<input type='submit' value='결제하기' style="cursor:pointer" onclick="orderDone(orderForm)">
+				<input type='button' value='주문취소' onclick="javascript:history.back()" class="btn btn-outline-danger"> &nbsp;
+				<input type='submit' value='결제하기' onclick="orderDone(orderForm)" class="btn btn-dark btn-lg">
 			</td>
 		</tr>
 		

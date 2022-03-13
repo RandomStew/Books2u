@@ -96,3 +96,12 @@ DROP SEQUENCE review_seq;
 create sequence review_seq start with 1 increment by 1;
 DROP SEQUENCE ordered_seq;
 create sequence ordered_seq start with 1 increment by 1;
+
+
+-- pl
+create or replace function ordernum
+		return number
+		is
+		begin
+			return ordered_seq.nextval;
+		end;

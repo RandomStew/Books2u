@@ -47,14 +47,14 @@ input[type=text] {
 
 <body>
 
-<form name='searchForm'>
+<form name='searchForm' align="center">
 <select name="type">
 	<option value="title" <c:if test="${type=='title'}">selected </c:if>> 책제목</option>
 	<option value="author" <c:if test="${type=='author'}">selected </c:if>> 저자명</option>
 	<option value="publisher" <c:if test="${type=='publisher'}">selected </c:if>> 출판사</option>
 	<option value="story" <c:if test="${type=='story'}">selected </c:if>> 책 내용</option>
 </select>
-<input type="text" name="search" onkeydown="enterKey()" value="${title}"> &nbsp
+<input type="text" name="search" onkeydown="enterKey()" value="${title}"> &nbsp;
 <input type="button" onclick="searchBook()" value="검색">
 </form>
 
