@@ -22,23 +22,13 @@
 
 	
 	<!-- 처리 메시지 -->
-	<tr>
-		<td height="100">
-	</tr>
-	
 	
 	<tr>
 		<td align="center">
-			<table width="100%" border="1" style="border-collapse: collapse" bordercolor="#CCCCCC">
-				<tr>
-					<td align="center">
-						<img src="images/icons/delivered.png" align="center" border="0" width="100" style="padding-top:30px">
-					</td>
-				</tr>
+			<table width="100%">
 				<tr>
 					<td height="30">
 				</tr>
-				
 				<tr align="center">
 					<td>
 						<font size="5" color="#11C619"><b>주문해주셔서 감사합니다</b></font>
@@ -50,10 +40,21 @@
 				</tr>
 			
 				<tr>
-					<td class="td_default" align="center" style="padding-bottom:30px">
+					<td align="center" style="padding-bottom:30px">
 						<font size="4"><b>${sessionScope.login.userName}</b></font>님의 주문이 안전하게 처리되었습니다.
 					</td>
 				</tr>
+			
+				<tr>
+					<td align="center">
+						<img src="images/icons/delivered.png" align="center" border="0" width="100">
+					</td>
+				</tr>
+				<tr>
+					<td height="30">
+				</tr>
+				
+
 				</table>
 		</td>
 	</tr>
@@ -64,133 +65,135 @@
 	
 	<!-- 상품 정보 -->
 	<tr>
-		<td class="td_default"><font class="h4"><b>상품 및 배송정보</b></font>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-
-	<tr>
 		<td>
-			<table width="100%">
+			<table width="60%" align="center">
 				<tr>
-					<td class="td_default" width="150" height="35"> 받으시는 분</td>
-					<td class="td_default" height="35">${recipient}</td>
+					<td colspan="2"><font class="h4"><b>주문 정보</b></font></td>
 				</tr>
 				<tr>
-					<td class="td_default" height="35"> 주소</td>
-					<td>[${recipientPost}] ${recipientAddr1}, ${recipientAddr3}<br>
-					<font size="2" color="#CCCCCC">(${recipientAddr1}, ${recipientAddr3})</font></td>
+					<td colspan="3">
+						<hr class="top" color="CCCCCC">
+					</td>
 				</tr>
-				
 				<tr>
-					<td class="td_default" height="35"> 연락처</td>
-					<td class="td_default" height="35"> ${recipientPhone1} - ${recipientPhone2} - ${recipientPhone3}</td>
+					<td width="100" height="35" align="center" colspan="2"><strong>도서</strong></td>
+					<td width="50" height="35" align="center"><strong>수량</strong></td>
 				</tr>
-			</table>
-		</td>	
-	</tr>
-	
-
-	<tr>
-		<td height="20">
-	</tr>
-
-	<tr>
-		<td>
-			<table width="100%" border="1" style="border-collapse: collapse"
-				bordercolor="#CCCCCC">
 				<tr>
-					<td width="100" class="td_default" height="35" align="center" colspan="2"><strong>도서</strong></td>
-					<td class="td_default" width="50" height="35" align="center"><strong>수량</strong></td>
+					<td colspan="3">
+						<hr size="1" color="CCCCCC">
+					</td>
 				</tr>
 
  		
-    <!--  변수 선언 -->
-    <c:set var="totalSum" value="${0}"/>
-	<c:forEach var="book" items="${orderList}">
-	<c:set var="totalSum" value="${totalSum +(book.price * book.amount)}" />
-    </c:forEach>
-    <!-- 누적 -->
-				<tr>
+			    <!--  변수 선언 -->
+			    <c:set var="totalSum" value="${0}"/>
+				<c:forEach var="book" items="${orderList}">
+				<c:set var="totalSum" value="${totalSum +(book.price * book.amount)}" />
+			    </c:forEach>
+				
+				<tr>			
+					<!-- 이미지 -->
+					<td width="80" align="center">
+						<img src="images/books/${order[0].isbn}.jpg" class="img-1" border="0"  width="80" />
+					</td>
+									
+					<!-- 책 정보 -->
+					<td width="300" style='padding-left: 30px' align="center">
+						${order[0].title } <br> 
+						<font size="2" color="#665b5f">
+						저자명 : ${order[0].author} <br>
+						출판사(${order[0].publisher}) <br>
+						</font>
+					</td>
+										
+										
+					<!-- 수량 -->
+					<td align="center" width="90">
+					외 ${orderSumAmount-1} 권
+					</td>
 							
-							<!-- 이미지 -->
-							<td class="td_default" width="80" align="center">
-								<img src="images/books/${order[0].isbn}.jpg" class="img-1" border="0"  width="80" />
-							</td>
-							
-							<!-- 책 정보 -->
-							<td class="td_default" width="300" style='padding-left: 30px' align="center">
-								${order[0].title } <br> 
-								<font size="2" color="#665b5f">
-								저자명 : ${order[0].author} <br>
-								출판사(${order[0].publisher}) <br>
-								</font>
-							</td>
-								
-								
-							<!-- 수량 -->
-							<td class="td_default" align="center" width="90">
-							외 ${orderSumAmount-1} 권
-							</td>
-					
-						</tr>
-	
-
-			</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="40">
-	</tr>
-	
-	<!-- 결제 정보 -->
-	<tr>
-		<td class="td_default" align="center"><b>결제정보</b></td>
-	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-
-	<tr>
-		<td>
-			<table width="40%" border="1" style="border-collapse: collapse" bordercolor="#CCCCCC" align="center">
+				</tr>
 				<tr>
-					<td class="td_default" width="150" height="35" align="center"> 결제금액</td>
-					<td class="td_default" height="35" align = 'right'> 
+					<td colspan="3">
+						<hr size="1" color="CCCCCC">
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center"> 결제금액</td>
+					<td align ='center'> 
 					<b>${totalSum}</b> 원
 					</td>
 				</tr>
 				<tr>
-					<td class="td_default" width="150" height="35" align="center"> 결제수단</td>
-					<td class="td_default" height="35" align = 'right'> 
+					<td colspan="2" align="center"> 결제수단</td>
+					<td align='center'> 
 					<span>${payment}</span>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="3">
+						<hr class="top" color="CCCCCC">
+					</td>
+				</tr>
+	
+
 			</table>
-		</td>
+
+	<tr>
+		<td height="30">
 	</tr>
 
 	<tr>
-		<td height="40">
+		<td>
+			<table width="60%" align="center">
+				<tr>
+					<td colspan="2"><font class="h4"><b>배송 정보</b></font></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr class="top" color="CCCCCC">
+					</td>
+				</tr>
+				<tr>
+					<td width="150" height="35"> 받으시는 분</td>
+					<td height="35">${recipient}</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr size="1" color="CCCCCC">
+					</td>
+				</tr>
+				<tr>
+					<td height="35"> 주소</td>
+					<td>[${recipientPost}] ${recipientAddr1}, ${recipientAddr3}<br>
+					<font size="2" color="#CCCCCC">(${recipientAddr1}, ${recipientAddr3})</font></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr size="1" color="CCCCCC">
+					</td>
+				</tr>
+				<tr>
+					<td height="35"> 연락처</td>
+					<td height="35"> ${recipientPhone1} - ${recipientPhone2} - ${recipientPhone3}</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr class="top" color="CCCCCC">
+					</td>
+				</tr>
+			</table>
+		</td>	
 	</tr>
 
-	
-
-	<tr>
-		<td height="40">
-	</tr>
-	
-	
-	
 	<tr align="center">
 		<td>
-		<a class="a_default" href="MyPageServlet">주문조회</a> 
-		<a class="a_default" href="MainServlet">메인으로 돌아가기</a>
+			<div class="d-grid gap-2 col-6 mx-auto">
+			  <button onclick="location.href='MainServlet'" class="btn btn-outline-secondary" type="button">메인으로 돌아가기</button>
+			  <button onclick="location.href='MyPageServlet'" class="btn btn-dark" type="button">주문조회</button>
+			</div>
 		</td>
 	</tr>
 

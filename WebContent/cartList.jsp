@@ -13,7 +13,6 @@
 	.img-1 {
 	    box-shadow:4px 4px 8px grey;
 	}
-	
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
@@ -34,6 +33,6 @@ crossorigin="anonymous"></script>
 		<h1>장바구니 목록</h1>
 		<jsp:include page="common/top.jsp" flush="true"/><br>
 		<hr>
-		<jsp:include page="cart/cartList.jsp" flush="true" />
+		<jsp:include page="cart/cartList.jsp" flush="true"/>
 </body>
 </html>

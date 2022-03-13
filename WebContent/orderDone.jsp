@@ -9,7 +9,6 @@
 	hr.top{
 		border-width: 2px;
 	}
-	
 	.img-1 {
 	    box-shadow:4px 4px 8px grey;
 	}
