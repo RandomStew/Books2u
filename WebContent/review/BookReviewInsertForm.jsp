@@ -2,19 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- bootstrap example -->
-<link rel="stylesheet" 
-href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
-integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" 
-crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
-integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
-crossorigin="anonymous"></script>
 
 <script>
 	
@@ -27,14 +14,30 @@ crossorigin="anonymous"></script>
 	
 </script>
 
-<div class="container">
-	<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
-	<input type="hidden" name="isbn" value="${book.isbn }">
-	작성자: <input type="text" name="userId"  value="" readonly="true"> <br>
-	별점: <input type="text" name="rating" value="5"> <br>
-	내용:<br>
-	<textarea name="content" rows="2" cols="20"></textarea>
-	<input type="submit" value="리뷰 등록">
-	</form>
-</div>
-   
+<c:if test="${not empty sessionScope.login.userId }">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="form-siginin">
+					<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
+						<input type="hidden" name="isbn" value="${book.isbn }">
+						<div class="form-floating">
+							작성자: 
+							<input type="text" name="userId"  value="" readonly="true" class="w-100 form-control">
+						</div>
+						<div class="form-floating">
+						별점:
+						<input type="text" name="rating" value="5" class="w-100 form-control">
+						</div>
+						내용:<br>
+						<textarea name="content" rows="2" cols="20" class="form-control"></textarea>
+						<input type="submit" value="리뷰 등록" class="w-100 btn btn-lg btn-outline-dark mt-3 mb-3">
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+			</div>
+		</div>
+	</div>
+</c:if> 

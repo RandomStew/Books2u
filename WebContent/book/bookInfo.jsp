@@ -108,8 +108,8 @@
 			    <input type="hidden" name="hiddenPrice" id="hiddenPrice" value="${book.price}">
 			    <input type="hidden" name="hiddenPublisher" id="hiddenPublisher" value="${book.publisher}">
 			    <input type="hidden" name="hiddenUserId" id="hiddenUserId" value="${sessionScope.login.userId}">
-			    <input type="button" onclick="reqCheck('cart')" value="장바구니에 담기">
-			    <button class="ml-2">구매하기</button>
+			    <input type="button" onclick="reqCheck('cart')" class="btn btn-outline-dark btn-lg" value="장바구니에 담기">
+			    <button class="btn btn-dark btn-lg">구매하기</button>
 		    </div>	
     		</form>
    		</div>

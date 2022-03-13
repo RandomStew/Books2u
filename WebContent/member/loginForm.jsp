@@ -7,6 +7,7 @@
 	<input type="button" value="돌아가기" onclick="javascript:history.back()">
 	<input type="hidden" name="prevPage" value="${header.referer}">
 </form> --%>
+
 <div class="text-center">
 	<div class="form-signin">
 		<form action="LoginServlet" method="get">
