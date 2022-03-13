@@ -34,9 +34,10 @@ crossorigin="anonymous"></script>
 </script> 
 </head>
 <body>
-	<input type="hidden" id="reviewId" value="">
 	
-	<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
+	
+	<form name="insertReviewForm" action="../BookReviewUpdateServlet" method="post">
+	<input type="hidden" id="reviewId" name="reviewId" value="">
 	<input type="hidden" name="isbn" value="">
 	작성자: <input type="text" name="userId"  value="${sessionScope.login.userId }" readonly="true"> <br>
 	별점: <input type="text" name="rating" value="5"> <br>

@@ -26,7 +26,6 @@ public class BookReviewAddServlet extends HttpServlet {
 		Transformer trans = new RequestTransformer(request);
 		ReviewDTO reviewDTO = new ReviewDTO();
 		trans.setMappingDTO(reviewDTO);
-		System.out.println(reviewDTO);
 		ReviewService service = new ReviewServiceImpl();
 		int num = 0;
 		try {

@@ -30,7 +30,7 @@
 	<update id="updateReview" parameterType="ReviewDTO">
 		update review
 		set content = #{content}
-		where userId = ${userId}
+		where reviewId = ${reviewId}
 	</update>
 </mapper>
 
