@@ -1,25 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h1>주문내역 화면</h1>
-<hr>
-<table border="1">
-	<tr>
-		<th>ISBN</th>
-		<th>책</th>
-		<th>상품정보</th>
-		<th>판매가</th>
-		<th>수량</th>
-		<th>합계</th>
-		<th>수령인 정보</th>
-		<th>결제 수단</th>
-		<th>주문일</th>
-	</tr>
+<div id="orderList" align="center" style="display:none">
+	<table width="70%">
+		<tr>
+			<td colspan="9">
+				<hr color="#CCCCCC" size="5">
+			</td>
+		</tr>
+		<tr>
+			<th>ISBN</th>
+			<th>책</th>
+			<th>상품정보</th>
+			<th>판매가</th>
+			<th>수량</th>
+			<th>합계</th>
+			<th>수령인 정보</th>
+			<th>결제 수단</th>
+			<th>주문일</th>
+		</tr>
+		<tr>
+			<td colspan="9">
+				<hr color="#CCCCCC">
+			</td>
+		</tr>
 	<c:choose>
 	<c:when test="${empty sessionScope.orderList}">
 		<tr>
-			<td colspan="9" align="center">
-				<h4 style="color:#CCCCCC">장바구니가 비었습니다.</h4>
+			<td colspan="9">
+				<h4 style="color:#CCCCCC">주문내역이 없습니다.</h4>
 			</td>
 		</tr>
 	</c:when>
@@ -52,4 +61,15 @@
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>
-</table>
+	<tr>
+		<td colspan="9">
+			<hr color="#CCCCCC">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="9">
+			<hr color="#CCCCCC" size="5">
+		</td>
+	</tr>
+	</table>
+</div>

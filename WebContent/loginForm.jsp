@@ -9,7 +9,7 @@
 <style><%@include file="css/member/login.css"%></style>
 </head>
 <body>
-	<jsp:include page="common/top.jsp" flush="true" /><br>
+	<jsp:include page="common/top.jsp" flush="true" />
 	<hr>
 	<jsp:include page="member/loginForm.jsp" flush="true" />
 </body>
