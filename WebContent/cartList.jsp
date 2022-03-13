@@ -9,6 +9,11 @@
 	hr.top{
 		border-width: 2px;
 	}
+	
+	.img-1 {
+	    box-shadow:4px 4px 8px grey;
+	}
+	
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 

@@ -137,7 +137,7 @@
 	<tr><td height="30"/></tr>
 	<tr>
 		<td colspan="5" class="td_default">&nbsp;&nbsp;&nbsp;
-			<font size="5" class="h2"> 장바구니 </font>&nbsp;
+			<font class="h4"> <b>장바구니</b> </font>&nbsp;
 			<input type="hidden" name="hiddenUserId" value="${sessionScope.login.userId}" id="hiddenUserId">
 		</td>
 	</tr>
@@ -169,7 +169,7 @@
 	
 	<tr>
 		<td colspan="10">
-			<hr class="top" color="CCCCCC">
+			<hr size="1" color="CCCCCC">
 		</td>
 	</tr>
 	
@@ -178,7 +178,7 @@
 	<c:when test="${sessionScope.cartSumAmount == 0}">
 		<tr>
 			<td colspan="10" align="center">
-				<h4 style="color:#CCCCCC">장바구니가 비었습니다.</h4>
+				<h6 style="color:#CCCCCC"><b>장바구니가 비었습니다.</b></h6>
 			</td>
 		</tr>
 
@@ -207,7 +207,7 @@
 				</td>
 				<!-- 이미지 -->
 				<td class="td_default" width="80">
-					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" style="cursor:pointer" border="0" align="center" width="80" />
+					<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" border="0" align="center" class="img-1" width="80" />
 				</td>
 				<!-- 책 정보 -->
 				<td class="td_default" width="200" style='padding-left: 30px' colspan="2" align="center">
@@ -264,7 +264,7 @@
 	<!-- 장바구니 요약 -->
 		<tr>
 			<td colspan="10">
-				<hr class="top" color="CCCCCC">
+				<hr size="1" color="CCCCCC">
 			</td>
 		</tr>
 		

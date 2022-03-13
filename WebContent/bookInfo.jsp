@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style>
+	.img-1 {
+	    box-shadow:4px 4px 8px grey;
+	}
+</style>
 <!-- bootstrap example -->
 <link rel="stylesheet" 
 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
