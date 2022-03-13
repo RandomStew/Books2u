@@ -18,7 +18,7 @@
 
 
 
-<table width="70%" cellspacing="0" cellpadding="0" align="center">
+<table width="60%" cellspacing="0" cellpadding="0" align="center">
 
 	
 	<!-- 처리 메시지 -->
@@ -26,29 +26,35 @@
 		<td height="100">
 	</tr>
 	
+	
 	<tr>
 		<td align="center">
-			<img src="images/icons/delivered.png" align="center" border="0" width="100">
-		</td>
-	</tr>
-	
-	<tr>
-		<td height="30">
-	</tr>
-	
-	<tr align="center">
-		<td>
-			<font size="5" color="#11C619"><b>주문해주셔서 감사합니다</b></font>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="7">
-	</tr>
-
-	<tr>
-		<td class="td_default" align="center">
-			<font size="4"><b>${sessionScope.login.userName}</b></font>님의 주문이 안전하게 처리되었습니다.
+			<table width="100%" border="1" style="border-collapse: collapse" bordercolor="#CCCCCC">
+				<tr>
+					<td align="center">
+						<img src="images/icons/delivered.png" align="center" border="0" width="100" style="padding-top:30px">
+					</td>
+				</tr>
+				<tr>
+					<td height="30">
+				</tr>
+				
+				<tr align="center">
+					<td>
+						<font size="5" color="#11C619"><b>주문해주셔서 감사합니다</b></font>
+					</td>
+				</tr>
+			
+				<tr>
+					<td height="7">
+				</tr>
+			
+				<tr>
+					<td class="td_default" align="center" style="padding-bottom:30px">
+						<font size="4"><b>${sessionScope.login.userName}</b></font>님의 주문이 안전하게 처리되었습니다.
+					</td>
+				</tr>
+				</table>
 		</td>
 	</tr>
 	
@@ -58,7 +64,7 @@
 	
 	<!-- 상품 정보 -->
 	<tr>
-		<td class="td_default"><b>상품 및 배송정보</b>
+		<td class="td_default"><font class="h4"><b>상품 및 배송정보</b></font>
 		</td>
 	</tr>
 
@@ -68,7 +74,7 @@
 
 	<tr>
 		<td>
-			<table width="100%" border="1" style="border-collapse: collapse" bordercolor="#CCCCCC">
+			<table width="100%">
 				<tr>
 					<td class="td_default" width="150" height="35"> 받으시는 분</td>
 					<td class="td_default" height="35">${recipient}</td>
@@ -97,7 +103,6 @@
 			<table width="100%" border="1" style="border-collapse: collapse"
 				bordercolor="#CCCCCC">
 				<tr>
-					<td width="250" class="td_default" height="35" align="center"><strong>ISBN</strong></td>
 					<td width="100" class="td_default" height="35" align="center" colspan="2"><strong>도서</strong></td>
 					<td class="td_default" width="50" height="35" align="center"><strong>수량</strong></td>
 				</tr>
@@ -110,14 +115,10 @@
     </c:forEach>
     <!-- 누적 -->
 				<tr>
-							<!-- ISBN -->
-							<td class="td_default" width="120" align="center">
-								<font size="2">${order[0].isbn}</font>
-							</td>
 							
 							<!-- 이미지 -->
 							<td class="td_default" width="80" align="center">
-								<img src="images/books/${order[0].isbn}.jpg" style="cursor:pointer" border="0"  width="80" />
+								<img src="images/books/${order[0].isbn}.jpg" class="img-1" border="0"  width="80" />
 							</td>
 							
 							<!-- 책 정보 -->

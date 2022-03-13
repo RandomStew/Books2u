@@ -65,7 +65,7 @@
 		
 		<!-- 주문 상품 정보 -->	
 		<tr>
-			<td class="h2"><b>주문상품</b></td>
+			<td class="h3"><b>주문상품</b></td>
 			<td><input type="hidden" name="orderList" value="${orderList}"></td>
 		</tr>
 
@@ -114,13 +114,13 @@
 					
 						<tr>
 							<!-- ISBN -->
-							<td class="td_default" width="120">
+							<td class="td_default" width="120" align="center">
 								<font size="2">${book.isbn}</font>
 							</td>
 							
 							<!-- 이미지 -->
 							<td class="td_default" width="80">
-								<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" style="cursor:pointer" border="0" align="center" width="80" />
+								<img src="images/books/${book.isbn}.jpg" onclick="goBookInfo(${book.isbn})" class="img-1" border="0" align="center" width="80" />
 							</td>
 							
 							<!-- 책 정보 -->
@@ -174,29 +174,28 @@
 		</tr>
 		
 		<!-- 고객 정보 -->
-		<tr>
-			<td align="center" class="h2">
-				<b>고객 정보</b>
-				<input type="hidden" name="userId" id="hiddenUserId" value="${sessionScope.login.userId}">
-				<input type="hidden" name="userName" id="hiddenUserName" value="${sessionScope.login.userName}">
-				<input type="hidden" name="post" id="hiddenPost" value="${sessionScope.login.post}">
-				<input type="hidden" name="addr1" id="hiddenAddr1" value="${sessionScope.login.addr1}">
-				<input type="hidden" name="addr2" id="hiddenAddr2" value="${sessionScope.login.addr2}">
-				<input type="hidden" name="addr3" id="hiddenAddr3" value="${sessionScope.login.addr3}">
-				<input type="hidden" name="phone1" id="hiddenPhone1" value="${sessionScope.login.phone1}">
-				<input type="hidden" name="phone2" id="hiddenPhone2" value="${sessionScope.login.phone2}">
-				<input type="hidden" name="phone3" id="hiddenPhone3" value="${sessionScope.login.phone3}">
-			</td>
-		</tr>
-		
-		<tr>
-			<td height="15">
-		</tr>
-	
 	
 		<tr>
 			<td>
 				<table width="60%" cellspacing="0" cellpadding="0" align="center">
+					<tr>
+						<td class="h3" colspan="2">
+							<b>고객 정보</b>
+							<input type="hidden" name="userId" id="hiddenUserId" value="${sessionScope.login.userId}">
+							<input type="hidden" name="userName" id="hiddenUserName" value="${sessionScope.login.userName}">
+							<input type="hidden" name="post" id="hiddenPost" value="${sessionScope.login.post}">
+							<input type="hidden" name="addr1" id="hiddenAddr1" value="${sessionScope.login.addr1}">
+							<input type="hidden" name="addr2" id="hiddenAddr2" value="${sessionScope.login.addr2}">
+							<input type="hidden" name="addr3" id="hiddenAddr3" value="${sessionScope.login.addr3}">
+							<input type="hidden" name="phone1" id="hiddenPhone1" value="${sessionScope.login.phone1}">
+							<input type="hidden" name="phone2" id="hiddenPhone2" value="${sessionScope.login.phone2}">
+							<input type="hidden" name="phone3" id="hiddenPhone3" value="${sessionScope.login.phone3}">
+						</td>
+					</tr>
+					
+					<tr>
+						<td height="15">
+					</tr>
 					<tr>
 						<td colspan="5">
 							<hr class="top" color="CCCCCC">
@@ -259,19 +258,17 @@
 	<tr>
 		<td height="50">
 	</tr>
-
-	<tr>
-		<td align="center" class="h2"><b>배송지 정보</b></td>
-	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-	
 	
 	<tr>
 		<td>
 			<table width="60%" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td colspan="2" class="h3"><b>배송지 정보</b></td>
+				</tr>
+			
+				<tr>
+					<td height="30">
+				</tr>
 			<tr>
 				<td class="td_default" colspan="3">
 					<input type="checkbox" name="sameInfo" onclick="javascript:getSameInfo(this);"> 고객정보와 동일
@@ -346,18 +343,16 @@
 			<td height="50">
 		</tr>
 		
-		<tr align="center" class="h2">
-			<td><b>결제수단</b></td>
-		</tr>
-		
-	
-		<tr>
-			<td height="15">
-		
-			</tr>
 		<tr>
 			<td>
 				<table width="60%" cellspacing="0" cellpadding="0" align="center">
+					<tr class="h3">
+						<td colspan="2"><b>결제수단</b></td>
+					</tr>
+			
+					<tr>
+						<td height="15">
+					</tr>
 					<tr>
 						<td colspan="5">
 							<hr class="top" color="CCCCCC">
