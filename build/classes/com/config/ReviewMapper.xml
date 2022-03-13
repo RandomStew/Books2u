@@ -29,7 +29,8 @@
 	
 	<update id="updateReview" parameterType="ReviewDTO">
 		update review
-		set content = #{content}
+		set content = #{content},
+			rating = #{rating}
 		where reviewId = ${reviewId}
 	</update>
 </mapper>

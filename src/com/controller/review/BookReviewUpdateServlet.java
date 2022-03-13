@@ -1,6 +1,7 @@
 package com.controller.review;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,16 +28,19 @@ public class BookReviewUpdateServlet extends HttpServlet {
 		ReviewDTO reviewDTO = new ReviewDTO();
 		trans.setMappingDTO(reviewDTO);
 		System.out.println(reviewDTO);
-		String nextPage = "";
+		String answer = "";
+		
 		int num = 0;
 		try {
 			num = service.updateReview(reviewDTO);
-			nextPage = "MainServlet";
+			if(num > 0) answer="성공";
+			else if (num == 0) answer = "실패";
 		} catch (Exception e) {
 			e.printStackTrace();
-			nextPage = "error/error.jsp";
 		}
-		response.sendRedirect(nextPage);
+		PrintWriter out = response.getWriter();
+		out.print(answer);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
