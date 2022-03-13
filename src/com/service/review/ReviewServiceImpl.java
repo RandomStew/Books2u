@@ -37,4 +37,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return n;
 	}
 
+	@Override
+	public int updateReview(ReviewDTO dto) throws Exception {
+		int n = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			ReviewDAO dao = new ReviewDAO();
+			n = dao.updateReview(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return n;
+	}
+
 }

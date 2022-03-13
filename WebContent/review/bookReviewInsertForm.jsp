@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- bootstrap example -->
 <link rel="stylesheet" 
@@ -19,16 +15,24 @@ crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
 crossorigin="anonymous"></script>
-</head>
-<body>
-	<h1>${bookDTO.title }상세정보 화면</h1>
-	<jsp:include page="common/top.jsp" flush="true" /><br>
-	<hr>
-	<jsp:include page="book/search.jsp" flush="true" /> <br>
-	<jsp:include page="book/bookInfo.jsp" flush="true" /> <br>
-	<jsp:include page="review/bookReview.jsp" flush="true" /> 
-	<br>
-	<br>
-	<jsp:include page="review/bookReviewInsertForm.jsp" flush="true" />
-</body>
-</html>
+
+<script>
+	
+	var id = <c:if test="${not empty sessionScope.login }">
+	'<c:out value="${sessionScope.login.userId}"></c:out>';
+	</c:if>
+	$(document).ready(function(){
+		$("input[name='userId']").val(id);
+	});
+	
+</script>
+
+<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
+<input type="hidden" name="isbn" value="${book.isbn }">
+작성자: <input type="text" name="userId"  value="" readonly="true"> <br>
+별점: <input type="text" name="rating" value="5"> <br>
+내용:<br>
+<textarea name="content" rows="2" cols="20"></textarea>
+<input type="submit" value="리뷰 등록">
+</form>
+   
