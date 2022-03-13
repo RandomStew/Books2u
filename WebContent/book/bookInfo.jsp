@@ -75,7 +75,7 @@
 	<div class="row mb-2">
 		<div class="col-md-4 ">
 			<div class="col-auto d-none d-lg-block">
-				<img class='"bd-placeholder-img"' src="images/books/${book.isbn }.jpg" height="300">
+				<img class='"bd-placeholder-img" img-1' src="images/books/${book.isbn }.jpg" height="300">
 			</div>
 			
 		</div>
