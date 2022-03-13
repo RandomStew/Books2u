@@ -67,7 +67,6 @@ display:block;
 		location.href="BookInfoServlet?isbn="+isbn;
 	}
 </script>
-
 <ul class="nav justify-content-center">
   <li class="nav-item">
     <a class="nav-text active" aria-current="page" href="MainServlet">메인화면</a>
@@ -82,7 +81,7 @@ display:block;
 	</c:when>
 	<c:when test="${not empty sessionScope.login}">
 		<li class="nav-item">
-   			<a class="nav-text" href="LogoutServlet">로그인</a>
+   			<a class="nav-text" href="LogoutServlet">로그아웃</a>
  		</li>
 	</c:when>
 	</c:choose>
@@ -102,7 +101,8 @@ display:block;
   <li class="nav-item">
     <a class="nav-text" href="CustomerCenterServlet">고객센터</a>
   </li>
-<!-- </ul> -->
+
+</ul>
 
  <!--  <div class="menu-bar">
 	<div class="menu">

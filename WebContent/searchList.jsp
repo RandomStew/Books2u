@@ -16,8 +16,14 @@ crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
 integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" 
 crossorigin="anonymous"></script>
-
-
+<style>
+	hr.top{
+		border-width: 2px;
+	}
+	.img-1 {
+	    box-shadow:4px 4px 8px grey;
+	}
+</style>
 </head>
 <body>
 	<h1>검색 리스트</h1>
