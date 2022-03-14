@@ -72,7 +72,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 				<tr>
@@ -134,7 +134,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 	
@@ -153,7 +153,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 				<tr>
@@ -181,7 +181,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 			</table>

@@ -58,6 +58,7 @@ display:block;
 
 </style>
 
+
 <script>
 	function goCartList() {
 		location.href="CartListServlet";
@@ -71,7 +72,7 @@ display:block;
   <li class="nav-item">
     <a class="nav-text active" aria-current="page" href="MainServlet">메인화면</a>
   </li>
-  <li class="nav-text"> . </li>
+  <li style="color:black"> . </li>
   
   <c:choose>
 	<c:when test="${empty sessionScope.login}">
