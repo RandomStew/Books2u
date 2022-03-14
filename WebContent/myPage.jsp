@@ -22,7 +22,8 @@
 </head>
 <body>
 	<jsp:include page="common/top.jsp" flush="true" />
-	<hr>
+	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
+	
 	<jsp:include page="member/myPage.jsp" flush="true" />
 	<jsp:include page="order/orderList.jsp" flush="true" />
 </body>
