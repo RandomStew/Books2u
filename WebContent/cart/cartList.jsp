@@ -143,7 +143,7 @@
 	</tr>
 	
 	<tr><td height="15"></td>
-	<tr><td colspan="10"><hr color="CCCCCC" class="top"></td></tr>
+	<tr><td colspan="10"><hr color="CCCCCC" size="4"></td></tr>
 	<tr><td height="7"></tr>
 	
 	<!-- 테이블 HEADER -->
@@ -281,7 +281,7 @@
 		
 		<tr>
 			<td colspan="10">
-				<hr class="top" color="CCCCCC">
+				<hr size="4" color="CCCCCC">
 			</td>
 		</tr>
 		

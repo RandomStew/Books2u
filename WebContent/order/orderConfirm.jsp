@@ -75,7 +75,7 @@
 
 		<tr>
 			<td>
-				<hr class="top" color="CCCCCC">
+				<hr size="4" color="CCCCCC">
 			</td>
 		</tr>
 
@@ -164,7 +164,7 @@
 		
 		<tr>
 			<td>
-				<hr class="top" color="CCCCCC">
+				<hr size="4" color="CCCCCC">
 			</td>
 		</tr>
 		
@@ -198,7 +198,7 @@
 					</tr>
 					<tr>
 						<td colspan="5">
-							<hr class="top" color="CCCCCC">
+							<hr size="4" color="CCCCCC">
 						</td>
 					</tr>
 					<!-- 고객 이름 -->
@@ -244,7 +244,7 @@
 					
 					<tr>
 						<td colspan="5">
-							<hr class="top" color="CCCCCC">
+							<hr size="4" color="CCCCCC">
 						</td>
 					</tr>
 					
@@ -277,7 +277,7 @@
 					
 				<tr>
 					<td colspan="5">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 				
@@ -330,7 +330,7 @@
 				
 				<tr>
 					<td colspan="5">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 			</table>							
@@ -355,7 +355,7 @@
 					</tr>
 					<tr>
 						<td colspan="5">
-							<hr class="top" color="CCCCCC">
+							<hr size="4" color="CCCCCC">
 						</td>
 					</tr>
 					<tr align="center">
@@ -367,7 +367,7 @@
 					</tr>
 					<tr>
 					<td colspan="5">
-						<hr class="top" color="CCCCCC">
+						<hr size="4" color="CCCCCC">
 					</td>
 				</tr>
 				</table>							

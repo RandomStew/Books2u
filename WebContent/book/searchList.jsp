@@ -75,7 +75,7 @@
 		</tr>
 		
 		<tr><td height="15"></td>
-		<tr><td colspan="10"><hr class="top" color="CCCCCC"></td></tr>
+		<tr><td colspan="10"><hr size="4" color="CCCCCC"></td></tr>
 		<tr><td height="7"></tr>
 		
 		<!-- 테이블 HEADER -->
@@ -165,7 +165,7 @@
 			</tr>
 			
 		</c:forEach>
-		<tr><td colspan="10"><hr class="top" color="CCCCCC"></td></tr>
+		<tr><td colspan="10"><hr size="4" color="CCCCCC"></td></tr>
 		
 		<!-- 페이징 링크 처리 부분 -->
 		
