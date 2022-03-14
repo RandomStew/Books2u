@@ -12,12 +12,12 @@
 		</div>
 		<form action="MyPageUpdateServlet" method="post">
 			<div class="form-floating">
-				<input type="text" name="userId" value="${login.userId}" id="userId" readonly class="form-control">
+				<input type="text" name="userId" readonly class="form-control" value="${login.userId}">
 				<label>아이디</label>
 			</div>
 
 			<div class="form-floating">
-				<input type="text" name="userName" value="${login.userName}" id="userName" readonly class="form-control">
+				<input type="text" name="userName" readonly class="form-control" value="${login.userName}">
 				<label>이름</label>
 			</div>
 

@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-	.img-1 {
-	    box-shadow:4px 4px 8px grey;
-	}
-</style>
 <div id="orderList" align="center" style="display:none">
 	<table width="70%">
 		<tr>
@@ -63,14 +58,12 @@
 			<td>${order.payment}</td>
 			<td>${order.orderDate}</td>
 		</tr>
-		
 		<tr>
 			<td height="30">
 		</tr>
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>
-
 	<tr>
 		<td colspan="9">
 			<hr color="#CCCCCC" size="4">

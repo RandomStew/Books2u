@@ -1,3 +1,7 @@
 th, td {
 	text-align: center;
 }
+
+.img-1 {
+	box-shadow: 4px 4px 8px grey;
+}
