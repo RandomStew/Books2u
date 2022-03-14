@@ -19,8 +19,9 @@
 </head>
 <body>
 	<h1>Books2u:주문완료</h1>
-	<jsp:include page="common/top.jsp" flush="true" /><br>
-	<hr>
+	<jsp:include page="common/top.jsp" flush="true" />
+	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
+	
 	<jsp:include page="order/orderDone.jsp" flush="true" />
 </body>
 </html>

@@ -17,7 +17,7 @@
 </head>
 <body>
 	<jsp:include page="common/top.jsp" flush="true" />
-	<hr>
+	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
 	<jsp:include page="member/loginForm.jsp" flush="true" />
 </body>
 </html>

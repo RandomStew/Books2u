@@ -20,10 +20,9 @@
 
 </head>
 <body>
-	<h1>검색 리스트</h1>
-	<div id="topDiv">
-	<jsp:include page="common/top.jsp" flush="true" /><br></div>
-	<hr>
+	<jsp:include page="common/top.jsp" flush="true" />
+	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
+	
 	<jsp:include page="book/search.jsp" flush="true" /> <br>
 	<jsp:include page="book/searchList.jsp" flush="true" />
 </body>

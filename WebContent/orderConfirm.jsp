@@ -20,7 +20,8 @@
 <body>
 	<h1>주문 상품</h1>
 	<jsp:include page="common/top.jsp" flush="true" /><br>
-	<hr>
+	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
+	
 	<jsp:include page="order/orderConfirm.jsp" flush="true" />
 </body>
 </html>

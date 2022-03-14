@@ -35,7 +35,25 @@ checkSearch();
       </div>
     </div>
     <div class="carousel-item">
+      <img src="images/icons/banner2.jpg" class="d-block w-100" alt="...">
+       <div class="carousel-caption d-none d-md-block">
+          <p style="font-size:80px" class="title-opcity" >
+	          <font class="title-text" style="font-size:20px;color:white">당신에게 다채로운 경험을</font>
+	          <br><b>Books2ü</b>
+          </p>
+      </div>
+    </div>
+    <div class="carousel-item">
       <img src="images/icons/banner3.jpg" class="d-block w-100" alt="...">
+       <div class="carousel-caption d-none d-md-block">
+          <p style="font-size:80px" class="title-opcity" >
+	          <font class="title-text" style="font-size:20px;color:white">당신에게 다채로운 경험을</font>
+	          <br><b>Books2ü</b>
+          </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/icons/banner2.jpg" class="d-block w-100" alt="...">
        <div class="carousel-caption d-none d-md-block">
           <p style="font-size:80px" class="title-opcity" >
 	          <font class="title-text" style="font-size:20px;color:white">당신에게 다채로운 경험을</font>
