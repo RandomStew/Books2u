@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Books2u</title>
+<title>Books2u:주문완료</title>
 <style>
 	.img-1 {
 	    box-shadow:4px 4px 8px grey;
@@ -18,7 +18,6 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>Books2u:주문완료</h1>
 	<jsp:include page="common/top.jsp" flush="true" />
 	<jsp:include page="common/bannerSmall.jsp" flush="true"/>
 	
