@@ -26,49 +26,49 @@
 			</div>
 			
 			<div class="row">
-				<div class="form-floating col-6">
-					<input type="text" name="ssn1" maxlength="6" onkeyup="validateSsn()" class="form-control" placeholder="ssn1">
-					<label>ssn1</label>
+				<div class="form-floating col">
+					<input type="text" name="ssn1" maxlength="6" onkeyup="validateSsn()" class="form-control" placeholder="주민등록번호">
+					<label>주민등록번호</label>
 				</div>
-				<div class="form-floating col-6">
-					<input type="password" name="ssn2" maxlength="7" onkeyup="validateSsn()" class="form-control" placeholder="ssn2">
-					<label>ssn2</label>
+				-
+				<div class="form-floating col">
+					<input type="password" name="ssn2" maxlength="7" onkeyup="validateSsn()" class="form-control">
 				</div>
 				<span id="ssnResult" style="color:red"></span>
 			</div>
 			
 			<div class="row">
-				<div class="form-floating col-4">
-					<input type="text" name="phone1" maxlength="3" onkeyup="validatePhone()" class="form-control" placeholder="phone1">
-					<label>phone1</label>
+				<div class="form-floating col">
+					<input type="text" name="phone1" maxlength="3" onkeyup="validatePhone()" class="form-control" placeholder="전화번호">
+					<label>전화번호</label>
 				</div>
-				<div class="form-floating col-4">
-					<input type="text" name="phone2" maxlength="4" onkeyup="validatePhone()" class="form-control" placeholder="phone2">
-					<label>phone2</label>
+				-
+				<div class="form-floating col">
+					<input type="text" name="phone2" maxlength="4" onkeyup="validatePhone()" class="form-control">
 				</div>
-				<div class="form-floating col-4">
-					<input type="text" name="phone3" maxlength="4" onkeyup="validatePhone()" class="form-control" placeholder="phone3">
-					<label>phone3</label>
+				-
+				<div class="form-floating col">
+					<input type="text" name="phone3" maxlength="4" onkeyup="validatePhone()" class="form-control">
 				</div>
 				<span id="phoneResult" style="color:red"></span>
 			</div>
 			
 			<div class="row">
-				<div class="form-floating col-6">
+				<div class="form-floating col">
 					<input type="text" name="post" id="sample4_postcode" placeholder="우편번호" readonly class="form-control">
 					<label>우편번호</label>
 				</div>
-				<div class="form-floating col-6">
+				<div class="form-floating col">
 					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="w-100 btn btn-lg btn-outline-dark">
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="form-floating col-6">
+				<div class="form-floating col">
 					<input type="text" name="addr1" id="sample4_roadAddress" placeholder="도로명주소" readonly class="form-control">
 					<label>도로명주소</label>
 				</div>
-				<div class="form-floating col-6">
+				<div class="form-floating col">
 					<input type="text" name="addr2" id="sample4_jibunAddress" placeholder="지번주소" readonly class="form-control">
 					<label>지번주소</label>
 				</div>
@@ -80,13 +80,13 @@
 			</div>
 			
 			<div class="row">
-				<div class="form-floating col-6">
+				<div class="form-floating col">
 					<input type="text" name="email1" maxlength="16" onkeyup="validateEmail()" class="form-control" placeholder="email1">
-					<label>email1</label>
+					<label>이메일</label>
 				</div>
-				<div class="form-floating col-6">
-					<input type="text" name="email2" maxlength="16" onkeyup="validateEmail()" class="form-control" placeholder="email2">
-					<label>email2</label>
+				@
+				<div class="form-floating col">
+					<input type="text" name="email2" maxlength="16" onkeyup="validateEmail()" class="form-control">
 				</div>
 				<span id="emailResult" style="color:red"></span>
 			</div>

@@ -10,13 +10,13 @@
 				<label>아이디</label>
 			</div>
 			<div class="row">
-				<div class="form-floating col-6">
-					<input type="text" name="email1" readonly maxlength="16" onkeyup="validateEmail()" class="form-control" placeholder="email1" value="${login.email1}">
-					<label>email1</label>
+				<div class="form-floating col">
+					<input type="text" name="email1" readonly maxlength="16" onkeyup="validateEmail()" class="form-control" placeholder="email1" placeholder="이메일" value="${login.email1}">
+					<label>이메일</label>
 				</div>
-				<div class="form-floating col-6">
+				@
+				<div class="form-floating col">
 					<input type="text" name="email2" readonly maxlength="16" onkeyup="validateEmail()" class="form-control" placeholder="email2" value="${login.email2}">
-					<label>email2</label>
 				</div>
 			</div>
 			<div class="form-floating">
