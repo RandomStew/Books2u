@@ -24,16 +24,16 @@
 				<hr color="#CCCCCC">
 			</td>
 		</tr>
-	<c:choose>
-	<c:when test="${empty sessionScope.orderList}">
+		<c:choose>
+		<c:when test="${empty sessionScope.orderList}">
 		<tr>
 			<td colspan="9">
 				<h4 style="color:#CCCCCC">주문내역이 없습니다.</h4>
 			</td>
 		</tr>
-	</c:when>
-	<c:otherwise>
-	<c:forEach var="order" items="${sessionScope.orderList}" varStatus="status">
+		</c:when>
+		<c:otherwise>
+		<c:forEach var="order" items="${sessionScope.orderList}" varStatus="status">
 		<tr>
 			<td>${order.isbn}</td>
 			<td>
@@ -61,13 +61,13 @@
 		<tr>
 			<td height="30">
 		</tr>
-	</c:forEach>
-	</c:otherwise>
-	</c:choose>
-	<tr>
-		<td colspan="9">
-			<hr color="#CCCCCC" size="4">
-		</td>
-	</tr>
+		</c:forEach>
+		</c:otherwise>
+		</c:choose>
+		<tr>
+			<td colspan="9">
+				<hr color="#CCCCCC" size="4">
+			</td>
+		</tr>
 	</table>
 </div>
