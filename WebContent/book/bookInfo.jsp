@@ -64,14 +64,9 @@
     	 
      }
 </script>
-<style>
 
-
-</style>
 <div class= "container">
-	<div class="row mb-5">
-		<h1 class="text-center">검색결과</h1>
-	</div>
+
 	<div class="row mb-2">
 		<div class="col-md-4 ">
 			<div class="col-auto d-none d-lg-block">

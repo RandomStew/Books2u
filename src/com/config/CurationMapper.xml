@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.CurationMapper">
+	<select id="selectList" parameterType="string" resultType="CurationDTO">
+with temp as
+(
+select isbn, avg(rating) as rating
+from review
+group by isbn
+)
+	   select b.isbn as "isbn", 
+	   b.title as "title",
+       b.author as "author",
+       b.PUBLISHER as "publisher",
+       b.story as "story",
+       b.price as "price",
+       b.genre as "genre",
+       t.rating as "rating"
+from book b inner join temp t on(b.isbn = t.isbn)
+where b.genre = #{genre}
+order by 7 desc
+	
+	</select>
+</mapper>
+
+
+
+
+

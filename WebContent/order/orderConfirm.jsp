@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
 	
@@ -45,18 +45,29 @@
 		}
 	}
 	
-	function orderDone(f){
-		event.preventDefault();
-		f.action="OrderDoneServlet";
-		f.method="get";
-		f.submit();
-	}
-
-
+	//비어있으면 submit방지
+	 $(document).ready(function(){
+		 $("input[type=submit]").on("click", function(){
+		 		if($("#recipient").val().length == 0){
+		 			alert("수령인을 입력해주세요.");
+		 			$("#recipient").focus();
+		 			return false;
+		 		} else if($("#recipientPost").val().length == 0){
+		 			alert("배송지를 입력해주세요.");
+		 			$("#recipientPost").focus();
+		 			return false;
+		 		} else if($("#recipientPhone1").val().length == 0 || $("#recipientPhone2").val().length == 0 || $("#recipientPhone3").val().length == 0){
+		 			alert("연락처를 입력해주세요.");
+		 			$("#recipientPhone1").focus();
+		 			return false;
+		 		} 
+		 	});
+	 });
+	 
 
 </script>
 
-<form name="orderForm">
+<form name="orderForm" action="OrderDoneServlet">
 	<table width="80%" cellspacing="0" cellpadding="0" align="center">
 
 		<tr>
@@ -285,7 +296,7 @@
 				<tr>
 					<td width="125" height="35"  align="center">수령인</td>
 					<td height="35"  >
-						<input type="text" id="recipient" name="recipient" size="20" maxlength="10" pattern=".{2,}">
+						<input type="text" id="recipient" name="recipient" size="20" maxlength="5" onkeyup="validateUserName()" placeholder="이름">
 					</td>
 				</tr>
 				
@@ -322,9 +333,9 @@
 				<tr>
 					<td height="35"  align="center">휴대전화</td>
 					<td height="35">
-						<input type="text" name="recipientPhone1" id="recipientPhone1" pattern=".{3,3}" maxlength="3" size="4"> - 
-						<input type="text" name="recipientPhone2" id="recipientPhone2" pattern=".{4,4}" maxlength="4" size="5"> - 
-						<input type="text" name="recipientPhone3" id="recipientPhone3" pattern=".{4,4}" maxlength="4" size="5">
+						<input type="text" name="recipientPhone1" id="recipientPhone1" maxlength="3" onkeyup="validatePhone()" size="4"> - 
+						<input type="text" name="recipientPhone2" id="recipientPhone2" maxlength="4" onkeyup="validatePhone()" size="5"> - 
+						<input type="text" name="recipientPhone3" id="recipientPhone3" maxlength="4" onkeyup="validatePhone()" size="5">
 					</td>
 				</tr>
 				
