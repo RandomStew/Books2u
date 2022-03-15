@@ -22,6 +22,7 @@
 	<%@include file="css/member/myPage.css"%>
 	<%@include file="css/order/orderList.css"%>
 </style>
+
 <script type="text/javascript" src="js/member/myPage.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="js/member/postcode.js"></script>
