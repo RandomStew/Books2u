@@ -13,6 +13,7 @@
     <typeAlias type="com.dto.member.MemberDTO" alias="MemberDTO"/>
     <typeAlias type="com.dto.order.OrderDTO" alias="OrderDTO"/>
     <typeAlias type="com.dto.review.ReviewDTO" alias="ReviewDTO"/>
+    <typeAlias type="com.dto.curation.CurationDTO" alias="CurationDTO"/>
   </typeAliases>
   	
   <environments default="development">
@@ -31,5 +32,6 @@
     <mapper resource="com/config/MemberMapper.xml"/>
     <mapper resource="com/config/OrderMapper.xml"/>
     <mapper resource="com/config/ReviewMapper.xml"/>
+    <mapper resource="com/config/CurationMapper.xml"/>
   </mappers>
 </configuration>
