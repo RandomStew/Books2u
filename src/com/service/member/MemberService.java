@@ -11,6 +11,8 @@ public interface MemberService {
 	public MemberDTO checkIdDuplicate(String userId) throws Exception;
 
 	public MemberDTO login(HashMap<String, String> hashMap) throws Exception;
+	
+	public MemberDTO find(HashMap<String, String> hashMap) throws Exception;
 
 	public MemberDTO selectMyPage(String userId) throws Exception;
 

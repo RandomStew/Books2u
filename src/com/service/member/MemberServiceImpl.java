@@ -51,6 +51,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public MemberDTO find(HashMap<String, String> hashMap) throws Exception {
+		MemberDTO memberDTO = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			MemberDAO dao = new MemberDAO();
+			memberDTO = dao.find(session, hashMap);
+		} finally {
+			session.close();
+		}
+		return memberDTO;
+	}
+
+	@Override
 	public MemberDTO selectMyPage(String userId) throws Exception {
 		MemberDTO memberDTO = null;
 		SqlSession session = MySqlSessionFactory.getSession();

@@ -29,11 +29,6 @@ public class MailServlet extends HttpServlet {
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 
-		System.out.println(userId);
-		System.out.println(email1 + "@" + email2);
-		System.out.println(subject);
-		System.out.println(content);
-
 		String from = "RandomStew.Books2u@gmail.com"; // 보내는 메일
 		String fromName = "Books2u 고객센터"; // 보내는 이름
 		String to = email1 + "@" + email2;
