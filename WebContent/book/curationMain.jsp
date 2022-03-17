@@ -2,7 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<script>
+	$(document).ready(function(){
+		$("img").on("click", function() {
+			console.log($(this).data('isbn'));
+			var url = "BookInfoServlet";
+			var obj = {
+					isbn : $(this).data('isbn')
+			}
+			location.href = url + '?' + $.param(obj);
+		});
+	});
+</script>
 
 <div class="container pl-3 pr-3">
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -14,7 +25,7 @@
 			    <c:forEach var="art" items="${artList}" varStatus="status">
 			    	<div class="col">
 					    <div class="card" style="width: 10rem;">
-						   <img src="/Books2u/images/books/${art.isbn }.jpg" class="card-img-top" data-isbn="${art.isbn }" alt="...">
+						   <img src="/Books2u/images/books/${art.isbn }.jpg" class="card-img-top" data-isbn="${art.isbn }" style="cursor:pointer" alt="...">
 						   <div class="card-body">
 						   	<p class="card-text">${art.title }</p>
 						   </div>
