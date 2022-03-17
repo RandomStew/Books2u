@@ -50,8 +50,10 @@ function validateUserName() {
 		if (userName.length > 5) {
 			event.target.value = userName.slice(0, 5);
 		}
-		message = "";
-		userNameResult = true;
+		if (!/[ㄱ-ㅎ]/.test(document.querySelector("input[name=userName]").value)) {
+			message = "";
+			userNameResult = true;
+		}
 	}
 	document.querySelector("#userNameResult").innerText = message;
 	updateDisabled();
@@ -108,9 +110,7 @@ function validateEmail() {
 function updateDisabled() {
 	var disabled = true;
 	if (userIdResult && passWdResult && userNameResult && ssnResult && phoneResult && emailResult) {
-		if (/[ㄱ-ㅎ]/.test(document.querySelector("input[name=userName]").value)) {
-			userNameResult = false;
-		} else if (document.querySelector("#sample4_jibunAddress").value != "") {
+		if (document.querySelector("#sample4_jibunAddress").value != "") {
 			disabled = false;
 		}
 	}

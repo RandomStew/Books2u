@@ -21,7 +21,7 @@
 	<%@include file="css/book/curationMain.css"%>
 	<%@include file="css/member/joinForm.css"%>
 </style>
-<script type="text/javascript" src="js/member/join.js"></script>
+<script type="text/javascript" src="js/member/joinForm.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="js/member/postcode.js"></script>
 </head>
