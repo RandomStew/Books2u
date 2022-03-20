@@ -60,7 +60,8 @@
 		 			alert("연락처를 입력해주세요.");
 		 			$("#recipientPhone1").focus();
 		 			return false;
-		 		} else if(/[^0-9]/.test($("#recipientPhone1").val()) || /[^0-9]/.test($("#recipientPhone2").val()) || /[^0-9]/.test($("#recipientPhone3").val())){
+		 		} else if($("#recipientPhone1").val().length != 3 || $("#recipientPhone2").val().length < 3 || $("#recipientPhone3").val().length != 4 ||
+		 				/[^0-9]/.test($("#recipientPhone1").val()) || /[^0-9]/.test($("#recipientPhone2").val()) || /[^0-9]/.test($("#recipientPhone3").val())){
 		 			alert("연락처를 확인해주세요.");
 		 			$("#recipientPhone1").focus();
 		 			return false;
