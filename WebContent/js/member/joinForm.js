@@ -15,18 +15,18 @@ function validateUserId() {
 			if (httpRequest.readyState == 4 && httpRequest.status == 200) {
 				message = httpRequest.responseText;
 				if (message == "아이디 사용 가능") {
-					document.querySelector("#userIdResult").innerText = message;
 					userIdResult = true;
-					updateDisabled();
 				}
+				document.querySelector("#userIdResult").innerText = message;
+				updateDisabled();
 			}
 		};
 		httpRequest.open("get", "IdDuplicateCheckServlet?userId=" + userId, true);
 		httpRequest.send(null);
 	} else {
 		document.querySelector("#userIdResult").innerText = message;
+		updateDisabled();
 	}
-	updateDisabled();
 }
 
 function validatePassWd() {
@@ -45,7 +45,7 @@ function validatePassWd() {
 function validateUserName() {
 	userNameResult = false;
 	var userName = event.target.value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (userName.length > 1 && !/[^ㄱ-힣]/.test(userName)) {
 		if (userName.length > 5) {
 			event.target.value = userName.slice(0, 5);
@@ -63,7 +63,7 @@ function validateSsn() {
 	ssnResult = false;
 	var ssn1 = document.querySelector("input[name=ssn1]").value;
 	var ssn2 = document.querySelector("input[name=ssn2]").value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (ssn1.length == 6 && ssn2.length == 7 && !/[^0-9]/.test(ssn1) && !/[^0-9]/.test(ssn2)) {
 		var y = Number(ssn1.substr(0, 2));
 		var m = Number(ssn1.substr(2, 2));
@@ -85,7 +85,7 @@ function validatePhone() {
 	var phone1 = document.querySelector("input[name=phone1]").value;
 	var phone2 = document.querySelector("input[name=phone2]").value;
 	var phone3 = document.querySelector("input[name=phone3]").value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (phone1.length == 3 && phone2.length > 2 && phone3.length == 4 && !/[^0-9]/.test(phone1) && !/[^0-9]/.test(phone2) && !/[^0-9]/.test(phone3)) {
 		message = "";
 		phoneResult = true;
@@ -98,7 +98,7 @@ function validateEmail() {
 	emailResult = false;
 	var email1 = document.querySelector("input[name=email1]").value;
 	var email2 = document.querySelector("input[name=email2]").value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (email1.length > 3 && email2.length > 3 && !/[ㄱ-힣]/.test(email1) && !/[ㄱ-힣]/.test(email2)) {
 		message = "";
 		emailResult = true;

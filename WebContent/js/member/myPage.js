@@ -6,7 +6,7 @@ function validatePhone() {
 	var phone1 = document.querySelector("input[name=phone1]").value;
 	var phone2 = document.querySelector("input[name=phone2]").value;
 	var phone3 = document.querySelector("input[name=phone3]").value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (phone1.length == 3 && phone2.length > 2 && phone3.length == 4 && !/[^0-9]/.test(phone1) && !/[^0-9]/.test(phone2) && !/[^0-9]/.test(phone3)) {
 		message = "";
 		phoneResult = true;
@@ -19,7 +19,7 @@ function validateEmail() {
 	emailResult = false;
 	var email1 = document.querySelector("input[name=email1]").value;
 	var email2 = document.querySelector("input[name=email2]").value;
-	var message = "올바른 형식이 아닙니다";
+	var message = "형식에 맞게 입력해주세요";
 	if (email1.length > 3 && email2.length > 3 && !/[ㄱ-힣]/.test(email1) && !/[ㄱ-힣]/.test(email2)) {
 		message = "";
 		emailResult = true;
