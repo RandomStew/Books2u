@@ -60,7 +60,12 @@
 		 			alert("연락처를 입력해주세요.");
 		 			$("#recipientPhone1").focus();
 		 			return false;
-		 		} 
+		 		} else if($("#recipientPhone1").val().length != 3 || $("#recipientPhone2").val().length < 3 || $("#recipientPhone3").val().length != 4 ||
+		 				/[^0-9]/.test($("#recipientPhone1").val()) || /[^0-9]/.test($("#recipientPhone2").val()) || /[^0-9]/.test($("#recipientPhone3").val())){
+		 			alert("연락처를 확인해주세요.");
+		 			$("#recipientPhone1").focus();
+		 			return false;
+		 		}
 		 	});
 	 });
 	 
@@ -296,7 +301,7 @@
 				<tr>
 					<td width="125" height="35"  align="center">수령인</td>
 					<td height="35"  >
-						<input type="text" id="recipient" name="recipient" size="20" maxlength="5" onkeyup="validateUserName()" placeholder="이름">
+						<input type="text" id="recipient" name="recipient" size="20" maxlength="5" placeholder="이름">
 					</td>
 				</tr>
 				
@@ -333,9 +338,9 @@
 				<tr>
 					<td height="35"  align="center">휴대전화</td>
 					<td height="35">
-						<input type="text" name="recipientPhone1" id="recipientPhone1" maxlength="3" onkeyup="validatePhone()" size="4"> - 
-						<input type="text" name="recipientPhone2" id="recipientPhone2" maxlength="4" onkeyup="validatePhone()" size="5"> - 
-						<input type="text" name="recipientPhone3" id="recipientPhone3" maxlength="4" onkeyup="validatePhone()" size="5">
+						<input type="text" name="recipientPhone1" id="recipientPhone1" maxlength="3" size="4"> - 
+						<input type="text" name="recipientPhone2" id="recipientPhone2" maxlength="4" size="5"> - 
+						<input type="text" name="recipientPhone3" id="recipientPhone3" maxlength="4" size="5">
 					</td>
 				</tr>
 				
@@ -393,7 +398,7 @@
 		<tr>
 			<td align="center">
 				<input type='button' value='주문취소' onclick="javascript:history.back()" class="btn btn-outline-danger"> &nbsp;
-				<input type='submit' value='결제하기' onclick="orderDone(orderForm)" class="btn btn-dark btn-lg">
+				<input type='submit' value='결제하기' class="btn btn-dark btn-lg">
 			</td>
 		</tr>
 		
