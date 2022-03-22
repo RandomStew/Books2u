@@ -41,6 +41,13 @@ public class MemberController {
 		return "member/loginFail";
 	}
 	
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:main";
+	}
+	
 	@ExceptionHandler({Exception.class})
 	public String error() {
 		return "error/error";
