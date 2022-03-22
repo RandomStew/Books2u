@@ -20,6 +20,10 @@ public class MemberDAO {
 		return session.selectOne("com.config.MemberMapper.login", hashMap);
 	}
 
+	public MemberDTO find(SqlSession session, HashMap<String, String> hashMap) throws Exception {
+		return session.selectOne("com.config.MemberMapper.find", hashMap);
+	}
+
 	public MemberDTO selectMyPage(SqlSession session, String userId) throws Exception {
 		return session.selectOne("com.config.MemberMapper.selectMyPage", userId);
 	}

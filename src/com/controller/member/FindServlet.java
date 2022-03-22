@@ -1,6 +1,7 @@
 package com.controller.member;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -16,35 +17,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.dto.member.MemberDTO;
+import com.service.member.MemberService;
+import com.service.member.MemberServiceImpl;
 
-@WebServlet("/MailServlet")
-public class MailServlet extends HttpServlet {
+@WebServlet("/FindServlet")
+public class FindServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		MemberDTO login = (MemberDTO) session.getAttribute("login");
+		String userName = request.getParameter("userName");
+		String ssn1 = request.getParameter("ssn1");
+		String ssn2 = request.getParameter("ssn2");
 
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("userName", userName);
+		hashMap.put("ssn1", ssn1);
+		hashMap.put("ssn2", ssn2);
+
+		MemberService service = new MemberServiceImpl();
 		String nextPage = "";
-		if (login != null) {
-			String userName = login.getUserName(); // 고객명
-			String email1 = request.getParameter("email1"); // 받는 메일(계정명)
-			String email2 = request.getParameter("email2"); // 받는 메일(도메인)
-			String subject = request.getParameter("subject");
-			String content = request.getParameter("content");
+		try {
+			MemberDTO memberDTO = service.find(hashMap);
+			if (memberDTO != null) {
+				String userId = memberDTO.getUserId();
+				String passWd = memberDTO.getPassWd();
+				String email1 = memberDTO.getEmail1(); // 받는 메일(계정명)
+				String email2 = memberDTO.getEmail2(); // 받는 메일(도메인)
 
-			String from = "RandomStew.Books2u@gmail.com"; // 보내는 메일
-			String fromName = "Books2u 고객센터"; // 보내는 이름
-			String to = email1 + "@" + email2;
-			subject = "reply:" + subject;
-			content = userName + "님의 문의가 접수되었습니다.\n" + "답변까지의 평균 소요시간은 3~5일 입니다.\n" + "이용해주셔서 감사합니다.\n" + "문의 내용\n"
-					+ content;
+				String from = "RandomStew.Books2u@gmail.com"; // 보내는 메일
+				String fromName = "Books2u 고객센터"; // 보내는 이름
+				String to = email1 + "@" + email2;
+				String subject = "아이디 및 비밀번호 찾기";
+				String content = "아이디 : " + userId + "\n" + "비밀번호 : " + passWd + "\n";
 
-			try {
 				// 프로퍼티 값 인스턴스 생성과 기본세션(SMTP 서버 호스트 지정)
 				Properties props = new Properties();
 				props.put("mail.smtp.host", "smtp.gmail.com");
@@ -67,21 +75,21 @@ public class MailServlet extends HttpServlet {
 				msg.setContent(content, "text/plain;charset=UTF-8"); // 내용 설정(MIME 지정-HTML 형식)
 
 				Transport.send(msg); // 메일 보내기
-				nextPage = "member/mail.jsp";
-			} catch (MessagingException ex) {
-				System.out.println("mail send error : " + ex.getMessage());
-				ex.printStackTrace();
-				nextPage = "error/error.jsp";
-			} catch (Exception e) {
-				System.out.println("error : " + e.getMessage());
-				e.printStackTrace();
-				nextPage = "error/error.jsp";
+				nextPage = "member/findSuccess.jsp";
+			} else {
+				nextPage = "member/findFail.jsp";
 			}
-		} else {
-			nextPage = "member/sessionInvalidate.jsp";
+		} catch (MessagingException ex) {
+			System.out.println("mail send error : " + ex.getMessage());
+			ex.printStackTrace();
+			nextPage = "error/error.jsp";
+		} catch (Exception e) {
+			System.out.println("error : " + e.getMessage());
+			e.printStackTrace();
+			nextPage = "error/error.jsp";
 		}
 
-		request.getRequestDispatcher(nextPage).forward(request, response);
+		response.sendRedirect(nextPage);
 
 	}
 
