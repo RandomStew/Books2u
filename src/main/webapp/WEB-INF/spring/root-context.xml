@@ -32,17 +32,22 @@
 	  <property name="dataSource" ref="dataSource" />
 	  <property name="mapperLocations">
 	    <list>
-			<value>classpath:com/config/CartMapper.xml</value>      
-			<value>classpath:com/config/GoodsMapper.xml</value> 
+			<value>classpath:com/config/BookMapper.xml</value>      
 			<value>classpath:com/config/MemberMapper.xml</value> 
+			<value>classpath:com/config/OrderMapper.xml</value> 
+			<value>classpath:com/config/ReviewMapper.xml</value> 
 	    </list>
 	  </property>
 	  <property name="typeAliases">
 	    <list>
-	      <value>com.dto.goods.CartDTO</value>
-	      <value>com.dto.goods.GoodsDTO</value>
-	      <value>com.dto.goods.OrderDTO</value>
+	      <value>com.dto.book.BookDTO</value>
+	      <value>com.dto.book.BookPageDTO</value>
+	      <value>com.dto.cart.CartDTO</value>
+	      <value>com.dto.curation.CurationDTO</value>
 	      <value>com.dto.member.MemberDTO</value>
+	      <value>com.dto.order.OrderDTO</value>
+	      <value>com.dto.review.ReviewDTO</value>
+	      <value>com.dto.review.ReviewPageDTO</value>
 	    </list>
 	  </property>
 	</bean>
