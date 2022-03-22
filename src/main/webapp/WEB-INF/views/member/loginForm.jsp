@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="text-center">
 	<div class="form-signin">
-		<form action="LoginServlet" method="get">
+		<form action="login" method="post">
 			<div class="form-floating">
 				<input type="text" name="userId" required maxlength="10" class="form-control" placeholder="아이디">
 				<label>아이디</label>
