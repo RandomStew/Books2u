@@ -29,7 +29,7 @@ input[type=text] {
 		if(input.value == "")
 			return
 		var f = document.querySelector("form[name='searchForm']");
-		f.action = "SearchListServlet";
+		f.action = "searchList";
 		f.method = "get";
 		f.submit();
 	}

@@ -6,7 +6,7 @@
 	$(document).ready(function(){
 		$("img").on("click", function() {
 			console.log($(this).data('isbn'));
-			var url = "BookInfoServlet";
+			var url = "bookInfo";
 			var obj = {
 					isbn : $(this).data('isbn')
 			}
@@ -40,7 +40,7 @@
 			    <c:forEach var="novel" items="${novelList}" varStatus="status">
 			    	<div class="col">
 					    <div class="card" style="width: 10rem;">
-						   <img src="images/books/${novel.isbn }.jpg" class="card-img-top" data-isbn="${novel.isbn }" alt="...">
+						   <img src="images/books/${novel.isbn }.jpg" class="card-img-top" style="cursor:pointer" data-isbn="${novel.isbn }" alt="...">
 						   <div class="card-body">
 						   	<p class="card-text">${novel.title }</p>
 						   </div>
@@ -55,7 +55,7 @@
 		    <c:forEach var="cook" items="${cookList}" varStatus="status">
 		    	<div class="col">
 				    <div class="card" style="width: 10rem;">
-					   <img src="images/books/${cook.isbn }.jpg" class="card-img-top" data-isbn="${cook.isbn }" alt="...">
+					   <img src="images/books/${cook.isbn }.jpg" class="card-img-top" style="cursor:pointer" data-isbn="${cook.isbn }" alt="...">
 					   <div class="card-body">
 					   	<p class="card-text">${cook.title }</p>
 					   </div>

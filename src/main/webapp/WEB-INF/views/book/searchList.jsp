@@ -5,7 +5,7 @@
  
  <script>
 	function goBookInfo(isbn) {
-		location.href=`BookInfoServlet?isbn=\${isbn}`;
+		location.href=`bookInfo?isbn=\${isbn}`;
 	}
 	
 	function amountAsc(isbn) {
@@ -189,7 +189,7 @@
 			
 			<!-- 현재페이지가 2 이상일 때 이전 버튼이 존재 -->
 			<c:if test="${curPage > 1 }">
-				<a href="SearchListServlet?curPage=${curPage-1}&search=${title}&type=${type}">이전</a>
+				<a href="searchList?curPage=${curPage-1}&search=${title}&type=${type}">이전</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPoint}" end="${endPoint}">
 				<input type="hidden" name="curPage" value="${i}">
@@ -197,13 +197,13 @@
 					${i}
 				</c:if>
 				<c:if test="${i!=curPage}">
-					<a href="SearchListServlet?curPage=${i}&search=${title}&type=${type}">${i}</a>
+					<a href="searchList?curPage=${i}&search=${title}&type=${type}">${i}</a>
 				</c:if>
 			</c:forEach>
 			
 			<!--  curPage < totalPage 일 떄 존재 -->
 			<c:if test="${curPage < totalPage }">
-				<a href="SearchListServlet?curPage=${curPage+1}&search=${title}&type=${type}">다음</a>  
+				<a href="searchList?curPage=${curPage+1}&search=${title}&type=${type}">다음</a>  
 			</c:if>
 			</td>
 		<tr>
