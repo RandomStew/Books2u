@@ -14,21 +14,16 @@
 		}
 	}
 	
-	
-     function reqCheck(target){
-    	 
-    	 if(target=='cart'){
-    		 // 장바구니 
-    		 
+     function reqCheck(){
     		 // Ajax 를 활용해서 cartList.jsp로 cartDTO에 필요한 데이터 전송
 			console.log("dom 찾기")
 			var amountTag = document.querySelector("#amount");
-			var isbn = document.querySelector("#hiddenIsbn").value;
-			var title = document.querySelector("#hiddenTitle").value;
-			var author = document.querySelector("#hiddenAuthor").value;
-			var publisher = document.querySelector("#hiddenPublisher").value;
-			var price = document.querySelector("#hiddenPrice").value;
-			var userId = document.querySelector("#hiddenUserId").value;
+			var isbn = document.querySelector("#isbn").value;
+			var title = document.querySelector("#title").value;
+			var author = document.querySelector("#author").value;
+			var publisher = document.querySelector("#publisher").value;
+			var price = document.querySelector("#price").value;
+			var userId = document.querySelector("#userId").value;
 			
 			console.log("dom찾기 완료")
 			if(!userId) {
@@ -56,13 +51,23 @@
 			alert(`\${title} \${amountTag.value}권을 장바구니에 담았습니다.`);
 			amountTag.value = 1;
     		location.reload();
-    		 
-    	 }else{
-    		 // 주문
-    		 
-    	 }
-    	 
+
      }
+     
+ 	function orderList(){
+		var f = document.querySelector("form[name='bookForm']");
+		var userId = document.querySelector("#userId").value;
+		
+		if(!userId) {
+			alert("로그인을 해주세요");
+			return;
+		}
+		
+		f.action = "OrderConfirmServlet";
+		f.method = "get";
+		f.submit();
+		
+	}
 </script>
 
 <div class= "container">
@@ -97,17 +102,18 @@
 
 			</div>
 			<div>
-			    <input type="hidden" name="hiddenIsbn" id="hiddenIsbn" value="${book.isbn}">
-			    <input type="hidden" name="hiddenTitle" id="hiddenTitle" value="${book.title}">
-			    <input type="hidden" name="hiddenAuthor" id="hiddenAuthor" value="${book.author}">
-			    <input type="hidden" name="hiddenPrice" id="hiddenPrice" value="${book.price}">
-			    <input type="hidden" name="hiddenPublisher" id="hiddenPublisher" value="${book.publisher}">
-			    <input type="hidden" name="hiddenUserId" id="hiddenUserId" value="${sessionScope.login.userId}">
-			    <input type="button" onclick="reqCheck('cart')" class="btn btn-outline-dark btn-lg" value="장바구니에 담기">
-			    <button class="btn btn-dark btn-lg">구매하기</button>
+			    <input type="hidden" name="isbn" id="isbn" value="${book.isbn}">
+			    <input type="hidden" name="title" id="title" value="${book.title}">
+			    <input type="hidden" name="author" id="author" value="${book.author}">
+			    <input type="hidden" name="price" id="price" value="${book.price}">
+			    <input type="hidden" name="publisher" id="publisher" value="${book.publisher}">
+			    <input type="hidden" name="userId" id="userId" value="${sessionScope.login.userId}">
+			    <input type="button" onclick="reqCheck()" class="btn btn-outline-dark btn-lg" style="cursor:pointer" value="장바구니에 담기">
+			    <button class="btn btn-dark btn-lg" onclick="orderList()" style="cursor:pointer">구매하기</button>
 		    </div>	
     		</form>
    		</div>
+   		
 	</div>
 </div>
 
@@ -117,4 +123,3 @@
     
   </div>
   
-</div>

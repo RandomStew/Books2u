@@ -71,12 +71,14 @@ public class OrderDoneServlet extends HttpServlet {
 
 				int n = service.orderDone(orderList);
 
-				if (n > 0) {
+				List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
+				
+				if(n > 0 && cartList != null) {
 					List<CartDTO> found = new ArrayList<CartDTO>();
-					List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
-					for (String isbn : itemToOrder) {
-						for (CartDTO cartDTO : cartList) {
-							if (cartDTO.getIsbn().equals(isbn)) {
+					
+					for(String isbn : itemToOrder) {
+						for(CartDTO cartDTO : cartList) {
+							if(cartDTO.getIsbn().equals(isbn)) {
 								found.add(cartDTO);
 							}
 						}
