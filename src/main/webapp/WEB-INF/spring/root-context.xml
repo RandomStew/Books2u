@@ -36,6 +36,7 @@
 			<value>classpath:com/config/MemberMapper.xml</value> 
 			<value>classpath:com/config/OrderMapper.xml</value> 
 			<value>classpath:com/config/ReviewMapper.xml</value> 
+			<value>classpath:com/config/CurationMapper.xml</value> 
 	    </list>
 	  </property>
 	  <property name="typeAliases">

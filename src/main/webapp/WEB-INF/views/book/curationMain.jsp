@@ -25,7 +25,7 @@
 			    <c:forEach var="art" items="${artList}" varStatus="status">
 			    	<div class="col">
 					    <div class="card" style="width: 10rem;">
-						   <img src="/Books2u/images/books/${art.isbn }.jpg" class="card-img-top" data-isbn="${art.isbn }" style="cursor:pointer" alt="...">
+						   <img src="images/books/${art.isbn }.jpg" class="card-img-top" data-isbn="${art.isbn }" style="cursor:pointer" alt="...">
 						   <div class="card-body">
 						   	<p class="card-text">${art.title }</p>
 						   </div>
@@ -40,7 +40,7 @@
 			    <c:forEach var="novel" items="${novelList}" varStatus="status">
 			    	<div class="col">
 					    <div class="card" style="width: 10rem;">
-						   <img src="/Books2u/images/books/${novel.isbn }.jpg" class="card-img-top" data-isbn="${novel.isbn }" alt="...">
+						   <img src="images/books/${novel.isbn }.jpg" class="card-img-top" data-isbn="${novel.isbn }" alt="...">
 						   <div class="card-body">
 						   	<p class="card-text">${novel.title }</p>
 						   </div>
@@ -55,7 +55,7 @@
 		    <c:forEach var="cook" items="${cookList}" varStatus="status">
 		    	<div class="col">
 				    <div class="card" style="width: 10rem;">
-					   <img src="/Books2u/images/books/${cook.isbn }.jpg" class="card-img-top" data-isbn="${cook.isbn }" alt="...">
+					   <img src="images/books/${cook.isbn }.jpg" class="card-img-top" data-isbn="${cook.isbn }" alt="...">
 					   <div class="card-body">
 					   	<p class="card-text">${cook.title }</p>
 					   </div>
