@@ -70,37 +70,37 @@ display:block;
 </script>
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <a class="nav-text active" aria-current="page" href="MainServlet">메인화면</a>
+    <a class="nav-text active" aria-current="page" href="main">메인화면</a>
   </li>
   <li style="color:black"> . </li>
   
   <c:choose>
 	<c:when test="${empty sessionScope.login}">
 		<li class="nav-item">
-   			<a class="nav-text" href="LoginUIServlet">로그인</a>
+   			<a class="nav-text" href="loginUI">로그인</a>
  		</li>
 	</c:when>
 	<c:when test="${not empty sessionScope.login}">
 		<li class="nav-item">
-   			<a class="nav-text" href="LogoutServlet">로그아웃</a>
+   			<a class="nav-text" href="logout">로그아웃</a>
  		</li>
 	</c:when>
 	</c:choose>
   <li style="color:black"> . </li>
   <li class="nav-item">
-    <a class="nav-text" href="JoinUIServlet">회원가입</a>
+    <a class="nav-text" href="joinUI">회원가입</a>
   </li>
   <li style="color:black"> . </li>
   <li class="nav-item">
-    <a class="nav-text" href="CartListServlet">장바구니(${sessionScope.cartSumAmount})</a>
+    <a class="nav-text" href="cartList">장바구니(${sessionScope.cartSumAmount})</a>
   </li>
     <li style="color:black"> . </li>
   <li class="nav-item">
-    <a class="nav-text" href="MyPageServlet">마이페이지</a>
+    <a class="nav-text" href="myPage">마이페이지</a>
   </li>
   <li style="color:black"> . </li>
   <li class="nav-item">
-    <a class="nav-text" href="CustomerCenterServlet">고객센터</a>
+    <a class="nav-text" href="customerCenter">고객센터</a>
   </li>
 
 </ul>
