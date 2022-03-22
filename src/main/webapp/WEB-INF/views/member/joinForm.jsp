@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="text-center">
 	<div class="form-signin">
-		<form action="JoinServlet" method="post" onkeyup="return event.key != 'Enter';">
+		<form action="join" method="post" onkeyup="return event.key != 'Enter';">
 			<div class="form-floating">
 				<input type="text" name="userId" maxlength="10" onkeyup="validateUserId()" class="form-control" placeholder="아이디">
 				<label>아이디</label>

@@ -48,6 +48,17 @@ public class MemberController {
 		return "redirect:main";
 	}
 	
+	@GetMapping("/joinUI")
+	public String joinUI() {
+		return "joinForm";
+	}
+	
+	@PostMapping("/join")
+	public String join(MemberDTO memberDTO) throws Exception {
+		int num = service.join(memberDTO);
+		return "redirect:loginUI";
+	}
+	
 	@ExceptionHandler({Exception.class})
 	public String error() {
 		return "error/error";

@@ -107,12 +107,12 @@ function validateEmail() {
 	updateDisabled();
 }
 
-function updateDisabled() {
-	var disabled = true;
-	if (userIdResult && passWdResult && userNameResult && ssnResult && phoneResult && emailResult) {
-		if (document.querySelector("#sample4_jibunAddress").value != "") {
-			disabled = false;
-		}
-	}
-	document.querySelector("input[type=submit]").disabled = disabled;
-}
+//function updateDisabled() {
+//	var disabled = true;
+//	if (userIdResult && passWdResult && userNameResult && ssnResult && phoneResult && emailResult) {
+//		if (document.querySelector("#sample4_jibunAddress").value != "") {
+//			disabled = false;
+//		}
+//	}
+//	document.querySelector("input[type=submit]").disabled = disabled;
+//}
