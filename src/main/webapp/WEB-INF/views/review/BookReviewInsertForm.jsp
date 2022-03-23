@@ -20,7 +20,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<div class="form-siginin">
-					<form name="insertReviewForm" action="BookReviewAddServlet" method="post">
+					<form name="insertReviewForm" action="bookReviewAdd" method="post">
 						<input type="hidden" name="isbn" value="${book.isbn }">
 						<div class="form-floating">
 							작성자: 

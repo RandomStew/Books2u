@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.member.MemberDTO;
 import com.dto.order.OrderDTO;
+import com.service.cart.CartService;
 import com.service.member.MemberService;
 import com.service.order.OrderService;
 
@@ -29,6 +30,7 @@ public class MemberController {
 	@Autowired
 	OrderService orderService;
 	
+	
 	@GetMapping("/loginUI")
 	public String loginUI() throws Exception {
 		return "member/loginForm";
@@ -39,7 +41,7 @@ public class MemberController {
 		MemberDTO memberDTO = memberService.login(map);
 		if(memberDTO != null) {
 			session.setAttribute("login", memberDTO);
-			session.setAttribute("cartSumAmount", 0);
+			session.setAttribute("cartSumAmount", 1);
 			String prevPage = map.get("prevPage");
 			return "redirect:"+prevPage;
 		}
