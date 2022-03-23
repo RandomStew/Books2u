@@ -86,6 +86,11 @@ public class MemberController {
 		return "redirect:myPage";
 	}
 	
+	@GetMapping("/customerCenter")
+	public String customerCenter() {
+		return "member/mailForm";
+	}
+	
 	@ExceptionHandler({Exception.class})
 	public String error() {
 		return "error/error";
