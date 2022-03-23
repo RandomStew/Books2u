@@ -77,7 +77,7 @@
 		location.reload();
 		}
 	
-	
+	// 증가 버튼
 	function amountAsc(isbn) {
 		var amountTag = document.querySelector("#amount"+isbn);
 
@@ -85,6 +85,7 @@
 		updateAmount(isbn);
 	}
 	
+	// 감소 버튼
 	function amountDesc(isbn) {
 		var amountTag = document.querySelector("#amount"+isbn);
 		if(amountTag.value > 1) {
@@ -102,7 +103,7 @@
 		if(check.length == 0){
 			alert("주문할 상품이 없습니다.");
 		} else{
-			f.action = "OrderConfirmServlet";
+			f.action = "orderConfirm";
 			f.method = "get";
 			f.submit();
 		}

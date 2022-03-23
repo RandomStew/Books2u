@@ -53,7 +53,6 @@ public class CartController {
 	public int cartAmountUpdate(CartDTO cartDTO, HttpSession session) throws Exception {
 		MemberDTO login = (MemberDTO)session.getAttribute("login");
 		cartDTO.setUserId(login.getUserId());
-		System.out.println(cartDTO);
 		int num = service.updateBookAmount(cartDTO);
 		return num;
 	}
