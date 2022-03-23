@@ -10,7 +10,7 @@
 				<input type="button" value="주문 내역" class="w-100 btn btn-lg btn-outline-dark" onclick="displayOrderList()">
 			</div>
 		</div>
-		<form action="MyPageUpdateServlet" method="post">
+		<form action="myPageUpdate" method="post">
 			<br><br><br>
 			<div class="form-floating">
 				<input type="text" name="userId" readonly class="form-control" value="${login.userId}">

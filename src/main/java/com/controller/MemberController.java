@@ -79,6 +79,13 @@ public class MemberController {
 		return "myPage";
 	}
 	
+	@PostMapping("/myPageUpdate")
+	public String myPageUpdate(MemberDTO fixedDTO, HttpSession session) throws Exception {
+		int num = memberService.updateMyPage(fixedDTO);
+		session.setAttribute("login", fixedDTO);
+		return "redirect:myPage";
+	}
+	
 	@ExceptionHandler({Exception.class})
 	public String error() {
 		return "error/error";
