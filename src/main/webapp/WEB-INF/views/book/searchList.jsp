@@ -43,7 +43,7 @@
 		
 		var httpRequest = new XMLHttpRequest();
 		// post 방식 Ajax 통신
-		httpRequest.open("POST", "CartAddServlet", true);
+		httpRequest.open("POST", "cartAdd", true);
 		httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		httpRequest.send(data);
 		httpRequest.onreadystatechange = function() {
