@@ -2,69 +2,59 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script type="text/javascript" src="jquery-3.1.0.js"></script>
 
 <script type="text/javascript">
 	
-	function allCheck(){
-		var allCheck = document.querySelector("#allCheck");
-		var check = document.querySelectorAll(".check");
+	$(document).ready(function(){
 		
-		check.forEach(function(data, idx){
-			data.checked = allCheck.checked;
-		})
-		
-		
-	}
-	
-	function autoCheck(){
-		var allCheck = document.querySelector("#allCheck");
-		// 개별 체크박스 모두 선택시 모두선택 체크박스 선택
-		var total = $("input[name=check]").length;
-		var checked = $("input[name=check]:checked").length;
-			
-		if(total != checked) $("#allCheck").prop("checked", false);
-		else $("#allCheck").prop("checked", true);
-	}
-	
-	
-	// 장바구니 수정 ------------------------------------------------------------------------------------------
-	
-	// 선택 항목 삭제
-	function delCheckedCart(){
-		var f = document.querySelector("form");
-		
-		f.action = "CartDeleteServlet";
-		f.method = "get";
-		f.submit();
-	}
-	
-	// 장바구니 비우기
-	function delAllCart(){
-		var f = document.querySelector("form");
-		
-		var check = document.querySelectorAll(".check");
-		console.log(check);
-		if(check.length == 0){
-			alert("삭제할 상품이 없습니다.");
-			
-		} else{
-			if(confirm("정말 비우시겠습니까?")) {
-			check.forEach(function(data, idx){
-				data.checked = true;
-			})
-			
-			var f = document.querySelector("form");
-			f.action = "CartDeleteServlet";
-			f.method = "get";
-			f.submit(); 
+		// 전체 선택 체크박스 버튼
+		$("#allCheck").on("click", function() {
+			if($(this).is(":checked")) {
+				$(".check").attr("checked", true);
+			} else {
+				$(".check").attr("checked", false);
 			}
-		}	  
-	}
+		});
+		
+		
+		// 개별 체크박스 모두 선택시 모두선택 체크박스 선택
+		$(".check").on("click", function() {
+			var total = $("input[name=check]").length;
+			var checked = $("input[name=check]:checked").length;
+			if(total != checked) $("#allCheck").prop("checked", false);
+			else $("#allCheck").prop("checked", true);
+		});
+		
+		
+		// 장바구니 수정 -------------------------------------------------------------------------------------
+		
+		// 선택 항목 삭제 버튼
+		$("#delCheckedCart").on("click", function() {
+			if($(".check").length == 0) {
+				alert("삭제할 상품이 없습니다.");
+			} else {
+				$("form[name='cartForm']").attr({
+					 "action": "cartDel",
+					 "method": "get"
+				 }).submit();
+			}
+		});
+		
+		// 장바구니 모두 비우기 버튼
+		$("#delAllCart").on("click", function(){
+			if($('.check').length == 0) {
+				alert("삭제 할 상품이 없습니다.");
+			} else {
+				location.href = "cartDelAll";
+			}
+		});
+
+	});
+	
 	
 	//개별삭제
 	function deleteItem(isbn){
-		location.href=`CartDeleteServlet?isbn=\${isbn}`;
+		location.href=`cartDel?isbn=\${isbn}`;
 	}
 	
 	
@@ -124,7 +114,7 @@
 
 	// 책을 클릭하면 책 상세정보로 이동
 	function goBookInfo(isbn) {
-		location.href="BookInfoServlet?isbn=" + isbn;
+		location.href="bookInfo?isbn=" + isbn;
 	}
 	
 </script>
@@ -149,7 +139,7 @@
 	<!-- 테이블 HEADER -->
 	<tr>
 		<td  align="center">
-		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" onclick="allCheck()" checked="checked">
+		<input type="checkbox" name="allCheck" id="allCheck" value ="allCheck" checked="checked">
 		</td>
 		<td  align="center"><strong>ISBN</strong></td>
 		<td  align="center"><strong>책</strong></td>
@@ -185,19 +175,20 @@
 	</c:when>
 	<c:otherwise>
 	<!-- 장바구니 요소 목록 -->
+
 	<form name="cartForm">
 		<c:set var="sumTotal" value="${0}"/>
 		<c:forEach var="book" items="${cartList}" varStatus="status">
-			<input type="hidden" name="hiddenIsbn${book.isbn}" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
-			<input type="hidden" name="hiddenTitle${book.isbn}" value="${book.title}" id="hiddenTitle${book.isbn}">
-			<input type="hidden" name="hiddenAuthor${book.isbn}" value="${book.author}" id="hiddenAuthor${book.isbn}">
-			<input type="hidden" name="hiddenPublisher${book.isbn}" value="${book.publisher}" id="hiddenPublisher${book.isbn}">
-			<input type="hidden" name="hiddenPrice${book.isbn}" value="${book.price}" id="hiddenPrice${book.isbn}">
+			<input type="hidden" name="hiddenisbn" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
+			<input type="hidden" name="title" value="${book.title}" id="hiddenTitle${book.isbn}">
+			<input type="hidden" name="author" value="${book.author}" id="hiddenAuthor${book.isbn}">
+			<input type="hidden" name="publisher" value="${book.publisher}" id="hiddenPublisher${book.isbn}">
+			<input type="hidden" name="price" value="${book.price}" id="hiddenPrice${book.isbn}">
 		
 			<tr>
 				<td  width="80" align="center">
-				<input type="checkbox" name="check" id ="check${book.isbn}" class="check"
-				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked" onclick="autoCheck()">
+				<input type="checkbox" name="isbn" id ="check${book.isbn}" class="check"
+				data-isbn="${book.isbn}" value="${book.isbn}" checked="checked">
 
 				</td>
 			
@@ -287,14 +278,14 @@
 		
 		<tr>
 			<td align="center" colspan="3">
-			<button type="button" class="btn btn-outline-secondary btn-sm" onclick="delCheckedCart()" style="cursor:pointer"> 선택 항목 삭제 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
-			<button type="button" class="btn btn-outline-secondary btn-sm" onclick="delAllCart()" class="delAllCart" style="cursor:pointer"> 장바구니 비우기 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<button type="button" id="delCheckedCart" class="btn btn-outline-secondary btn-sm" style="cursor:pointer"> 선택 항목 삭제 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<button type="button" id="delAllCart" class="btn btn-outline-secondary btn-sm" style="cursor:pointer"> 장바구니 비우기 </button>&nbsp;&nbsp;&nbsp;&nbsp; 
 			</td>
 		
 			<td align="center" colspan="4"></td>
 		
 			<td align="center" colspan="3">
-			<button type="button" class="btn btn-outline-secondary btn-md" onclick="location.href='MainServlet'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-outline-secondary btn-md" onclick="location.href='main'" style="cursor:pointer"> 계속 쇼핑하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-dark btn-lg" onclick="orderList()" style="cursor:pointer"> 주문하기 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>
