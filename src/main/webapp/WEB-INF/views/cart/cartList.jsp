@@ -187,7 +187,7 @@
 	<!-- 장바구니 요소 목록 -->
 	<form name="cartForm">
 		<c:set var="sumTotal" value="${0}"/>
-		<c:forEach var="book" items="${sessionScope.cartList}" varStatus="status">
+		<c:forEach var="book" items="${cartList}" varStatus="status">
 			<input type="hidden" name="hiddenIsbn${book.isbn}" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
 			<input type="hidden" name="hiddenTitle${book.isbn}" value="${book.title}" id="hiddenTitle${book.isbn}">
 			<input type="hidden" name="hiddenAuthor${book.isbn}" value="${book.author}" id="hiddenAuthor${book.isbn}">

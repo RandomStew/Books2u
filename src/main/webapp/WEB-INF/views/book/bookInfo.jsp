@@ -86,7 +86,7 @@
 		    <form name="bookForm">
 		    <div class="mb-2">
 			    <input
-						class="input_default m-2" type="text" name="cart_amount"
+						class="input_default m-2" type="text" name="amount"
 						id="amount" style="text-align: right" maxlength="3"
 						size="2" value="1"></input>
 						
@@ -97,12 +97,12 @@
 
 			</div>
 			<div>
-			    <input type="hidden" name="hiddenIsbn" id="hiddenIsbn" value="${book.isbn}">
-			    <input type="hidden" name="hiddenTitle" id="hiddenTitle" value="${book.title}">
-			    <input type="hidden" name="hiddenAuthor" id="hiddenAuthor" value="${book.author}">
-			    <input type="hidden" name="hiddenPrice" id="hiddenPrice" value="${book.price}">
-			    <input type="hidden" name="hiddenPublisher" id="hiddenPublisher" value="${book.publisher}">
-			    <input type="hidden" name="hiddenUserId" id="hiddenUserId" value="${sessionScope.login.userId}">
+			    <input type="hidden" name="isbn" id="hiddenIsbn" value="${book.isbn}">
+			    <input type="hidden" name="title" id="hiddenTitle" value="${book.title}">
+			    <input type="hidden" name="author" id="hiddenAuthor" value="${book.author}">
+			    <input type="hidden" name="price" id="hiddenPrice" value="${book.price}">
+			    <input type="hidden" name="publisher" id="hiddenPublisher" value="${book.publisher}">
+			    <input type="hidden" name="userId" id="hiddenUserId" value="${sessionScope.login.userId}">
 			    <input type="button" onclick="reqCheck('cart')" class="btn btn-outline-dark btn-lg" value="장바구니에 담기">
 			    <button class="btn btn-dark btn-lg">구매하기</button>
 		    </div>	
@@ -111,10 +111,3 @@
 	</div>
 </div>
 
-<div class="row">
-
-    
-    
-  </div>
-  
-</div>
