@@ -33,15 +33,14 @@ crossorigin="anonymous"></script>
 	        console.log(queryString);
 	        
 	        $.ajax({
-	            type : 'get',
-	            url : '../BookReviewUpdateServlet',
+	            type : 'post',
+	            url : 'bookReviewUpdate',
 	            data : queryString,
 	            dataType : 'text',
 	            error: function(xhr, status, error){
 	                alert(error);
 	            },
 	            success : function(text){
-	                console.log(text);
 	                opener.location.reload();
 	                window.close();
 	            }

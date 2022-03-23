@@ -27,7 +27,7 @@
 		$("button[name='edit']").on("click", function() {
 			var reviewId = $(this).attr('data-reviewId');
 			console.log(reviewId);
-			var child = window.open("review/BookReviewUpdateForm.jsp?reviewId="+reviewId, "_blank", "height=350, width=250, top=250, left=650");
+			var child = window.open("bookReviewUpdateUI?reviewId="+reviewId, "_blank", "height=350, width=250, top=250, left=650");
 			
 		}); 
 		

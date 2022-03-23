@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.book.BookDTO;
 import com.dto.review.ReviewDTO;
@@ -19,6 +20,7 @@ public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 	
+	
 	@GetMapping("/bookReview")
 	public String bookReview(BookDTO book,
 							 @RequestParam(value="curPage", required=false, defaultValue="1") String curPage,
@@ -29,10 +31,26 @@ public class ReviewController {
 		return "bookInfo";
 	}
 	
+	
 	@PostMapping("/bookReviewAdd")
 	public String bookReviewAdd(ReviewDTO reviewDTO) throws Exception {
 		int num = reviewService.addReview(reviewDTO);
 		return "redirect:bookInfo?isbn="+reviewDTO.getIsbn();
+	}
+	
+	
+	@GetMapping("/bookReviewUpdateUI")
+	public String bookReviewUpdateUI(@RequestParam("reviewId") String reviewId, Model m) {
+		m.addAttribute("reviewId", reviewId);
+		return "review/BookReviewUpdateForm";
+	}
+	
+	
+	@PostMapping("/bookReviewUpdate")
+	@ResponseBody
+	public String bookReviewUpdate(ReviewDTO reviewDTO) throws Exception {
+		int num = reviewService.updateReview(reviewDTO);
+		return "성공";
 	}
 	
 	
