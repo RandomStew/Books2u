@@ -2,19 +2,48 @@
     pageEncoding="UTF-8"%>
 <script>
 
-	function amountAsc() {
-		var amountTag = document.querySelector("#amount");
-		amountTag.value -= -1;
-	}
-	
-	function amountDesc() {
-		var amountTag = document.querySelector("#amount");
-		if(amountTag.value > 1) {
-			amountTag.value -= 1;
-		}
-	}
-	
-	
+	$(document).ready(function(){
+		
+		// +버튼 이벤트 처리
+		$("#plus").on("click", function() {
+			$("#amount").val($("#amount").val()-(-1));
+		});
+		
+		// -버튼 이벤트 처리
+		$("#minus").on("click", function() {
+			if($("#amount").val() > 1) {
+				$("#amount").val($("#amount").val()-1);
+			}
+		});
+		
+		// 장바구니 넣기 버튼 이벤트 처리
+		$("#goCartBtn").on("click", function() {
+			// 폼 데이터 직렬화
+			var queryString = $("form[name=bookForm]").serialize() ;
+			// Ajax
+			$.ajax({
+	            type : 'post',
+	            url : 'cartAdd',
+	            data : queryString,
+	            dataType : 'json',
+	            error: function(xhr, status, error){
+	                alert(error);
+	            },
+	            success : function(json){
+					if (json == 1) {
+						//alert(`\${title} \${amountTag.value}권을 장바구니에 담았습니다.`);
+						alert("장바구니 담기 성공!!");
+					} else {
+						alert('담기 실패... 다시 시도해 주세요');
+					}
+	            }
+	        });
+		});
+		
+		
+	});
+
+
      function reqCheck(target){
     	 
     	 if(target=='cart'){
@@ -90,10 +119,8 @@
 						id="amount" style="text-align: right" maxlength="3"
 						size="2" value="1"></input>
 						
-				<input type="button" value="- "
-							onclick="amountDesc()" style="cursor:pointer"/>	
-			    <input type="button" value="+"
-							onclick="amountAsc()" style="cursor:pointer"/>
+				<input type="button" value="- "id="minus" style="cursor:pointer"/>	
+			    <input type="button" value="+" id="plus" style="cursor:pointer"/>
 
 			</div>
 			<div>
@@ -103,8 +130,8 @@
 			    <input type="hidden" name="price" id="hiddenPrice" value="${book.price}">
 			    <input type="hidden" name="publisher" id="hiddenPublisher" value="${book.publisher}">
 			    <input type="hidden" name="userId" id="hiddenUserId" value="${sessionScope.login.userId}">
-			    <input type="button" onclick="reqCheck('cart')" class="btn btn-outline-dark btn-lg" value="장바구니에 담기">
-			    <button class="btn btn-dark btn-lg">구매하기</button>
+			    <input type="button" id="goCartBtn" class="btn btn-outline-dark btn-lg" value="장바구니에 담기">
+			    <button id="purchasebtn" class="btn btn-dark btn-lg">구매하기</button>
 		    </div>	
     		</form>
    		</div>
