@@ -59,13 +59,13 @@
 	
 	
 	// 수량 수정-------------------------------------------------------------------------------------------------------------
-	function updateAmount(isbn, AscOrDesc){
+	function updateAmount(isbn){
 		var amountTag = document.querySelector("#amount"+isbn);
-		var data = `isbn=\${isbn}&amount=\${amountTag.value}&AscOrDesc=\${AscOrDesc}`;
+		var data = `isbn=\${isbn}&amount=\${amountTag.value}`;
 		
 		var httpRequest = new XMLHttpRequest();
 		// post 방식 Ajax 통신
-		httpRequest.open("POST", "CartUpdateAmountServlet", true);
+		httpRequest.open("POST", "cartAmountUpdate", true);
 		httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		httpRequest.send(data);
 		httpRequest.onreadystatechange = function() {
@@ -81,17 +81,15 @@
 	function amountAsc(isbn) {
 		var amountTag = document.querySelector("#amount"+isbn);
 
-		var AscOrDesc = 1;
 		amountTag.value -= -1;
-		updateAmount(isbn, AscOrDesc);
+		updateAmount(isbn);
 	}
 	
 	function amountDesc(isbn) {
 		var amountTag = document.querySelector("#amount"+isbn);
-		var AscOrDesc = -1;
 		if(amountTag.value > 1) {
 			amountTag.value -= 1;
-			updateAmount(isbn, AscOrDesc);
+			updateAmount(isbn);
 			}
 	}
 	
