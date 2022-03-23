@@ -12,6 +12,9 @@ public interface CartService {
 	// 카트에 담기
 	public int addToCart(CartDTO dto) throws Exception;
 	
+	// 카트 총 수량 확인하기
+	public int countAllInCart(String userId) throws Exception;
+
 	// 카트 수량 업데이트
 	public int updateBookAmount(CartDTO dto) throws Exception;
 	

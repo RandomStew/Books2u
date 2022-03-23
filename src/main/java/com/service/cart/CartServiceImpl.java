@@ -26,6 +26,11 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
+	public int countAllInCart(String userId) throws Exception {
+		return dao.countAllInCart(userId);
+	}
+
+	@Override
 	public int updateBookAmount(CartDTO dto) throws Exception {
 		return dao.updateBookAmount(dto);
 	}
@@ -40,4 +45,5 @@ public class CartServiceImpl implements CartService {
 		return dao.delToCartAll(userId);
 	}
 
+	
 }

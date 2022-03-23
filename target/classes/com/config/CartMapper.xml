@@ -14,7 +14,14 @@
 		       price as "price",
 		       amount as "amount"
 		from cart
-		where userid = #{userid}
+		where userid = #{userId}
+	</select>
+	
+	<!-- 카트 안에 책 총 수량 -->
+	<select id="countAllInCart" parameterType="string" resultType="int">
+		select sum(amount)
+		from cart
+		where userid = #{userId}
 	</select>
 	
 	<!-- 카트에 담기 -->

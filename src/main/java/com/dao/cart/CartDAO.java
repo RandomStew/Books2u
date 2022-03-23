@@ -23,6 +23,10 @@ public class CartDAO {
 		return session.insert("com.config.CartMapper.addToCart", dto);
 	}
 	
+	public int countAllInCart(String userId) throws Exception{
+		return session.selectOne("com.config.CartMapper.countAllInCart", userId);
+	}
+	
 	public int updateBookAmount(CartDTO dto) throws Exception{
 		return session.update("com.config.CartMapper.updateBookAmount", dto);
 	}
