@@ -28,6 +28,10 @@
 	    <mvc:mapping path="/logout/**"/>
 	    <ref bean="loginHandlerInterceptor"/>
 	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/myPage/**"/>
+	    <ref bean="loginHandlerInterceptor"/>
+	  </mvc:interceptor>
 	</mvc:interceptors>
 	
 	<!-- 컴포넌트 스캔 -->		

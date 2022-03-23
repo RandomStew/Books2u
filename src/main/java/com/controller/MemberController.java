@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,14 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.member.MemberDTO;
+import com.dto.order.OrderDTO;
 import com.service.member.MemberService;
+import com.service.order.OrderService;
 
 @Controller
 public class MemberController {
 	private static Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	MemberService service;
+	MemberService memberService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	@GetMapping("/loginUI")
 	public String loginUI() throws Exception {
@@ -30,12 +36,11 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String login(@RequestParam HashMap<String, String> map, HttpSession session) throws Exception {
-		MemberDTO memberDTO = service.login(map);
+		MemberDTO memberDTO = memberService.login(map);
 		if(memberDTO != null) {
 			session.setAttribute("login", memberDTO);
 			session.setAttribute("cartSumAmount", 0);
 			String prevPage = map.get("prevPage");
-			System.out.println(prevPage);
 			return "redirect:"+prevPage;
 		}
 		return "member/loginFail";
@@ -55,8 +60,21 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberDTO memberDTO) throws Exception {
-		int num = service.join(memberDTO);
+		int num = memberService.join(memberDTO);
 		return "redirect:loginUI";
+	}
+	
+	/*
+	 * 조만간 session 없애야함
+	 */
+	@GetMapping("/myPage")
+	public String myPage(HttpSession session) throws Exception {
+		MemberDTO login = (MemberDTO) session.getAttribute("login");
+		String userId = login.getUserId();
+		List<OrderDTO> orderList = orderService.orderList(userId);
+		session.setAttribute("login", login);
+		session.setAttribute("orderList", orderList);
+		return "myPage";
 	}
 	
 	@ExceptionHandler({Exception.class})
