@@ -4,10 +4,10 @@
 	<div class="form-signin">
 		<h3>1:1 문의</h3>
 		<p>아래 양식에 맞게 문의사항을 입력하여 보내주십시오.</p>
-		<form action="MailServlet" method="post">
+		<form action="sendMail" method="post">
 			<div class="form-floating">
-				<input type="text" name="userId" readonly class="form-control" value="${login.userId}">
-				<label>아이디</label>
+				<input type="text" name="userName" readonly class="form-control" value="${login.userName}">
+				<label>이름</label>
 			</div>
 			<div class="row">
 				<div class="form-floating col">
