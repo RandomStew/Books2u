@@ -9,6 +9,9 @@ public interface CartService {
 	// 카트 조회
 	public List<CartDTO> showCartList(String userId) throws Exception;
 	
+	// 카트 조회  by isbn
+	public CartDTO showCartListByIsbn(Map<String, String> map) throws Exception;
+	
 	// 카트에 담기
 	public int addToCart(CartDTO dto) throws Exception;
 	
