@@ -15,10 +15,19 @@
 </style>
 <script type="text/javascript" src="js/member/findForm.js"></script>
 </head>
+
+<!-- 
+form input key
+------------------
+userName
+ssn1
+ssn2
+------------------
+ -->
 <body>
 	<div class="text-center">
 		<div class="form-signin">
-			<form action="FindServlet" method="get">
+			<form action="findIdPw" method="post">
 				<div class="form-floating">
 					<input type="text" name="userName" maxlength="5" onkeyup="validateUserName()" class="form-control" placeholder="이름">
 					<label>이름</label>

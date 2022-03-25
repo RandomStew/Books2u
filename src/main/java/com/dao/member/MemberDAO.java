@@ -1,6 +1,7 @@
 package com.dao.member;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ public class MemberDAO {
 		return session.selectOne("com.config.MemberMapper.checkIdDuplicate", userId);
 	}
 
-	public MemberDTO login(HashMap<String, String> hashMap) throws Exception {
+	public MemberDTO login(Map<String, String> hashMap) throws Exception {
 		return session.selectOne("com.config.MemberMapper.login", hashMap);
 	}
 
-	public MemberDTO find(HashMap<String, String> hashMap) throws Exception {
+	public MemberDTO find(Map<String, String> hashMap) throws Exception {
 		return session.selectOne("com.config.MemberMapper.find", hashMap);
 	}
 

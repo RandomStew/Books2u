@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,7 @@ public class MemberController {
 		return "member/loginForm";
 	}
 	
+	// 로그인
 	@PostMapping("/login")
 	public String login(@RequestParam HashMap<String, String> map, HttpSession session) throws Exception {
 		MemberDTO memberDTO = memberService.login(map);
@@ -53,7 +55,7 @@ public class MemberController {
 		return "member/loginFail";
 	}
 	
-	
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -65,6 +67,7 @@ public class MemberController {
 		return "joinForm";
 	}
 	
+	// 회원가입
 	@PostMapping("/join")
 	public String join(MemberDTO memberDTO) throws Exception {
 		int num = memberService.join(memberDTO);
@@ -84,6 +87,7 @@ public class MemberController {
 		return "myPage";
 	}
 	
+	// 마이페이지 개인정보 수정
 	@PostMapping("/myPageUpdate")
 	public String myPageUpdate(MemberDTO fixedDTO, HttpSession session) throws Exception {
 		int num = memberService.updateMyPage(fixedDTO);
@@ -140,6 +144,49 @@ public class MemberController {
 	@GetMapping("/mail")
 	public String mail() {
 		return "/member/mail";
+	}
+	
+	@GetMapping("findIdPwUI")
+	public String FindIdPwUI() {
+		return "member/findForm";
+	}
+	
+	// 아이디 패스워드 찾기(with mail)
+	@PostMapping("findIdPw")
+	public String FindIdPw(@RequestParam Map<String, String> map) throws Exception {
+		MemberDTO member = memberService.find(map);
+		if (member == null)
+			return "redirect:findFail";
+		String userId = member.getUserId();
+		String passWd = member.getPassWd();
+		String email1 = member.getEmail1(); // 받는 메일(계정)
+		String email2 = member.getEmail2(); // 받는 메일(도메인)
+		String subject ="분실하신 아이디와 비밀번호입니다.";
+		String content = "아이디:"+userId+"\n"+"비밀번호: " + passWd + "\n";
+		String from = "RandomStew.Books2u@gmail.com"; // 보내는 메일
+		String fromName = "Books2u 고객센터"; // 보내는 이름
+		String to = email1 + "@" +email2;
+		subject = "reply: " + subject;
+		
+		MimeMessage mail = mailSender.createMimeMessage();
+        MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+        mailHelper.setFrom(from);
+        mailHelper.setTo(to);
+        mailHelper.setSubject(subject);
+        mailHelper.setText(content, true);
+        
+        mailSender.send(mail);
+        return "redirect:findSuccess";
+	}
+	
+	@GetMapping("/findSuccess")
+	public String findSuccess() {
+		return "member/findSuccess";
+	}
+	
+	@GetMapping("/findFail")
+	public String findFail() {
+		return "member/findFail";
 	}
 	@ExceptionHandler({Exception.class})
 	public String error() {

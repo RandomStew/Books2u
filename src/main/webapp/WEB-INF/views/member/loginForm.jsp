@@ -12,7 +12,7 @@
 				<label>비밀번호</label>
 			</div>
 			<input type="submit" value="로그인" class="w-100 btn btn-lg btn-outline-dark">
-			<input type="button" value="아이디 및 비밀번호 찾기" onclick="window.open('FindUIServlet', '아이디 및 비밀번호 찾기', 'width=720, height=300, location=no, status=no, scrollbars=yes');" class="w-100 btn btn-lg btn-outline-dark">
+			<input type="button" value="아이디 및 비밀번호 찾기" onclick="window.open('findIdPwUI', '아이디 및 비밀번호 찾기', 'width=720, height=300, location=no, status=no, scrollbars=yes');" class="w-100 btn btn-lg btn-outline-dark">
 			<input type="hidden" name="prevPage" value="${header.referer}">
 		</form>
 	</div>
