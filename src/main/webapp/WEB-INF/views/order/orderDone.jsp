@@ -191,8 +191,8 @@
 	<tr align="center">
 		<td>
 			<div class="d-grid gap-2 col-6 mx-auto">
-			  <button onclick="location.href='MainServlet'" class="btn btn-outline-secondary" type="button">메인으로 돌아가기</button>
-			  <button onclick="location.href='MyPageServlet'" class="btn btn-dark" type="button">주문조회</button>
+			  <button onclick="location.href='main'" class="btn btn-outline-secondary" type="button">메인으로 돌아가기</button>
+			  <button onclick="location.href='myPage'" class="btn btn-dark" type="button">주문조회</button>
 			</div>
 		</td>
 	</tr>

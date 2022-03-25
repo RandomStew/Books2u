@@ -71,8 +71,31 @@
 	 
 
 </script>
+<!-- 
+form[name='orderForm']에서 넘기는 input key 값
+orderList
+------ foreach -------
+isbn
+title
+author
+publisher
+price
+amount
+------ foreach -------
 
-<form name="orderForm" action="OrderDoneServlet">
+수령인정보
+recipient
+recipientPost
+recipientAddr1
+recipientAddr2
+recipientAddr3
+recipientPhone1
+recipientPhone2
+recipientPhone3
+payment
+ -->
+ 
+<form name="orderForm" action="orderDone" method="post">
 	<table width="80%" cellspacing="0" cellpadding="0" align="center">
 
 		<tr>

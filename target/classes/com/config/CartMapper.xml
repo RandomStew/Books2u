@@ -17,6 +17,19 @@
 		where userid = #{userId}
 	</select>
 	
+	<select id="showCartListByIsbn" parameterType="hashmap" resultType="CartDTO">
+		select userid as "userId",
+		       isbn as "isbn",
+		       title as "title",
+		       author as "author",
+		       publisher as "publisher",
+		       price as "price",
+		       amount as "amount"
+		from cart
+		where userid = #{userId} and
+			  isbn = #{isbn}
+	</select>
+	
 	<!-- 카트 안에 책 총 수량 -->
 	<select id="countAllInCart" parameterType="string" resultType="int">
 		select sum(amount)

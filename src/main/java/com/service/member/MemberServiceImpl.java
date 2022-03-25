@@ -1,8 +1,7 @@
 package com.service.member;
 
-import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +26,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO login(HashMap<String, String> hashMap) throws Exception {
+	public MemberDTO login(Map<String, String> hashMap) throws Exception {
 		return dao.login(hashMap);
 	}
 
 	@Override
-	public MemberDTO find(HashMap<String, String> hashMap) throws Exception {
+	public MemberDTO find(Map<String, String> hashMap) throws Exception {
 		return dao.find(hashMap);
 	}
 
