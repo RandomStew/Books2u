@@ -32,7 +32,33 @@
 	    <mvc:mapping path="/myPage/**"/>
 	    <ref bean="loginHandlerInterceptor"/>
 	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/login/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/cartList/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/cartAdd/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/cartAmountUpdate/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/cartDelAll/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/orderDone/**"/>
+	    <ref bean="CountHandlerInterceptor"/>
+	  </mvc:interceptor>
+	<!--  totalCount 갱신 인터셉터 -->
 	</mvc:interceptors>
+	
 	
   <!-- Gmail -->
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

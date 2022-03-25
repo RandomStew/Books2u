@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 카트 안에 책 총 수량 -->
-	<select id="countAllInCart" parameterType="string" resultType="int">
+	<select id="countAllInCart" parameterType="string" resultType="_int">
 		select sum(amount)
 		from cart
 		where userid = #{userId}

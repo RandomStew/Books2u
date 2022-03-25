@@ -10,19 +10,23 @@
 		// 전체 선택 체크박스 버튼
 		$("#allCheck").on("click", function() {
 			if($(this).is(":checked")) {
-				$(".check").attr("checked", true);
+				$(".check").each(function() {
+					$(this).attr("checked", true);
+				});
 			} else {
-				$(".check").attr("checked", false);
+				$(".check").each(function() {
+					$(this).attr("checked", false);
+				});
 			}
 		});
 		
 		
 		// 개별 체크박스 모두 선택시 모두선택 체크박스 선택
 		$(".check").on("click", function() {
-			var total = $("input[name=check]").length;
-			var checked = $("input[name=check]:checked").length;
-			if(total != checked) $("#allCheck").prop("checked", false);
-			else $("#allCheck").prop("checked", true);
+			var total = $(".check").length;
+			var checked = $(".check:checked").length;
+			if(total != checked) $("#allCheck").attr("checked", false);
+			else $("#allCheck").attr("checked", true);
 		});
 		
 		

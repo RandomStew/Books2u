@@ -20,7 +20,7 @@
 		$("#goCartBtn").on("click", function() {
 			// 폼 데이터 직렬화
 			var title = $("#hiddenTitle");
-			var amount = $("amount")
+			var amount = $("#amount")
 			var queryString = $("form[name=bookForm]").serialize() ;
 			// Ajax
 			$.ajax({
@@ -39,6 +39,7 @@
 					} else {
 						alert('담기 실패... 다시 시도해 주세요');
 					}
+					location.reload();
 	            }
 	        });
 		});

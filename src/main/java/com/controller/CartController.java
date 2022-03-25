@@ -42,8 +42,20 @@ public class CartController {
 	// 장바구니에 추가하기 (Ajax)
 	@PostMapping("/cartAdd")
 	@ResponseBody
-	public int cartAdd(CartDTO cartDTO) throws Exception {
-		int num = service.addToCart(cartDTO);
+	public int cartAdd(CartDTO cartDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
+		Map<String, String> map = new HashMap<>();
+		map.put("userId", memberDTO.getUserId());
+		map.put("isbn", cartDTO.getIsbn());
+		CartDTO dto = service.showCartListByIsbn(map);
+		int num = 0;
+		if ( dto == null) {
+			num = service.addToCart(cartDTO);
+		} else {
+			cartDTO.setAmount(dto.getAmount() + cartDTO.getAmount());
+			num = service.updateBookAmount(cartDTO);
+		}
+		
 		return num;
 	}
 	

@@ -60,13 +60,6 @@ display:block;
 
 
 <script>
-	function goCartList() {
-		location.href="CartListServlet";
-	}
-	
-	function goBookInfo(isbn) {
-		location.href="BookInfoServlet?isbn="+isbn;
-	}
 </script>
 <ul class="nav justify-content-center">
   <li class="nav-item">

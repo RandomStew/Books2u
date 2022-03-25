@@ -29,6 +29,7 @@ public class CartDAO {
 	
 	public int countAllInCart(String userId) throws Exception{
 		return session.selectOne("com.config.CartMapper.countAllInCart", userId);
+		
 	}
 	
 	public int updateBookAmount(CartDTO dto) throws Exception{
