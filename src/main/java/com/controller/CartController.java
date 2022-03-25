@@ -44,7 +44,18 @@ public class CartController {
 	@ResponseBody
 	public int cartAdd(CartDTO cartDTO, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
-		int num = service.addToCart(cartDTO);
+		Map<String, String> map = new HashMap<>();
+		map.put("userId", memberDTO.getUserId());
+		map.put("isbn", cartDTO.getIsbn());
+		CartDTO dto = service.showCartListByIsbn(map);
+		int num = 0;
+		if ( dto == null) {
+			num = service.addToCart(cartDTO);
+		} else {
+			cartDTO.setAmount(dto.getAmount() + cartDTO.getAmount());
+			service.updateBookAmount(cartDTO);
+		}
+		
 		return num;
 	}
 	
