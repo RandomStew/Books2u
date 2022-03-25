@@ -42,7 +42,8 @@ public class CartController {
 	// 장바구니에 추가하기 (Ajax)
 	@PostMapping("/cartAdd")
 	@ResponseBody
-	public int cartAdd(CartDTO cartDTO) throws Exception {
+	public int cartAdd(CartDTO cartDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
 		int num = service.addToCart(cartDTO);
 		return num;
 	}

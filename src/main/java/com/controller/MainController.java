@@ -18,6 +18,11 @@ public class MainController {
 	@Autowired
 	CurationService service;
 	
+	@GetMapping("/")
+	public String start() {
+		return "redirect:main";
+	}
+	
 	@GetMapping("/main")
 	public String main(Model m) throws Exception {
 		List<CurationDTO> novelList = service.selectList("소설");

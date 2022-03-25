@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.member.MemberDTO;
 import com.dto.order.OrderDTO;
+import com.service.cart.CartService;
 import com.service.member.MemberService;
 import com.service.order.OrderService;
 
@@ -35,6 +36,9 @@ public class MemberController {
 	OrderService orderService;
 	
 	@Autowired
+	CartService cartService;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 	
 	@GetMapping("/loginUI")
@@ -46,12 +50,13 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@RequestParam HashMap<String, String> map, HttpSession session) throws Exception {
 		MemberDTO memberDTO = memberService.login(map);
+//		session.setAttribute("cartSumAmount", cartService.showCartList(memberDTO.getUserId()).size());
 		if(memberDTO != null) {
 			session.setAttribute("login", memberDTO);
-			session.setAttribute("cartSumAmount", 1);
 			String prevPage = map.get("prevPage");
 			return "redirect:"+prevPage;
 		}
+		
 		return "member/loginFail";
 	}
 	
