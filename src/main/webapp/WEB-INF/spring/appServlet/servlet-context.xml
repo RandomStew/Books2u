@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!--  mvc namespace 사용시 2가지 태그는 필수 -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	
+	<!-- Resource(js, css, images) 맵핑 -->
+	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/"/>
+	<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/"/>
+	<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/"/>
+	
+	<!--  jsp 처리 전담 viewResolver -->
+	<bean id="" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- Interceptor 맵핑 -->
+	<mvc:interceptors>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/logout/**"/>
+	    <ref bean="loginHandlerInterceptor"/>
+	  </mvc:interceptor>
+	  <mvc:interceptor>
+	    <mvc:mapping path="/myPage/**"/>
+	    <ref bean="loginHandlerInterceptor"/>
+	  </mvc:interceptor>
+	</mvc:interceptors>
+	
+  <!-- Gmail -->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="books2u1217@gmail.com" />
+    <property name="password" value="dlagusrbdlwodmsrnjsehddnr" />
+    <property name="javaMailProperties">
+    <props>
+   	  <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+      <prop key="mail.smtp.auth">true</prop>
+      <prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+  </bean>
+	
+	<!-- 컴포넌트 스캔 -->		
+	<context:component-scan base-package="com.*"/>	
+</beans>

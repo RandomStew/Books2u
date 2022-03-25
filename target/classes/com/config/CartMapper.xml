@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.CartMapper">
+	
+	<!-- 카트 조회 -->
+	<select id="showCartList" parameterType="string" resultType="CartDTO">
+		select userid as "userId",
+		       isbn as "isbn",
+		       title as "title",
+		       author as "author",
+		       publisher as "publisher",
+		       price as "price",
+		       amount as "amount"
+		from cart
+		where userid = #{userId}
+	</select>
+	
+	<!-- 카트 안에 책 총 수량 -->
+	<select id="countAllInCart" parameterType="string" resultType="int">
+		select sum(amount)
+		from cart
+		where userid = #{userId}
+	</select>
+	
+	<!-- 카트에 담기 -->
+	<insert id="addToCart" parameterType="CartDTO">
+		insert into cart
+		(userid, isbn, title, author, publisher, price, amount)
+		values
+		(#{userId}, #{isbn}, #{title}, #{author}, #{publisher}, #{price}, #{amount})
+	</insert>
+	
+	<!-- 카트 수량 업데이트 -->
+	<update id="updateBookAmount" parameterType="CartDTO">
+		update cart
+		set amount = #{amount}
+		where userid = #{userId} and isbn = #{isbn}
+	</update>
+
+	<!-- 카트에서 제거하기 -->
+	<delete id="delToCart" parameterType="hashmap">
+		delete
+		from cart
+		where isbn = #{isbn} and userid = #{userId}
+	</delete>
+	
+	<!--  카트에서 모두 제거하기 -->
+	<delete id="delToCartAll" parameterType="string">
+		delete
+		from cart
+		where userid = #{userId}
+	</delete>
+</mapper>
+
+
+
+
+
