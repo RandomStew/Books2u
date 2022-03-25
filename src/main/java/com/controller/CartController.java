@@ -53,7 +53,7 @@ public class CartController {
 			num = service.addToCart(cartDTO);
 		} else {
 			cartDTO.setAmount(dto.getAmount() + cartDTO.getAmount());
-			service.updateBookAmount(cartDTO);
+			num = service.updateBookAmount(cartDTO);
 		}
 		
 		return num;
