@@ -93,6 +93,9 @@ recipientPhone1
 recipientPhone2
 recipientPhone3
 payment
+
+
+isDirect
  -->
  
 <form name="orderForm" action="orderDone" method="post">
@@ -138,11 +141,11 @@ payment
 					
 					<c:forEach var="book" items="${orderList}">
 					<input type="hidden" name="isbn" value="${book.isbn}" id="hiddenIsbn${book.isbn}">
-					<input type="hidden" name="hiddenTitle${book.isbn}" value="${book.title}" id="hiddenTitle${book.isbn}">
-					<input type="hidden" name="hiddenAuthor${book.isbn}" value="${book.author}" id="hiddenAuthor${book.isbn}">
-					<input type="hidden" name="hiddenPublisher${book.isbn}" value="${book.publisher}" id="hiddenPublisher${book.isbn}">
-					<input type="hidden" name="hiddenPrice${book.isbn}" value="${book.price}" id="hiddenPrice${book.isbn}">
-					<input type="hidden" name="hiddenAmount${book.isbn}" value="${book.amount}" id="hiddenAmount${book.isbn}">
+					<input type="hidden" name="title" value="${book.title}" id="hiddenTitle${book.isbn}">
+					<input type="hidden" name="author" value="${book.author}" id="hiddenAuthor${book.isbn}">
+					<input type="hidden" name="publisher" value="${book.publisher}" id="hiddenPublisher${book.isbn}">
+					<input type="hidden" name="price" value="${book.price}" id="hiddenPrice${book.isbn}">
+					<input type="hidden" name="amount" value="${book.amount}" id="hiddenAmount${book.isbn}">
 					<c:set var="sumTotal" value="${sumTotal + (book.price*book.amount)}"/>
 						
 						<tr>
@@ -229,6 +232,8 @@ payment
 							<input type="hidden" name="phone1" id="hiddenPhone1" value="${sessionScope.login.phone1}">
 							<input type="hidden" name="phone2" id="hiddenPhone2" value="${sessionScope.login.phone2}">
 							<input type="hidden" name="phone3" id="hiddenPhone3" value="${sessionScope.login.phone3}">
+							
+							<input type="hidden" name="isDirect" id="hiddenIsDirect" value="${isDirect }">
 						</td>
 					</tr>
 					
