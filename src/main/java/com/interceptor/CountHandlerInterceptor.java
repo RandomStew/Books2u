@@ -26,12 +26,8 @@ public class CountHandlerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
-		MemberDTO dto = (MemberDTO)session.getAttribute("login");
-		List<CartDTO> cartList = cartService.showCartList(dto.getUserId());
-		int cartSumAmount = 0;
-		for (CartDTO cart : cartList) {
-			cartSumAmount += cart.getAmount();
-		}
+		MemberDTO login = (MemberDTO)session.getAttribute("login");
+		int cartSumAmount = cartService.countAllInCart(login.getUserId());
 		session.setAttribute("cartSumAmount", cartSumAmount);
 	}
 	

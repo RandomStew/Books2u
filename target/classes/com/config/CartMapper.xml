@@ -32,7 +32,8 @@
 	
 	<!-- 카트 안에 책 총 수량 -->
 	<select id="countAllInCart" parameterType="string" resultType="_int">
-		select sum(amount)
+		select case when sum(amount) is null then 0
+               else sum(amount) end as "count"
 		from cart
 		where userid = #{userId}
 	</select>
