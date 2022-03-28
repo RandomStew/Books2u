@@ -117,7 +117,7 @@
 			alert("주문할 상품이 없습니다.");
 		} else{
 			f.action = "orderConfirm";
-			f.method = "get";
+			f.method = "post";
 			f.submit();
 		}
 		

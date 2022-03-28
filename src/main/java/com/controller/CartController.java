@@ -28,7 +28,6 @@ public class CartController {
 	
 	@GetMapping("/cartList")
 	public String cartList(HttpSession session, Model m) throws Exception {
-		
 		// 로그인 체크
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
 		if(memberDTO == null)
@@ -55,7 +54,6 @@ public class CartController {
 			cartDTO.setAmount(dto.getAmount() + cartDTO.getAmount());
 			num = service.updateBookAmount(cartDTO);
 		}
-		
 		return num;
 	}
 	

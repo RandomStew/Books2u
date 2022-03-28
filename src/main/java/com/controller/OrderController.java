@@ -38,7 +38,7 @@ public class OrderController {
 	BookService bookService;
 	
 	// 장바구니 => 주문하기
-	@GetMapping("/orderConfirm")
+	@PostMapping("/orderConfirm")
 	public String orderConfirm(HttpSession session,
 							   @RequestParam("isbn") List<String> isbns,
 							   Model m) throws Exception {
@@ -59,7 +59,7 @@ public class OrderController {
 	}
 	
 	// bookinfo => 주문하기
-	@GetMapping("/directOrder")
+	@PostMapping("/directOrder")
 	public String directOrder(CartDTO cartDTO, Model m) {
 		List<CartDTO> cartList = new ArrayList<>();
 		cartList.add(cartDTO);

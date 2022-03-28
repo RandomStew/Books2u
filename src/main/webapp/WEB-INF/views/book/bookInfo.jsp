@@ -48,7 +48,7 @@
 		$("#purchasebtn").on("click", function(){
 			$("form[name='bookForm']").attr({
 				action:"directOrder",
-				method:"get"
+				method:"post"
 			}).submit();
 		});
 		
